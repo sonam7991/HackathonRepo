@@ -4,6 +4,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class AdminController extends CI_Controller {
 	public function index(){
 	}
+    function loadAdminPage($page=""){
+        $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();
+        $this->load->view('admin/administrator/'.$page,$page_data);
+    }
+    function addUser(){
+        $page_data['message']="";
+        $page_data['messagefail']="";
+        $data['CID']=$this->input->post('CID');
+        $data['Full_Name']=$this->input->post('Full_Name');
+        $data['Contact_Numer']=$this->input->post('Contact_Numer');
+        $data['User_Id']=$this->input->post('User_Id');
+        $data['Role_Id']=$this->input->post('Role_Id');
+        $data['Password']=$this->input->post('Password');
+        $this->CommonModel->do_insert('t_user_details', $data); 
+        if($this->db->affected_rows()>0){
+            $page_data['message']="User details for ".$this->input->post('Full_Name')." has beed added with user name:<b>".$this->input->post('User_Id')."</b> and password:<b>".$this->input->post('Password')."</b>. Thank you for using our system";
+        }
+        else{
+            $page_data['messagefail']='User is not albe to submit. Please try again';
+        }
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
     //redirect to inividual pages for master and other pages.
 	function loadPage($page=""){
 		$page_data['Registration_number'] =$this->CommonModel->getregNo();

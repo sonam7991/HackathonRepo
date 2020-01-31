@@ -2,7 +2,7 @@
 <header class="main-header">
     <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="logo">
       <span class="logo-mini">L-lom</span>
-      <span class="logo-lg"><b>Organization</b></span>
+      <span class="logo-lg"><b>BT-Dashboard</b></span>
     </a>
     <nav class="navbar navbar-static-top">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -21,8 +21,7 @@
                 <p>
                   <?php echo $this->session->userdata('Full_Name');?>
                 </p>
-              </li>
-               
+              </li>               
               <li class="user-footer">
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-logout">Sign out</a>

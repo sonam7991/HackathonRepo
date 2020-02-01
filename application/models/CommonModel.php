@@ -11,6 +11,11 @@ class CommonModel extends CI_Model{
     }
    
    //get user details
+    function getuserDetails($id=""){
+        $query =$this->db->query("SELECT * FROM t_user_details u LEFT JOIN t_role_master r ON r.`Id`=u.`Role_Id` WHERE u.`Id`= '".$id."'")->row();
+        return $query;
+        
+    }
     function getusers(){
        $query =$this->db->query("SELECT IF(s.`Role_Id` IS NULL,'User',t.`Role_Name`) role,s.`Full_Name`,s.`Email_Id`,s.`Contact_No`,s.`Id`,d.`Designaiton`,dep.`Department`,c.`Company_Name` FROM staff_tbl s LEFT JOIN `company_tbl` c ON c.`Id`=s.`Company_Id` LEFT JOIN `designation_tbl` d ON d.`Id`=s.`Designation_Id` LEFT JOIN `department_tbl` dep ON dep.`Id`=s.`Department_Id` LEFT JOIN role_tbl t ON t.`Id`=s.`Role_Id` WHERE s.`Company_Id`= '".$this->session->userdata('companyId')."'")->result_array();
         return $query;

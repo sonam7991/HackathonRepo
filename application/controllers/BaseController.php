@@ -18,6 +18,7 @@ class BaseController extends CI_Controller {
             'User_Id' => $this->input->post('EmailId'), 'Password' => $this->input->post('password')));
             if ($query->num_rows() > 0){
                 $row = $query->row_array(); 
+                $this->session->set_userdata('User_table_id', $row['Id']);
                 $this->session->set_userdata('Role_Id', $row['Role_Id']);
                 $this->session->set_userdata('Full_Name', $row['Full_Name']);
                 $this->session->set_userdata('User_Id', $row['User_Id']);

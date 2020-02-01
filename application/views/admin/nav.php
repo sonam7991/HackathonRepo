@@ -29,22 +29,43 @@
           </ul>
         </li>
   	 	
-   		<?php } if($this->session->userdata('Role_Id')=="2"){ ?>
-   			<li class="treeview" id="contact">
+   		
+      	<?php }?>
+      	<li class="treeview" id="contact">
 	        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/search/')">
 	          <i class="fa fa-search"></i>
 	          <span>Search</span>
 	        </a>
-      	</li> 
-   		<?php } if($this->session->userdata('Role_Id')!="2"){?>
-   		<li class="treeview" id="contact">
-	        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/application/')">
-	          <i class="fa fa-chevron-circle-right"></i>
-	          <span>Application</span>
-	        </a>
-	      </li>
+      	</li>
+      	<li class="treeview">
+          <a href="#">
+           <i class="fa fa-download"></i>
+	          <span>Import Data</span>
+        	  <span class="pull-right-container">
+              <span class="label label-primary pull-right">5</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+        	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
+            		<i class="fa fa-chevron-right"></i> Add user
+            	</a>
+            </li>
+            <li>
+            	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
+            	<i class="fa fa-chevron-right"></i> List users
+            	</a>
+            </li>
+          </ul>
+        </li> 
 
-      	<?php }?>
+      
+      	<li class="treeview" id="contact">
+	        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/generateReport/')">
+	          <i class="fa fa-align-justify"></i>
+	          <span>Generate Report</span>
+	        </a>
+      	</li>
       	
     </ul>
   </section>

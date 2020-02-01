@@ -1,7 +1,7 @@
 
 <header class="main-header">
     <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="logo">
-      <span class="logo-mini">L-lom</span>
+      <span class="logo-mini">BT</span>
       <span class="logo-lg"><b>BT-Dashboard</b></span>
     </a>
     <nav class="navbar navbar-static-top">
@@ -23,17 +23,11 @@
                 </p>
               </li>               
               <li class="user-footer">
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-logout">Sign out</a>
+                <div >
+                  <a href="#" class="btn btn-success btn-flat pull-left" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat pull-right" data-toggle="modal" data-target="#modal-logout">Sign out</a>
                 </div>
-              </li>
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-12 text-center">
-                    <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/password/<?php echo $this->session->userdata('Id');?>')">Change Password</a>
-                  </div>
-                </div>
-              </li>
+              </li>             
             </ul>
           </li>
         </ul>

@@ -27,18 +27,24 @@ class AdminController extends CI_Controller {
         }
         $this->load->view('admin/acknowledgement', $page_data); 
     }
-    //redirect to inividual pages for master and other pages.
-	function loadPage($page=""){
-		$page_data['Registration_number'] =$this->CommonModel->getregNo();
-		$page_data['VerifierList'] =$this->CommonModel->getverifier();
-		$page_data['userList'] =$this->CommonModel->getusers();
-		$page_data['companyList'] = $this->db->get_where('company_tbl',array('Status'=>'Y'))->result_array();
-        $page_data['departmentList'] = $this->db->get_where('department_tbl',array('Status'=>'Y'))->result_array();
-        $page_data['designationList'] = $this->db->get_where('designation_tbl',array('Status'=>'Y'))->result_array();
-		$page_data['rolelist'] = $this->db->get_where('t_role_master',array('Status'=>'Y'))->result_array();
-		$this->load->view('admin/'.$page,$page_data);
-
+	function loadPage($page="",$id=""){
+        $page_data['userDetils'] =$this->CommonModel->getuserDetails($id);
+		$this->load->view('common/'.$page,$page_data);
 	}
+    function updateUser(){
+        $page_data['messagefail']="";
+        //die($this->input->post('Contact_Numer'));
+        $data['CID']=$this->input->post('CID');
+        $data['Full_Name']=$this->input->post('Full_Name');
+        $data['Contact_Numer']=$this->input->post('Contact_Numer');
+        $data['User_Id']=$this->input->post('User_Id');
+        $data['Password']=$this->input->post('Password');
+        
+        $this->db->where('Id',  $this->input->post('userId'));
+        $this->db->update('t_user_details`', $data);
+        $page_data['message']="Details are updated. Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
     //function to delete users
 	function deleteuser($iserId="",$page=""){
 		$this->db->where('Id', $iserId);

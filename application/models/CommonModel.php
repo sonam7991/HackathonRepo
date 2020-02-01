@@ -11,6 +11,11 @@ class CommonModel extends CI_Model{
     }
    
    //get user details
+    function getuserDetails($id=""){
+        $query =$this->db->query("SELECT * FROM t_user_details u LEFT JOIN t_role_master r ON r.`Id`=u.`Role_Id` WHERE u.`Id`= '".$id."'")->row();
+        return $query;
+        
+    }
     function getusers(){
        $query =$this->db->query(" SELECT u.`CID`,u.`Contact_Numer`,u.`Full_Name`,u.`User_Id` Email_Id,u.`Id` user_id,IF(u.`User_Status`='Y','Yes','No') Active_status FROM t_user_details u LEFT JOIN t_role_master r ON r.`Id`=u.`Role_Id` ")->result_array();
         return $query;

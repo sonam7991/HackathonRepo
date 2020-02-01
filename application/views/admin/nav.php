@@ -27,8 +27,7 @@
             	</a>
             </li>
           </ul>
-        </li>
-  	 	
+        </li> 	 	
    		
       	<?php }?>
       	<li class="treeview" id="contact">
@@ -50,6 +49,11 @@
         	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-mobile/')">
             		<i class="fa fa-chevron-right"></i> Subscriber B-Mobile
             	</a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-fixedline/')">
+                <i class="fa fa-chevron-right"></i> Subscriber Fixed-Line
+              </a>
             </li>
             <li>
             	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">

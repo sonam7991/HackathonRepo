@@ -35,6 +35,7 @@
 			                  <td> <?php echo $event['CID'];?> </td>
 			                  <td> <?php echo $event['Full_Name'];?> </td>
 			                  <td> <?php echo $event['Contact_Number'];?> </td>
+                              <td> <?php echo $event['Role_Id'];?> </td>
                               <td> <?php echo $this->db->get_where('t_role_master',array('Id'=>$event['Role_Id']))->row()->Role_Name;?> </td>
 			                  <td>
 			                  	 <button type="button" class="btn btn-info btn-block" onclick="showrole('<?php echo $event['Id']?>')"><i class="fa fa-edit"></i>Update Role</button>

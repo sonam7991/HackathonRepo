@@ -22,31 +22,10 @@ class CommonModel extends CI_Model{
     }
 
     //generated file number
-    function getregNo(){
-        $comp_dept =$this->db->query("SELECT dep.`Department_short`,c.`Company_Shortname` FROM staff_tbl s LEFT JOIN `company_tbl` c ON c.`Id`=s.`Company_Id` LEFT JOIN `department_tbl` dep ON dep.`Id`=s.`Department_Id` WHERE s.`Id`='".$this->session->userdata('Id')."' ");
-        $finalREgNo="";
-        $finalval="0";
-        if ($comp_dept->num_rows() > 0){
-            $Sequence_Type=$comp_dept->row()->Company_Shortname.'/'.$comp_dept->row()->Department_short;
-            $query =$this->db->get_where('application_sequence', array('Sequence_Type'=>$Sequence_Type));
-            if ($query->num_rows() > 0){
-                $finalval=$query->row()->Last_Sequence+1;
-                $data['Last_Sequence']=$finalval;
-                $this->db->where('Sequence_Type', $Sequence_Type);
-                $this->db->update('application_sequence', $data);
-            }
-            else{
-                $finalval=1;
-                $data['Last_Sequence']=$finalval;
-                $data['Sequence_Type']=$Sequence_Type;
-                $this->db->insert('application_sequence',$data);
-            }
-            $finalREgNo=$Sequence_Type.'/'.date('Y').'/'.$finalval;
-            return $finalREgNo;
-        }
-        else{
-            return "NotData";
-        }
+    function getReportDetails($id=""){
+        $query =$this->db->query("SELECT m.`Month`,s.`Year`,Prepaid_Active,Post_Passive,Total_Registered FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` IS NOT NULL")->result_array();
+        //die($query);
+        return $query;
     }
     //method to get users
     function getverifier($pe=""){

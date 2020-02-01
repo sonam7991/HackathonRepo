@@ -313,8 +313,14 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/acknowledgement', $page_data); 
     }
 
-    function loadreportPage($page=""){
-        $page_data['rolelist'] ="";
+    function loadreportPage($page="",$type="",$Id=""){
+        $page_data['Details_Report'] ="";
+        //die($type);
+        if($type=="detailReport"){
+            $page_data['header'] =$Id;
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id);
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }        
         $this->load->view('report/'.$page,$page_data);
     }
 

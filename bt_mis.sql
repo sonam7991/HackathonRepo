@@ -337,6 +337,7 @@ DROP TABLE IF EXISTS `t_subscriber_fixed_line_main`;
 
 CREATE TABLE `t_subscriber_fixed_line_main` (
   `Id` int(5) NOT NULL auto_increment,
+  `Year` int(5) default NULL,
   `Month` int(2) default NULL,
   `Subscriber` varchar(100) default NULL,
   `User_Id` int(5) default NULL,
@@ -352,6 +353,7 @@ DROP TABLE IF EXISTS `t_subscriber_fl_excel`;
 
 CREATE TABLE `t_subscriber_fl_excel` (
   `Id` int(5) NOT NULL auto_increment,
+  `Year` int(5) default NULL,
   `Month` int(2) default NULL,
   `Dzongkhag` varchar(50) default NULL,
   `Jan` varchar(10) default NULL,

@@ -91,7 +91,7 @@ class AdminController extends CI_Controller {
         if(!is_dir($file_directory)){
             mkdir($file_directory,0777,TRUE);
         }
-       $new_file_name = $_FILES["msubscriber"]["name"];
+        $new_file_name = $_FILES["msubscriber"]["name"];
         move_uploaded_file($_FILES["msubscriber"]["tmp_name"], $file_directory . $new_file_name);
         $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
         $objReader  = PHPExcel_IOFactory::createReader($file_type);
@@ -148,6 +148,8 @@ class AdminController extends CI_Controller {
         $Post_Total=$Post_Total_count/$rowcount;
         $Total_Active=$Total_Active_total/$rowcount;
         $Total_Registered=$Total_Registered_count/$rowcount;
+
+
 
 
         $file_name = $_FILES["lhrattachment"]["name"];

@@ -18,24 +18,19 @@
           <ul class="treeview-menu">
             <li>
         	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
-            		<i class="fa fa-chevron-right"></i> Add user
+            		<i class="fa fa-chevron-right"></i> Add User
             	</a>
             </li>
             <li>
             	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
-            	<i class="fa fa-chevron-right"></i> List users
+            	<i class="fa fa-chevron-right"></i> List Users
             	</a>
             </li>
           </ul>
         </li> 	 	
    		
       	<?php }?>
-      	<li class="treeview" id="contact">
-	        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/search/')">
-	          <i class="fa fa-search"></i>
-	          <span>Search</span>
-	        </a>
-      	</li>
+      	
       	<li class="treeview">
           <a href="#">
            <i class="fa fa-download"></i>
@@ -45,6 +40,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/revenue/')">
+                <i class="fa fa-chevron-right"></i> Revenue Finacial
+              </a>
+            </li>
             <li>
         	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-mobile/')">
             		<i class="fa fa-chevron-right"></i> Subscriber B-Mobile
@@ -56,9 +56,19 @@
               </a>
             </li>
             <li>
-            	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
-            	<i class="fa fa-chevron-right"></i> List users
-            	</a>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/mobile_data_user/')">
+                <i class="fa fa-chevron-right"></i> Subscriber Data User
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/vas/')">
+                <i class="fa fa-chevron-right"></i> Subscriber VAS
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/isp/')">
+                <i class="fa fa-chevron-right"></i> Subscriber ISP
+              </a>
             </li>
           </ul>
         </li> 
@@ -75,11 +85,6 @@
             <li>
             <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/')">
                 <i class="fa fa-chevron-right"></i> Subscriber B-Mobile
-              </a>
-            </li>
-            <li>
-              <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
-              <i class="fa fa-chevron-right"></i> List users
               </a>
             </li>
           </ul>

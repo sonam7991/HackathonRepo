@@ -8,7 +8,7 @@
 <section class="content">
 	<div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Load Data for Fixed Line Report(Subscriber)</h3>
+      <h3 class="box-title">Load Data for VAS Report(Subscriber)</h3>
     </div>
     <div class="box-body">
       <div class="row">
@@ -40,15 +40,25 @@
                          </select>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Upload the subscriber Fixed Line file here :<span class="text-danger">*</span></label>
-                          <input type="file" name="fsubscriber" onclick="removeer('fsubscriber_err')" id="fsubscriber" class="form-control">
-                          <span id="fsubscriber_err"  class="text-danger"></span>
+                          <label>Please input the total number of B-Wallet/B-Ngul New :<span class="text-danger">*</span></label>
+                          <input type="text" name="bnew" onclick="removeer('bnew_err')" id="bnew" class="form-control">
+                          <span id="bnew_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                          <label>Please input the number of B-Wallet/B-Ngul Total :<span class="text-danger">*</span></label>
+                          <input type="text" name="bwt" onclick="removeer('bwt_err')" id="bwt" class="form-control">
+                          <span id="bwt_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                          <label>Please input the number of B-Trowa Total :<span class="text-danger">*</span></label>
+                          <input type="text" name="bt" onclick="removeer('bt_err')" id="bt" class="form-control">
+                          <span id="bt_err"  class="text-danger"></span>
                       </div>
                   </div>
                   </div>                  
                   <div class="form-group">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11">
-                        <button class="btn btn-success pull-right" type="button" onclick="updatefl()"></i>Upload</button>
+                        <button class="btn btn-success pull-right" type="button" onclick="updatevas()"> Upload</button>
                       </div>
                   </div>
                 </div>
@@ -60,54 +70,50 @@
 </section>
 
 <script type="text/javascript">
-  	function updatefl(){
-      if(validate()){
-        $.blockUI
-        ({ 
-        css: 
-          { 
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-          } 
-        });
+  function removeerr(errid){
+    $('#'+errid).html('');  
+  }
+  function updatevas(){
+    if(validate()){
+      $.blockUI
+          ({ 
+            css: 
+            { 
+                  border: 'none', 
+                  padding: '15px', 
+                  backgroundColor: '#000', 
+                  '-webkit-border-radius': '10px', 
+                  '-moz-border-radius': '10px', 
+                  opacity: .5, 
+                  color: '#fff' 
+            } 
+          });
         var url='<?php echo base_url();?>index.php?adminController/insertflexcelData/';
         var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#importform").serialize()}; 
         $("#importform").ajaxSubmit(options);
         setTimeout($.unblockUI, 600); 
-      }
-  	}
-    function validate(){
-      
-      var returntype=true;
-      var parts=$('#fsubscriber').val().split('.');
-      var ext = parts[parts.length - 1];
-      if($('#fsubscriber').val()==""){
-        $('#fsubscriber_err').html('Please attach this excel file');  
-        returntype=false;
-      }
-      else if(isvalidFile(ext)==false){
-        $('#fsubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
-        returntype=false;
-      }
-      return returntype; 
+         
     }
-    function removeer(errid){
-      $('#'+errid).html('');  
+  }
+  function validate(){
+    var retuva=true;
+    if($('#bnew').val()==""){
+      $('#bnew_err').html('B-Wallet new required '); 
+      retuva=false;
     }
-    function isvalidFile(ext) {
-        switch (ext) {
-        case 'xls':
-        case 'xlsx':
-        case 'csv':
-            //etc
-            return true;
-        }
-        return false;
+    if($('#bwt').val()==""){
+      $('#bwt_err').html('B-Wallet Total required');  
+      retuva=false;
     }
+    if($('#bt').val()==""){
+      $('#bt_err').html('B-Trowa is required');  
+      retuva=false;
+    }
+    return retuva;
+  }
 </script>
+
+
+
+
   	

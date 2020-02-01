@@ -1,7 +1,7 @@
 <section class="content-header">
 	 <h1>
 	    Home
-	    <small>Add New user</small>
+	    <small>Add New User</small>
 	 </h1>
 </section>
 <section class="content">
@@ -57,7 +57,7 @@
                   </div>
                   <div class="form-group">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <button class="btn btn-success pull-right" type="button" onclick="addUserDetails()"> <i class="fa fa-plus"></i>Add</button>
+                        <button class="btn btn-success pull-right" type="button" onclick="addUserDetails()">Add</button>
                       </div>
                   </div>
                 </div>

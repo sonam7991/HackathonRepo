@@ -33,7 +33,7 @@
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <label>Contact Number:</label>
-                        <input type="text" value="<?=$userDetils->Contact_Numer?>" name="Contact_Numer" id="Contact_Numer" class="form-control">
+                        <input type="text" value="<?=$userDetils->Contact_Number?>" name="Contact_Number" id="Contact_Number" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">

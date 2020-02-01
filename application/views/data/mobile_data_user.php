@@ -8,7 +8,7 @@
 <section class="content">
 	<div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Load Data for Fixed Line Report(Subscriber)</h3>
+      <h3 class="box-title">Load Data for Mobile DataUsers(Subscriber)</h3>
     </div>
     <div class="box-body">
       <div class="row">
@@ -39,16 +39,32 @@
                            <option value="12">December</option>
                          </select>
                       </div>
+
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Upload the subscriber Fixed Line file here :<span class="text-danger">*</span></label>
-                          <input type="file" name="fsubscriber" onclick="removeer('fsubscriber_err')" id="fsubscriber" class="form-control">
-                          <span id="fsubscriber_err"  class="text-danger"></span>
+                          <label>Please input 2G total count here :<span class="text-danger">*</span></label>
+                          <input type="text" name="twog" onclick="removeer('twog_err')" id="twog" class="form-control">
+                          <span id="twog_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                          <label>Upload the 2G attachement here :<span class="text-danger">*</span></label>
+                          <input type="file" name="attache" onclick="removeer('attache_err')" id="attache" class="form-control">
+                          <span id="attache_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                          <label>Please input 4G total count here :<span class="text-danger">*</span></label>
+                          <input type="text" name="fourg" onclick="removeer('fourg_err')" id="fourg" class="form-control">
+                          <span id="fourg_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                          <label>Upload the 4G attachement here :<span class="text-danger">*</span></label>
+                          <input type="file" name="attached" onclick="removeer('attached_err')" id="attached" class="form-control">
+                          <span id="attached_err"  class="text-danger"></span>
                       </div>
                   </div>
                   </div>                  
                   <div class="form-group">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11">
-                        <button class="btn btn-success pull-right" type="button" onclick="updatefl()"></i>Upload</button>
+                        <button class="btn btn-success pull-right" type="button" onclick="updatefl()"> Upload</button>
                       </div>
                   </div>
                 </div>

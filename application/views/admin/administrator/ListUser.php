@@ -16,7 +16,7 @@
 	        		<table id="sliderDetails" class="table table-bordered table-striped">
 			            <thead>
 			              <tr>
-			                <th>Sl No#</th>
+			                <th>Sl No.</th>
 			                <th>Email</th>
 			                <th>User Status</th>
 			                <th>CID</th>

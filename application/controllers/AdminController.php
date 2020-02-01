@@ -9,11 +9,13 @@ class AdminController extends CI_Controller {
     }
 	public function index(){
 	}
+
     function loadAdminPage($page=""){
         $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();
         $page_data['userList'] = $this->db->get('t_User_details')->result_array();
         $this->load->view('admin/administrator/'.$page,$page_data);
     }
+
     function addUser(){
         $page_data['message']="";
         $page_data['messagefail']="";
@@ -37,7 +39,7 @@ class AdminController extends CI_Controller {
 		$this->load->view('common/'.$page,$page_data);
 	}
     function updateUser(){
-        $page_data['messagefail']="";
+       $page_data['messagefail']="";/*
         //die($this->input->post('Contact_Numer'));
         $data['CID']=$this->input->post('CID');
         $data['Full_Name']=$this->input->post('Full_Name');
@@ -46,8 +48,8 @@ class AdminController extends CI_Controller {
         $data['Password']=$this->input->post('Password');
         
         $this->db->where('Id',  $this->input->post('userId'));
-        $this->db->update('t_user_details`', $data);
-        $page_data['message']="Details are updated. Thank you for using our system";
+        $this->db->update('t_user_details`', $data);*/
+        $page_data['message']="Details are updated. Thank you for using the system";
         $this->load->view('admin/acknowledgement', $page_data); 
     }
     //function to delete users
@@ -72,6 +74,10 @@ class AdminController extends CI_Controller {
         $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();
         $page_data['userList'] = $this->db->get_where('t_User_details',array('User_Status'=>'Y'))->result_array();
 		$this->load->view('admin/administrator/ListUser',$page_data);
+        $page_data['messagefail']="";
+        $page_data['message']="Information is updated. Thank you for using the system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+
 	}
    
     function loadimportPage($page=""){
@@ -284,10 +290,7 @@ class AdminController extends CI_Controller {
         $disconnect=$Rowtotalpre+$Rowtotalpost;
         $churn=$disconnect/$Total_Registered;
         $lhrattachment = $_FILES["lhrattachment"]["name"];
-        /*$file_directory = "uploads/attachments/".date("Y").'/'.date("M").'/HLR';
-        if(!is_dir($file_directory)){
-            mkdir($file_directory,0777,TRUE);
-        }*/
+        
         move_uploaded_file($_FILES["lhrattachment"]["tmp_name"], $file_directory . $lhrattachment);
         $result = array(
             'Year' => $this->input->post('Year'),
@@ -317,6 +320,10 @@ class AdminController extends CI_Controller {
         $page_data['rolelist'] ="";
         $this->load->view('report/'.$page,$page_data);
     }
+
+/***
+Fixed Line Data
+****/
 
     function insertflexcelData($type=""){   
   
@@ -363,24 +370,167 @@ class AdminController extends CI_Controller {
             if($i==25){ 
               $Grand_Total= $data['C'];     
         }
-           $result = array(
+            
+        }
+        $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
                     'Subscriber' => $Grand_Total,
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_On' => date("Y-m-d"),
                 );
-            $this->CommonModel->do_insert('t_subscriber_fixed_line_main',$result); 
-        }
+            $this->CommonModel->do_insert('t_subscriber_fixed_line_main',$result);
         $page_data['messagefail']="";
         $page_data['message']="Details are updated.Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 
         
     }
+/***
+Revenue
+****/
+function insertrevenueexcelData($type=""){   
+  
+        require_once APPPATH.'third_party/PHPExcel.php';
+        $this->excel = new PHPExcel();  
+        $file_info = pathinfo($_FILES["frevenue"]["name"]);
+        $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
+        if(!is_dir($file_directory)){
+            mkdir($file_directory,0777,TRUE);
+        }
+        $new_file_name = $_FILES["frevenue"]["name"];
+        move_uploaded_file($_FILES["frevenue"]["tmp_name"], $file_directory . $new_file_name);
+        $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type);
+        $objPHPExcel = $objReader->load($file_directory . $new_file_name); 
+        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);    
+        $Grand_Total=0;
+        $rowcount=0;
+        foreach($sheet_data as $i=> $data) {
+            if($i>8){
+            $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Service_Revenue_Id' => $data['B'],
+                    'Jan' => $data['C'],
+                    'Feb' => $data['D'],
+                    'Mar' => $data['E'],
+                    /*'Apr' => $data['F'],
+                    'May' => $data['G'],
+                    'Jun' => $data['H'],
+                    'July' => $data['I'],
+                    'Aug' => $data['J'],
+                    'Sep' => $data['K'],
+                    'Oct' => $data['L'],
+                    'Nov' => $data['M'],
+                    'Dec' => $data['N'],*/
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_financial_excel',$result);
+            }
+        }
+        $page_data['messagefail']="";
+        $page_data['message']="Details are updated.Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
 
+/**
+ISP insertisp bbosubscriber bbpesubscriber llsubscriber
+**/
+function insertisp($type=""){     
+        require_once APPPATH.'third_party/PHPExcel.php';
+        $this->excel = new PHPExcel();  
+        $file_info = pathinfo($_FILES["bbosubscriber"]["name"]);
+        $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
+        if(!is_dir($file_directory)){
+            mkdir($file_directory,0777,TRUE);
+        }
+        $new_file_name = $_FILES["bbosubscriber"]["name"];
+        move_uploaded_file($_FILES["bbosubscriber"]["tmp_name"], $file_directory . $new_file_name);
+        $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type);
+        $objPHPExcel = $objReader->load($file_directory . $new_file_name);
+        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        
+        foreach($sheet_data as $i=> $data) {
+            if($i>2){
 
+                $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Domain' => $data['B'],
+                    'Address' => $data['C'],
+                    'Contact' => $data['D'],
+                    'Customer_Id' => $data['E'],
+                    'Service_No' => $data['F'],
+                    'Status' => $data['G'],
+                    'Package_Name' => $data['H'],
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_On' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_subscriber_bb_postpaid_isp_excel',$result);
+            }
+        }
 
+        $disconnect1 = $_FILES["bbpesubscriber"]["name"];
+        move_uploaded_file($_FILES["bbpesubscriber"]["tmp_name"], $file_directory . $disconnect1);
+        $file_type1  = PHPExcel_IOFactory::identify($file_directory . $disconnect1);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type1);
+        $objPHPExcel = $objReader->load($file_directory . $disconnect1);
+        $disconnect_sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        foreach($disconnect_sheet_data as $i=> $data) {
+            if($i>2){
+                $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Name' => $data['B'],
+                    'Customer_Group' => $data['C'],
+                    'Domain' => $data['D'],
+                    'Address' => $data['E'],
+                    'Contact' => $data['F'],
+                    'Service_No' => $data['G'],
+                    'Status' => $data['H'],
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_On' => date("Y-m-d"),                    
+                );                   
+                
+                $this->CommonModel->do_insert('t_subscriber_bb_prepaid_isp_excel',$result);
+            }
+        }
 
+        $disconnect2 = $_FILES["llsubscriber"]["name"];
+        move_uploaded_file($_FILES["llsubscriber"]["tmp_name"], $file_directory . $disconnect2);
+        $file_type2  = PHPExcel_IOFactory::identify($file_directory . $disconnect2);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type2);
+        $objPHPExcel = $objReader->load($file_directory . $disconnect2);
+        $disconnectper_sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $Rowtotalpre=0;
+        foreach($disconnectper_sheet_data as $i=> $data) {
+            if($i>2){
+                               
+               $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Customer_Id' => $data['A'],
+                    'Customer_Code' => $data['B'],
+                    'Customer_Type' => $data['C'],
+                    'CS_Activated' => $data['D'],
+                    'PRG_Name' => $data['E'],
+                    'CC_State' => $data['F'],
+                    'CC_City' => $data['G'],
+                    'CC_Name' => $data['H'],
+                    'CC_SMS_No' => $data['I'],
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_Date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_subscriber_leaseline_isp_excel',$result);
+            }
+        }
+
+        $page_data['messagefail']="";
+        $page_data['message']="Details are inserted. Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
 
     function searchDetails(){
        $page_data['result_list'] =$this->CommonModel->getappdetailsforreport($this->input->post('userid'));

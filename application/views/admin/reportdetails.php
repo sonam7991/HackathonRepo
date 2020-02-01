@@ -21,7 +21,7 @@
 	              <div class="timeline-item">
 	                <h3 class="timeline-header no-border">
 	                	<ul>
-	                		<li>Management department or marketing division have to upload file and give input to the system.</li>
+	                		<li>Management Department or Marketing Division have to upload file and give input to this system.</li>
 	                	</ul>
 	                </h3>
 	              </div>
@@ -31,7 +31,7 @@
 	              <div class="timeline-item">
 	                <h3 class="timeline-header no-border">
 	                	<ul>
-	                		<li>As a user you will get the report of various data depending on your selected category.</li>
+	                		<li>As an user you will get the report of various data depending on your selected category.</li>
 	                		<li>As a general user you will only get to view report with different graphical output.</li>
 	                	</ul>
 	                </h3>
@@ -63,6 +63,7 @@
           <h3 class="box-title">Aim and Objectives</h3>
         </div>
         <div class="box-body chat" id="">
+        	<h4>
         	<ul class="timeline">
 	            <li class="time-label">
                   	<span class="bg-green">
@@ -94,7 +95,7 @@
 	            	</div>
 	           </li>
          	 	
-	        </ul>
+	        </ul></h3>
 	        
         </div>
         <div class="box-footer">

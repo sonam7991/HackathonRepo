@@ -1,14 +1,14 @@
  
  <section class="content-header">
-	 <h1>
-	    Home
-	    <small>Import Data</small>
-	 </h1>
+   <h1>
+      Home
+      <small>Import Data</small>
+   </h1>
 </section>
 <section class="content">
-	<div class="box box-primary">
+  <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Load Data for Mobile Report(Subscriber)</h3>
+      <h3 class="box-title">Load Data for ISP Report(Subscriber)</h3>
     </div>
     <div class="box-body">
       <div class="row">
@@ -40,38 +40,52 @@
                          </select>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Upload the subscriber mobile file here :<span class="text-danger">*</span></label>
-                          <input type="file" name="msubscriber" onclick="removeer('msubscriber_err')" id="msubscriber" class="form-control">
-                          <span id="msubscriber_err"  class="text-danger"></span>
+                          <label>Upload Broadband Postpaid file here :<span class="text-danger">*</span></label>
+                          <input type="file" name="bbosubscriber" onclick="removeer('bbposubscriber_err')" id="bbposubscriber" class="form-control">
+                          <span id="bbposubscriber_err"  class="text-danger"></span>
                       </div>
                   </div>
                   <div class="form-group">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Upload the subscriber mobile postpaid disconnected file here :<span class="text-danger">*</span></label>
-                          <input type="file" name="mpostdisconnect" onclick="removeer('mpostdisconnect_err')" id="mpostdisconnect" class="form-control">
-                          <span id="mpostdisconnect_err"  class="text-danger"></span>
+                          <label>Upload Broadband Prepaid file here :<span class="text-danger">*</span></label>
+                          <input type="file" name="bbpesubscriber" onclick="removeer('bbpesubscriber_err')" id="bbpesubscriber" class="form-control">
+                          <span id="bbpesubscriber_err"  class="text-danger"></span>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <label>Upload the subscriber mobile prepaid disconnected file here :<span class="text-danger">*</span></label>
-                          <input type="file" onclick="removeer('mpredisconnect_err')" name="mpredisconnect" id="mpredisconnect" class="form-control">
-                          <span id="mpredisconnect_err"  class="text-danger"></span>
+                        <label>Upload Leaseline file here :<span class="text-danger">*</span></label>
+                          <input type="file" onclick="removeer('llsubscriber_err')" name="llsubscriber" id="llsubscriber" class="form-control">
+                          <span id="llsubscriber_err"  class="text-danger"></span>
                       </div>
-                  </div>
-                  <div class="form-group">
+
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Please input HLR count here : <span class="text-danger">*</span></label>
-                         <input type="number" name="lhr" id="lhr" onclick="removeer('lhr_err')" class="form-control">
-                         <span id="lhr_err"  class="text-danger"></span>
+                        <label>Input the number of LTE Broadband :<span class="text-danger">*</span></label>
+                          <input type="text" onclick="removeer('lte_err')" name="lte" id="lte" class="form-control">
+                          <span id="lte_err"  class="text-danger"></span>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <label>Upload the HLR attachment here : <span class="text-danger">*</span></label>
-                         <input type="file" name="lhrattachment" onclick="removeer('lhrattachment_err')" id="lhrattachment" class="form-control">
-                         <span id="lhrattachment_err"  class="text-danger"></span>
+                        <label>Input the number of Data Center :<span class="text-danger">*</span></label>
+                          <input type="text" onclick="removeer('data_err')" name="data" id="data" class="form-control">
+                          <span id="data_err"  class="text-danger"></span>
                       </div>
-                  </div>                  
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Input the number of Contact Center :<span class="text-danger">*</span></label>
+                          <input type="text" onclick="removeer('contact_err')" name="contact" id="contact" class="form-control">
+                          <span id="contact_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Input the number of ERP Service :<span class="text-danger">*</span></label>
+                          <input type="text" onclick="removeer('erp_err')" name="erp" id="erp" class="form-control">
+                          <span id="erp_err"  class="text-danger"></span>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Input the number of Fleet Management :<span class="text-danger">*</span></label>
+                          <input type="text" onclick="removeer('fleet_err')" name="fleet" id="fleet" class="form-control">
+                          <span id="fleet_err"  class="text-danger"></span>
+                      </div>
+                  </div>        
                   <div class="form-group">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11">
-                        <button class="btn btn-success pull-right" type="button" onclick="updateDetails()"></i>Upload</button>
+                        <button class="btn btn-success pull-right" type="button" onclick="updateDetails()"> Upload</button>
                       </div>
                   </div>
                 </div>
@@ -83,7 +97,7 @@
 </section>
 
 <script type="text/javascript">
-  	function updateDetails(){
+    function updateDetails(){
       if(validate()){
         $.blockUI
         ({ 
@@ -98,55 +112,48 @@
                 color: '#fff' 
           } 
         });
-        var url='<?php echo base_url();?>index.php?adminController/insertexcelData/bmobilesubscriber';
+        var url='<?php echo base_url();?>index.php?adminController/insertisp/';
         var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#importform").serialize()}; 
         $("#importform").ajaxSubmit(options);
         setTimeout($.unblockUI, 600); 
       }
-  	}
+    }
     function validate(){
       
       var returntype=true;
-      var parts=$('#msubscriber').val().split('.');
+      var parts=$('#bbposubscriber').val().split('.');
       var ext = parts[parts.length - 1];
-      if($('#msubscriber').val()==""){
-        $('#msubscriber_err').html('Please attach this excel file');  
+      if($('#bbposubscriber').val()==""){
+        $('#bbposubscriber_err').html('Please attach this excel file');  
         returntype=false;
       }
       else if(isvalidFile(ext)==false){
-        $('#msubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
+        $('#bbposubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
         returntype=false;
       }
       
-      var parts=$('#mpostdisconnect').val().split('.');
+      var parts=$('#bbpesubscriber').val().split('.');
       var ext = parts[parts.length - 1];
       if(isvalidFile(ext)==false){
-        $('#mpostdisconnect_err').html('Not a valid file. Please provide xls,xlsx and csv');  
+        $('#bbpesubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
         returntype=false;
       }
-      else if($('#mpostdisconnect').val()==""){
-        $('#mpostdisconnect_err').html('Please attach this excel file'); 
+      else if($('#bbpesubscriber').val()==""){
+        $('#bbpesubscriber_err').html('Please attach this excel file'); 
         returntype=false;
       }
 
-      var parts=$('#mpredisconnect').val().split('.');
+      var parts=$('#llsubscriber').val().split('.');
       var ext = parts[parts.length - 1];
       if(isvalidFile(ext)==false){
-        $('#mpredisconnect_err').html('Not a valid file. Please provide xls,xlsx and csv');  
+        $('#llsubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
         returntype=false;
       }
-      else if($('#mpredisconnect').val()==""){
-        $('#mpredisconnect_err').html('Please attach this excel file'); 
+      else if($('#llsubscriber').val()==""){
+        $('#llsubscriber_err').html('Please attach this excel file'); 
         returntype=false;
       }
-      if($('#lhr').val()==""){
-        $('#lhr_err').html('Please enter this value');  
-        returntype=false;
-      }
-      if($('#lhrattachment').val()==""){
-        $('#lhrattachment_err').html('Password attach supporting document for LHR');  
-        returntype=false;
-      }
+  
       return returntype;
     }
     function removeer(errid){
@@ -162,7 +169,5 @@
         }
         return false;
     }
-
-  	
 </script>
-  	
+    

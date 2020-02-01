@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h3><a class="navbar-brand" href="<?php echo base_url();?>"><span>BT </span>BI-Dashboard</a></h3>
+            <h3><a class="navbar-brand" href="<?php echo base_url();?>"><span>BTmis </span>BI-Dashboard</a></h3>
         </div>
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             <nav class="link-effect-2" id="link-effect-2">

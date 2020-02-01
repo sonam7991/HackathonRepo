@@ -1,14 +1,14 @@
  
  <section class="content-header">
-	 <h1>
-	    Home
-	    <small>Import Data</small>
-	 </h1>
+   <h1>
+      Home
+      <small>Import Data</small>
+   </h1>
 </section>
 <section class="content">
-	<div class="box box-primary">
+  <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Load Data for Fixed Line Report(Subscriber)</h3>
+      <h3 class="box-title">Load Data for Revenue Report </h3>
     </div>
     <div class="box-body">
       <div class="row">
@@ -40,15 +40,15 @@
                          </select>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <label>Upload the subscriber Fixed Line file here :<span class="text-danger">*</span></label>
-                          <input type="file" name="fsubscriber" onclick="removeer('fsubscriber_err')" id="fsubscriber" class="form-control">
-                          <span id="fsubscriber_err"  class="text-danger"></span>
+                          <label>Upload the Financial Statements here :<span class="text-danger">*</span></label>
+                          <input type="file" name="frevenue" onclick="removeer('frevenue_err')" id="frevenue" class="form-control">
+                          <span id="frevenue_err"  class="text-danger"></span>
                       </div>
                   </div>
                   </div>                  
                   <div class="form-group">
-                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11">
-                        <button class="btn btn-success pull-right" type="button" onclick="updatefl()"></i>Upload</button>
+                      <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <button class="btn btn-success pull-right" type="button" onclick="updaterv()"> Upload</button>
                       </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
 </section>
 
 <script type="text/javascript">
-  	function updatefl(){
+    function updaterv(){
       if(validate()){
         $.blockUI
         ({ 
@@ -75,23 +75,23 @@
                 color: '#fff' 
           } 
         });
-        var url='<?php echo base_url();?>index.php?adminController/insertflexcelData/';
+        var url='<?php echo base_url();?>index.php?adminController/insertrevenueexcelData/';
         var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#importform").serialize()}; 
         $("#importform").ajaxSubmit(options);
         setTimeout($.unblockUI, 600); 
       }
-  	}
+    }
     function validate(){
       
       var returntype=true;
-      var parts=$('#fsubscriber').val().split('.');
+      var parts=$('#frevenue').val().split('.');
       var ext = parts[parts.length - 1];
-      if($('#fsubscriber').val()==""){
-        $('#fsubscriber_err').html('Please attach this excel file');  
+      if($('#frevenue').val()==""){
+        $('#frevenue_err').html('Please attach this excel file');  
         returntype=false;
       }
       else if(isvalidFile(ext)==false){
-        $('#fsubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
+        $('#frevenue_err').html('Not a valid file. Please provide xls,xlsx and csv');  
         returntype=false;
       }
       return returntype; 

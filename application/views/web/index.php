@@ -18,13 +18,13 @@
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<b>Login Details</b>
+					<b>Login Form</b>
 					<br/><br/>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<?php echo form_open('?baseController/loginuser' , array('class' =>'form-horizontal','id' => 'loginform'));?>
 							
-							<input name="EmailId" id="EmailId" onclick="removeerr('EmailId_err')" placeholder="Email Id" type="text" class="form-control">
+							<input name="EmailId" id="EmailId" onclick="removeerr('EmailId_err')" placeholder="Email Id / Username" type="text" class="form-control">
 							<span id="EmailId_err" class="text-danger"></span><br />
 							
 							<input name="password" id="password" onclick="removeerr('password_err')" placeholder="Password" type="password" class="form-control"><span id="password_err" class="text-danger"></span><br>
@@ -67,11 +67,11 @@
 	function validateloginform(){
 		var retuva=true;
 		if($('#EmailId').val()==""){
-			$('#EmailId_err').html('password is required');	
+			$('#EmailId_err').html('Email Id/Username is required');	
 			retuva=false;
 		}
 		if($('#password').val()==""){
-			$('#password_err').html('password is required');	
+			$('#password_err').html('Password is required');	
 			retuva=false;
 		}
 		return retuva;

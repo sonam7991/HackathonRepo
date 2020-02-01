@@ -1,5 +1,5 @@
 <div class="w3-agile-footer">
-    <div class="container">
+    <div class="">
       <div class="agileits-w3layouts-copyright">
         <p>© 2020 Bhutan Telecom . All Rights Reserved | Design by JNEC </p>
       </div>

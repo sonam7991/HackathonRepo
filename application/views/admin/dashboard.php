@@ -7,7 +7,7 @@
         	<?php $this->load->view('admin/nav.php'); ?> 
 		 	<div class="content-wrapper">
 		 		<div id="mainContentdiv">
-			     	
+			     	<?php $this->load->view('admin/reportdetails.php'); ?> 
 		     	</div>
 			</div>
 			

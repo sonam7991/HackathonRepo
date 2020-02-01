@@ -8,16 +8,18 @@
     ?> 
     <div id="mainpublicContent">     	
     	<div class="register">
+    		<br/><br/>
 			<div class="container">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 page-header">
+				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<img src="<?php echo base_url();?>uploads/logo.png" alt="no imaged" onerror="this.src='<?php echo base_url();?>uploads/user.png'" width="67%" align="left">
+							<img src="<?php echo base_url();?>uploads/logo.png" alt="no imaged" onerror="this.src='<?php echo base_url();?>uploads/user.png'" width="108%" align="left">
 						</div>
 					</div>
-					<br/>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<b>Login Details</b>
+					<br/><br/>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<?php echo form_open('?baseController/loginuser' , array('class' =>'form-horizontal','id' => 'loginform'));?>
@@ -34,6 +36,7 @@
 			</div>
 		</div>
     </div>
+    <br/><br/>
 	<?php
 	    $this->load->view('web/footer.php');
 	?>

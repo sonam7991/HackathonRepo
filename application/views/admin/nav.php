@@ -59,14 +59,27 @@
           </ul>
         </li> 
 
-      
-      	<li class="treeview" id="contact">
-	        <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/generateReport/')">
-	          <i class="fa fa-align-justify"></i>
-	          <span>Generate Report</span>
-	        </a>
-      	</li>
-      	
+        <li class="treeview">
+          <a href="#">
+           <i class="fa fa-area-chart"></i>
+            <span>View/Generate Report</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">5</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/')">
+                <i class="fa fa-chevron-right"></i> Subscriber B-Mobile
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
+              <i class="fa fa-chevron-right"></i> List users
+              </a>
+            </li>
+          </ul>
+        </li>
     </ul>
   </section>
 </aside>

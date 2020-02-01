@@ -2,7 +2,7 @@
     <div class="header_left">
         <ul>
             <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Thimphu</li>
-            <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+975-11111111</li>
+            <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+975-17703452</li>
         </ul>
     </div>
     <div class="clearfix"></div>
@@ -25,8 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo base_url();?>"><span data-hover="Home">Home</span></a></li>
                     <li><a href="#" onclick="loadpage('Contact')"><span data-hover="Contact Us">Contact Us</span></a></li>
-                    <li><a href="#" onclick="loadpage('Import')"><span data-hover="Contact Us">Import</span></a></li>
-                   
+                  
                 </ul>
             </nav>
         </div>

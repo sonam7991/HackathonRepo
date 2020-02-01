@@ -97,10 +97,6 @@ class AdminController extends CI_Controller {
         $objReader  = PHPExcel_IOFactory::createReader($file_type);
         $objPHPExcel = $objReader->load($file_directory . $new_file_name);
         $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-        $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
-        $objReader  = PHPExcel_IOFactory::createReader($file_type);
-        $objPHPExcel = $objReader->load($file_directory . $new_file_name);
-        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
         $Prepaid_Active_main=0;
         $Prepaid_Passive_Total=0;
         $Prepaid_Total_count=0;
@@ -140,6 +136,7 @@ class AdminController extends CI_Controller {
                 $this->CommonModel->do_insert('t_subscriber_bmobile_excel',$result);
             }
         }
+
         $Prepaid_Active=$Prepaid_Active_main/ $rowcount;
         $Prepaid_Passive=$Prepaid_Passive_Total/ $rowcount;
         $Prepaid_Total=$Prepaid_Total_count/$rowcount;
@@ -149,15 +146,152 @@ class AdminController extends CI_Controller {
         $Total_Active=$Total_Active_total/$rowcount;
         $Total_Registered=$Total_Registered_count/$rowcount;
 
+        $disconnect1 = $_FILES["mpostdisconnect"]["name"];
+        move_uploaded_file($_FILES["mpostdisconnect"]["tmp_name"], $file_directory . $disconnect1);
+        $file_type1  = PHPExcel_IOFactory::identify($file_directory . $disconnect1);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type1);
+        $objPHPExcel = $objReader->load($file_directory . $disconnect1);
+        $disconnect_sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $Rowtotalpost=0;
+        foreach($disconnect_sheet_data as $i=> $data) {
+            if($i>2){
+                if($this->input->post('month')==1){
+                    $Rowtotalpost=$Rowtotalpost+$data['D'];
+                }
+                if($this->input->post('month')==2){
+                    $Rowtotalpost=$Rowtotalpost+$data['E'];
+                }
+                /*if($this->input->post('month')==3){
+                    $Rowtotalpost=$Rowtotalpost+$data['F'];
+                }
+                if($this->input->post('month')==4){
+                    $Rowtotalpost=$Rowtotalpost+$data['G'];
+                }
+                if($this->input->post('month')==5){
+                    $Rowtotalpost=$Rowtotalpost+$data['H'];
+                }
+                if($this->input->post('month')==6){
+                    $Rowtotalpost=$Rowtotalpost+$data['I'];
+                }
+                if($this->input->post('month')==7){
+                    $Rowtotalpost=$Rowtotalpost+$data['J'];
+                }
+                if($this->input->post('month')==8){
+                    $Rowtotalpost=$Rowtotalpost+$data['K'];
+                }
+                if($this->input->post('month')==9){
+                    $Rowtotalpost=$Rowtotalpost+$data['L'];
+                }
+                if($this->input->post('month')==10){
+                    $Rowtotalpost=$Rowtotalpost+$data['M'];
+                }
+                if($this->input->post('month')==11){
+                    $Rowtotalpost=$Rowtotalpost+$data['N'];
+                }
+                if($this->input->post('month')==12){
+                    $Rowtotalpost=$Rowtotalpost+$data['O'];
+                }*/
+                $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'File_Type' => 'POST',                    
+                    'Name' => $data['B'],
+                    'Jan' => $data['D'],
+                    'Feb' => $data['E'],
+                    /*'Mar' => $data['F'],
+                    'Apr' => $data['G'],
+                    'May' => $data['H'],
+                    'June' => $data['I'],
+                    'July' => $data['J'],
+                    'Aug' => $data['K'],
+                    'Sep' => $data['L'],
+                    'Oct' => $data['M'],
+                    'Nov' => $data['N'],
+                    'Dec' => $data['O'],*/
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_Date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_subscriber_base_disconnect_excel',$result);
+            }
+        }
 
+        $disconnect2 = $_FILES["mpredisconnect"]["name"];
+        move_uploaded_file($_FILES["mpredisconnect"]["tmp_name"], $file_directory . $disconnect2);
+        $file_type2  = PHPExcel_IOFactory::identify($file_directory . $disconnect2);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type2);
+        $objPHPExcel = $objReader->load($file_directory . $disconnect2);
+        $disconnectper_sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $Rowtotalpre=0;
+        foreach($disconnectper_sheet_data as $i=> $data) {
+            if($i>2){
+                if($this->input->post('month')==1){
+                    $Rowtotalpre=$Rowtotalpre+$data['D'];
+                }
+                if($this->input->post('month')==2){
+                    $Rowtotalpre=$Rowtotalpre+$data['E'];
+                }
+               /* if($this->input->post('month')==3){
+                    $Rowtotalpre=$Rowtotalpre+$data['F'];
+                }
+                if($this->input->post('month')==4){
+                    $Rowtotalpre=$Rowtotalpre+$data['G'];
+                }
+                if($this->input->post('month')==5){
+                    $Rowtotalpre=$Rowtotalpre+$data['H'];
+                }
+                if($this->input->post('month')==6){
+                    $Rowtotalpre=$Rowtotalpre+$data['I'];
+                }
+                if($this->input->post('month')==7){
+                    $Rowtotalpre=$Rowtotalpre+$data['J'];
+                }
+                if($this->input->post('month')==8){
+                    $Rowtotal=$Rowtotal+$data['K'];
+                }
+                if($this->input->post('month')==9){
+                    $Rowtotalpre=$Rowtotalpre+$data['L'];
+                }
+                if($this->input->post('month')==10){
+                    $Rowtotalpre=$Rowtotalpre+$data['M'];
+                }
+                if($this->input->post('month')==11){
+                    $Rowtotalpre=$Rowtotalpre+$data['N'];
+                }
+                if($this->input->post('month')==12){
+                    $Rowtotalpre=$Rowtotalpre+$data['O'];
+                }*/
+                $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'File_Type' => 'PRE',                    
+                    'Name' => $data['B'],
+                    'Jan' => $data['D'],
+                    'Feb' => $data['E'],
+                    /*'Mar' => $data['F'],
+                    'Apr' => $data['G'],
+                    'May' => $data['H'],
+                    'June' => $data['I'],
+                    'July' => $data['J'],
+                    'Aug' => $data['K'],
+                    'Sep' => $data['L'],
+                    'Oct' => $data['M'],
+                    'Nov' => $data['N'],
+                    'Dec' => $data['O'],*/
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_Date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_subscriber_base_disconnect_excel',$result);
+            }
+        }
 
-
-        $file_name = $_FILES["lhrattachment"]["name"];
+        $disconnect=$Rowtotalpre+$Rowtotalpost;
+        $churn=$disconnect/$Total_Registered;
+        $lhrattachment = $_FILES["lhrattachment"]["name"];
         /*$file_directory = "uploads/attachments/".date("Y").'/'.date("M").'/HLR';
         if(!is_dir($file_directory)){
             mkdir($file_directory,0777,TRUE);
         }*/
-        move_uploaded_file($_FILES["lhrattachment"]["tmp_name"], $file_directory . $new_file_name);
+        move_uploaded_file($_FILES["lhrattachment"]["tmp_name"], $file_directory . $lhrattachment);
         $result = array(
             'Year' => $this->input->post('Year'),
             'Month' => $this->input->post('month'),
@@ -168,14 +302,23 @@ class AdminController extends CI_Controller {
             'Post_Passive' => $Post_Passive,
             'Post_Total' => $Post_Total,
             'Total_Active' => $Total_Active,
-            'Total_Registered' => $Total_Registered,            
+            'Total_Registered' => $Total_Registered,
+            'Churn_Rate' => $churn,              
+            'Disconnected' => $disconnect,          
             'HLR' => $this->input->post('lhr'),
-            'HLR_Attachment' => $this->input->post('lhrattachment'),            
-            'User_Id' => $file_name,
+            'HLR_Attachment' =>$lhrattachment,
+            'User_Id' =>  $this->input->post('lhrattachment'),            
             'Added_Date' => date("Y-m-d"),                 
         );
         $this->CommonModel->do_insert('t_subscriber_bmobile_main',$result);
-        
+        $page_data['messagefail']="";
+        $page_data['message']="Details are inserted. Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
+
+    function loadreportPage($page=""){
+        $page_data['rolelist'] ="";
+        $this->load->view('report/'.$page,$page_data);
     }
     function searchDetails(){
        $page_data['result_list'] =$this->CommonModel->getappdetailsforreport($this->input->post('userid'));

@@ -47,6 +47,12 @@
 <script src="<?php echo base_url();?>assest/jquery.form.js"></script>
 <script src="<?php echo base_url();?>assest/jquery-blockUI.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assest/summernote/summernote-lite.js"></script>
+
+<script src="bower_components/chart.js/Chart.js"></script>
+<script src="dist/js/pages/dashboard2.js"></script>
+<script src="dist/js/demo.js"></script>
+
+
 <script type="text/javascript">
   $('.summernote').summernote({
       height:300

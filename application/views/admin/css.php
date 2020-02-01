@@ -24,4 +24,6 @@
   	<link rel="stylesheet" href="<?php echo base_url();?>assest/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url();?>assest/summernote/summernote-lite.css"/>
+
+  <!-- Theme style -->
 </head>

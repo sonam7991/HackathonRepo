@@ -99,6 +99,12 @@ class CommonModel extends CI_Model{
         $this->db->insert_batch($table,$data);
 
     }
+    function getcount($id=""){
+        $query =$this->db->query(" SELECT COUNT(*) lcoaunt FROM  `t_subscriber_leaseline_isp_excel` a WHERE a.`PRG_Name`='ISP Lease Line'")->row();
+        return $query;
+        
+    }
+   
    
      
 }

@@ -17,11 +17,11 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <div class="form-group">
-                      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                          <label>Please mention the year :<span class="text-danger">*</span></label>
                          <input type="number" name="Year" class="form-control" id="Year">
                       </div>
-                       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                          <label>Please select the month :<span class="text-danger">*</span></label>
                          <select name="month" id="month" class="form-control">
                            <option value="">Select</option>
@@ -47,7 +47,7 @@
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Upload the 2G attachement here :<span class="text-danger">*</span></label>
-                          <input type="file" name="attache" onclick="removeer('attache_err')" id="attache" class="form-control">
+                          <input type="file" name="attache2g" onclick="removeer('attache_err')" id="attache" class="form-control">
                           <span id="attache_err"  class="text-danger"></span>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -57,7 +57,7 @@
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Upload the 4G attachement here :<span class="text-danger">*</span></label>
-                          <input type="file" name="attached" onclick="removeer('attached_err')" id="attached" class="form-control">
+                          <input type="file" name="attached4g" onclick="removeer('attached_err')" id="attached" class="form-control">
                           <span id="attached_err"  class="text-danger"></span>
                       </div>
                   </div>
@@ -91,7 +91,7 @@
                 color: '#fff' 
           } 
         });
-        var url='<?php echo base_url();?>index.php?adminController/insertflexcelData/';
+        var url='<?php echo base_url();?>index.php?adminController/insertmobile23user/';
         var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#importform").serialize()}; 
         $("#importform").ajaxSubmit(options);
         setTimeout($.unblockUI, 600); 
@@ -100,7 +100,7 @@
     function validate(){
       
       var returntype=true;
-      var parts=$('#fsubscriber').val().split('.');
+     /* var parts=$('#fsubscriber').val().split('.');
       var ext = parts[parts.length - 1];
       if($('#fsubscriber').val()==""){
         $('#fsubscriber_err').html('Please attach this excel file');  
@@ -109,7 +109,7 @@
       else if(isvalidFile(ext)==false){
         $('#fsubscriber_err').html('Not a valid file. Please provide xls,xlsx and csv');  
         returntype=false;
-      }
+      }*/
       return returntype; 
     }
     function removeer(errid){

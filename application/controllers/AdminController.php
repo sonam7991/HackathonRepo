@@ -307,7 +307,7 @@ class AdminController extends CI_Controller {
             'Disconnected' => $disconnect,          
             'HLR' => $this->input->post('lhr'),
             'HLR_Attachment' =>$lhrattachment,
-            'User_Id' =>  $this->input->post('lhrattachment'),            
+            'User_Id' =>  $this->input->post('User_table_id'),            
             'Added_Date' => date("Y-m-d"),                 
         );
         $this->CommonModel->do_insert('t_subscriber_bmobile_main',$result);
@@ -374,8 +374,14 @@ Fixed Line Data
 
             }
             if($i==25){ 
-              $Grand_Total= $data['C'];     
-        }
+                if($this->input->post('month')==1){
+                    $Grand_Total= $data['C'];  
+                }
+                if($this->input->post('month')==2){
+                    $Grand_Total= $data['D']; 
+                }
+                 
+            }
             
         }
         $result = array(
@@ -411,8 +417,92 @@ function insertrevenueexcelData($type=""){
         $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);    
         $Grand_Total=0;
         $rowcount=0;
+        $Mrc=0;
+        $E_load=0;
+        $In_And_Vas=0;
+        $Online_App=0;
+        $Inter_Connect=0;
+        $International_Roming=0;
+        $In_And_Vas_International=0;
+        $Postpaid=0;
+        $Prepaid=0;
         foreach($sheet_data as $i=> $data) {
             if($i>8){
+                if($i==12){
+                    if($this->input->post('month')==1){
+                        $Mrc= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Mrc= $data['D']; 
+                    }
+                }
+                if($i==14){
+                    
+                    if($this->input->post('month')==1){
+                        $E_load= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $E_load= $data['D']; 
+                    }
+                }
+                if($i==15){
+                    if($this->input->post('month')==1){
+                        $In_And_Vas= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $In_And_Vas= $data['D']; 
+                    }
+                }
+                if($i==16 || $i==18 || $i==22){
+                    if($this->input->post('month')==1){
+                        $Online_App+= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Online_App+= $data['D']; 
+                    }
+                }
+                if($i==17){
+                    if($this->input->post('month')==1){
+                        $Inter_Connect= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Inter_Connect= $data['D']; 
+                    }
+                }
+                if($i==19){
+                    if($this->input->post('month')==1){
+                        $International_Roming= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $International_Roming= $data['D']; 
+                    }
+                }
+                if($i==20){
+                    if($this->input->post('month')==1){
+                        $In_And_Vas_International= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $In_And_Vas_International= $data['D']; 
+                    }
+                }
+                if($i==13){
+                    if($this->input->post('month')==1){
+                        $Postpaid= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Postpaid= $data['D']; 
+                    }
+                }
+                if($i==23){
+                    if($this->input->post('month')==1){
+                        $Prepaid= $data['C']-$Postpaid;  
+                    }
+                    if($this->input->post('month')==2){
+                        $Prepaid= $data['D']-$Postpaid; 
+                    }
+                }
+                
+                
             $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -435,6 +525,23 @@ function insertrevenueexcelData($type=""){
                 $this->CommonModel->do_insert('t_revenue_financial_excel',$result);
             }
         }
+          $Total_Revinue= $Mrc+$E_load+$In_And_Vas+$Online_App+$Inter_Connect+$International_Roming+$In_And_Vas_International+$Postpaid+$Prepaid;
+            $resultmo = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Mrc' => $Mrc,
+                    'E_load' => $E_load,
+                    'In_And_Vas' => $In_And_Vas,
+                    'Online_App' => $Online_App,
+                    'Inter_Connect' => $Inter_Connect,
+                    'International_Roming' => $International_Roming,
+                    'Prepaid' => $Prepaid,
+                    'Postpaid' => $Postpaid,
+                    'Total_Revinue' => $Total_Revinue,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_mobile_main',$resultmo);
         $page_data['messagefail']="";
         $page_data['message']="Details are updated.Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 
@@ -457,10 +564,10 @@ function insertisp($type=""){
         $objReader  = PHPExcel_IOFactory::createReader($file_type);
         $objPHPExcel = $objReader->load($file_directory . $new_file_name);
         $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-        
+        $postpaid_cpunt=0;
         foreach($sheet_data as $i=> $data) {
             if($i>2){
-
+                $postpaid_cpunt++;
                 $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -484,8 +591,10 @@ function insertisp($type=""){
         $objReader  = PHPExcel_IOFactory::createReader($file_type1);
         $objPHPExcel = $objReader->load($file_directory . $disconnect1);
         $disconnect_sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $prepaid_cpunt=0;
         foreach($disconnect_sheet_data as $i=> $data) {
             if($i>2){
+                $prepaid_cpunt++;
                 $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -503,7 +612,7 @@ function insertisp($type=""){
                 $this->CommonModel->do_insert('t_subscriber_bb_prepaid_isp_excel',$result);
             }
         }
-
+        
         $disconnect2 = $_FILES["llsubscriber"]["name"];
         move_uploaded_file($_FILES["llsubscriber"]["tmp_name"], $file_directory . $disconnect2);
         $file_type2  = PHPExcel_IOFactory::identify($file_directory . $disconnect2);
@@ -533,18 +642,65 @@ function insertisp($type=""){
             }
         }
 
+        $result = array(
+            'Year' => $this->input->post('Year'),
+            'Month' => $this->input->post('month'),
+            'Broad_Band_count' => $postpaid_cpunt+$prepaid_cpunt,
+            'Lease_Line_Count' => $this->CommonModel->getcount()->lcoaunt,
+            'LTE_Broad_Band_count' => $this->input->post('lte'),
+            'Data_Center_Count' => $this->input->post('data'),
+            'Contact_Center_Count' =>$this->input->post('contact'),
+            'ERP_Service_Count' => $this->input->post('erp'),
+            'Fleet_Management_Count' => $this->input->post('fleet'),
+            'User_Id' => $this->session->userdata('User_table_id'),
+            'Added_Date' => date("Y-m-d"),                    
+        );
+        $this->CommonModel->do_insert('t_subscriber_isp_main',$result);
+
         $page_data['messagefail']="";
         $page_data['message']="Details are inserted. Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 
     }
 
-    function searchDetails(){
-       $page_data['result_list'] =$this->CommonModel->getappdetailsforreport($this->input->post('userid'));
-       $this->load->view('admin/searchresult',$page_data); 
+    function insertmobile23user(){
+         $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
+        if(!is_dir($file_directory)){
+            mkdir($file_directory,0777,TRUE);
+        }
+        $attache2g = $_FILES["attache2g"]["name"];
+        $attached4g = $_FILES["attached4g"]["name"];
+         move_uploaded_file($_FILES["attache2g"]["tmp_name"], $file_directory . $attache2g);
+        move_uploaded_file($_FILES["attached4g"]["tmp_name"], $file_directory . $attached4g);
+        $result = array(
+            'Year' => $this->input->post('Year'),
+            'Month' => $this->input->post('month'),
+            '2_G_User' =>  $this->input->post('twog'),
+            '3_G_User' =>   $this->db->get_where('t_subscriber_bmobile_main',array('Month'=>$this->input->post('month')))->row()->Total_Registered-($this->input->post('twog')+$this->input->post('fourg')),
+            '4_G_User' =>  $this->input->post('fourg'),
+            'Attachment_2_G' =>$attache2g,
+            'Attachment_4_G' =>$attached4g,
+            'User_Id' =>  $this->session->userdata('User_table_id'),         
+            'Added_Date' => date("Y-m-d"),                 
+        );
+        $this->CommonModel->do_insert('t_subscriber_mobile_data_user_main',$result);
+        $page_data['messagefail']="";
+        $page_data['message']="Details are inserted. Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
     }
-    function searchDetailsgenerate($id=""){
-        $page_data['application_detail'] =$this->CommonModel->getApplicaionDetails('finalReport',$id);
-        $this->load->view('admin/finalreport',$page_data); 
+    function insertvas($id=""){
+         $result = array(
+            'Year' => $this->input->post('Year'),
+            'Month' => $this->input->post('month'),
+            'B_Wallet_New' =>  $this->input->post('bnew'),
+            'B_Wallet_Total' =>  $this->input->post('bwt'),
+            'B_Wallet_Towa' =>$this->input->post('btwerwe'),
+            'User_Id' => $this->session->userdata('User_table_id'),           
+            'Added_Date' => date("Y-m-d"),                 
+        );
+        $this->CommonModel->do_insert('t_subscriber_vas_main',$result);
+        $page_data['messagefail']="";
+        $page_data['message']="Details are inserted. Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
     }
 }
 

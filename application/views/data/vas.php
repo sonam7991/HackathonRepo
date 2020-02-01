@@ -51,7 +51,7 @@
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Please input the number of B-Trowa Total :<span class="text-danger">*</span></label>
-                          <input type="text" name="bt" onclick="removeer('bt_err')" id="bt" class="form-control">
+                          <input type="text" name="btwerwe" onclick="removeer('bt_err')" id="bt" class="form-control">
                           <span id="bt_err"  class="text-danger"></span>
                       </div>
                   </div>
@@ -88,7 +88,7 @@
                   color: '#fff' 
             } 
           });
-        var url='<?php echo base_url();?>index.php?adminController/insertflexcelData/';
+        var url='<?php echo base_url();?>index.php?adminController/insertvas/';
         var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#importform").serialize()}; 
         $("#importform").ajaxSubmit(options);
         setTimeout($.unblockUI, 600); 

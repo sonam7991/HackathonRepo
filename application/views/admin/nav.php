@@ -47,8 +47,8 @@
           </a>
           <ul class="treeview-menu">
             <li>
-        	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
-            		<i class="fa fa-chevron-right"></i> Add user
+        	 	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-mobile/')">
+            		<i class="fa fa-chevron-right"></i> Subscriber B-Mobile
             	</a>
             </li>
             <li>

@@ -10,6 +10,7 @@
 	      <h3 class="box-title">Manage Users Details</h3>
 	    </div>
 	    <div class="box-body">
+	    	<?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'uerdet', 'enctype' => 'multipart/form-data'));?>
 	    	<div class="row">
 	        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	        		<table id="sliderDetails" class="table table-bordered table-striped">
@@ -33,11 +34,17 @@
 			                  <td> <?php echo $event['User_Status'];?> </td>
 			                  <td> <?php echo $event['CID'];?> </td>
 			                  <td> <?php echo $event['Full_Name'];?> </td>
-			                  <td> <?php echo $event['Contact_Numer'];?> </td>
-                              <td> <?php echo $event['Role_Id'];?> </td>
+			                  <td> <?php echo $event['Contact_Number'];?> </td>
+                              <td> <?php echo $this->db->get_where('t_role_master',array('Id'=>$event['Role_Id']))->row()->Role_Name;?> </td>
 			                  <td>
 			                  	 <button type="button" class="btn btn-info btn-block" onclick="showrole('<?php echo $event['Id']?>')"><i class="fa fa-edit"></i>Update Role</button>
-			                  	 <button type="button" class="btn btn-danger btn-block" onclick="userstatus('<?php echo $event['Id']?>')"><i class="fa fa-times"></i>De-Activate</button>
+			                  	 <?php
+			                  	 if($event['User_Status']=="Y"){?>
+			                  	 	 <button type="button" class="btn btn-danger btn-block" onclick="userstatus('<?php echo $event['Id']?>','<?=$event['User_Status'];?>')"><i class="fa fa-times"></i>De-Activate</button>
+			                  	 <?php }else{
+			                  	 ?>
+			                  	  <button type="button" class="btn btn-primary btn-block" onclick="userstatus('<?php echo $event['Id']?>','<?=$event['User_Status'];?>')"><i class="fa fa-check"></i>Activate</button>
+			                  	<?php } ?>
 			                  </td>
 			              	</tr>
 			               	<?php endforeach; ?>
@@ -45,6 +52,8 @@
 			        </table>
 			    </div>
 			</div>
+	    	</form>
+	    	
 		</div>
 	</div>
 </section>
@@ -69,7 +78,6 @@
 						              	?>
 						              	<option value="<?php echo$com['Id'];?>"> <?php echo$com['Role_Name'];?></option>
 					              		<?php 
-
 						                  endforeach; 
 						              	?>
 									</select>
@@ -146,6 +154,26 @@
       var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#roleupdate").serialize()}; 
       $("#roleupdate").ajaxSubmit(options);
       $('#deleteSlider').modal('hide');
+      setTimeout($.unblockUI, 600); 
+  	}
+
+  	function userstatus(id,staus){
+  		$.blockUI
+        ({ 
+          css: 
+          { 
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+          } 
+        });
+      var url='<?php echo base_url();?>index.php?adminController/updatestaus/'+id+'/'+staus;
+      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#uerdet").serialize()}; 
+      $("#uerdet").ajaxSubmit(options);
       setTimeout($.unblockUI, 600); 
   	}
  

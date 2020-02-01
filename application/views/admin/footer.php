@@ -51,8 +51,8 @@
   $('.summernote').summernote({
       height:300
   });
-  function remove_err(err_Id){
-    $('#'+err_Id).html('');
+  function removeer(errid){
+    $('#'+errid).html('');  
   }
   function loadpage(url){
     $.blockUI

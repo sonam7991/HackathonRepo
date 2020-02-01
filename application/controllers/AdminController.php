@@ -6,6 +6,7 @@ class AdminController extends CI_Controller {
 	}
     function loadAdminPage($page=""){
         $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();
+        $page_data['userList'] = $this->db->get_where('t_User_details',array('User_Status'=>'Y'))->result_array();
         $this->load->view('admin/administrator/'.$page,$page_data);
     }
     function addUser(){
@@ -34,7 +35,7 @@ class AdminController extends CI_Controller {
 		$page_data['companyList'] = $this->db->get_where('company_tbl',array('Status'=>'Y'))->result_array();
         $page_data['departmentList'] = $this->db->get_where('department_tbl',array('Status'=>'Y'))->result_array();
         $page_data['designationList'] = $this->db->get_where('designation_tbl',array('Status'=>'Y'))->result_array();
-		$page_data['rolelist'] = $this->db->get_where('role_tbl',array('Status'=>'Y'))->result_array();
+		$page_data['rolelist'] = $this->db->get_where('t_role_master',array('Status'=>'Y'))->result_array();
 		$this->load->view('admin/'.$page,$page_data);
 
 	}
@@ -42,16 +43,16 @@ class AdminController extends CI_Controller {
 	function deleteuser($iserId="",$page=""){
 		$this->db->where('Id', $iserId);
         $this->db->delete('staff_tbl');
-        $page_data['rolelist'] = $this->db->get_where('role_tbl',array('Status'=>'Y'))->result_array();
+        $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Status'=>'Y'))->result_array();
         $page_data['userList'] =$this->CommonModel->getusers();
 		$this->load->view('admin/'.$page,$page_data);
 	}
     //function to update role for the user by admin
 	function Updaterole($page=""){
-        $data['Role_Id']=$this->input->post('Company_Name');
+        $data['Role_Id']=$this->input->post('User_List');
         $this->db->where('Id',  $this->input->post('deleteId'));
-        $this->db->update('staff_tbl`', $data);
-        $page_data['rolelist'] = $this->db->get_where('role_tbl',array('Status'=>'Y'))->result_array();
+        $this->db->update('t_role_master`', $data);
+        $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Status'=>'Y'))->result_array();
         $page_data['userList'] =$this->CommonModel->getusers();
 		$this->load->view('admin/'.$page,$page_data);
 	}

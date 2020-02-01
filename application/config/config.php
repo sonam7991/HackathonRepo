@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['base_url'] = 'http://localhost/hackathon2020/';
+$config['base_url'] = 'http://localhost/HackathonRepo/';
 
 $config['index_page'] = 'index.php';
 

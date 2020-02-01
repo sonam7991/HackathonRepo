@@ -21,7 +21,7 @@ class BaseController extends CI_Controller {
                 $this->session->set_userdata('Role_Id', $row['Role_Id']);
                 $this->session->set_userdata('Full_Name', $row['Full_Name']);
                 $this->session->set_userdata('User_Id', $row['User_Id']);
-                $this->session->set_userdata('Contact_No', $row['Contact_Numer']);
+                $this->session->set_userdata('Contact_No', $row['Contact_Number']);
                 redirect(base_url() . 'index.php?baseController/dashboard', 'refresh');
             } 
             else{

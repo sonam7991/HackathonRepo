@@ -52,6 +52,11 @@
             	</a>
             </li>
             <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-fixedline/')">
+                <i class="fa fa-chevron-right"></i> Subscriber Fixed-Line
+              </a>
+            </li>
+            <li>
             	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
             	<i class="fa fa-chevron-right"></i> List users
             	</a>

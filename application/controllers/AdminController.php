@@ -83,6 +83,8 @@ class AdminController extends CI_Controller {
         $page_data['rolelist'] ="";
         $this->load->view('data/'.$page,$page_data);
     }
+
+
     function insertexcelData($type=""){     
         require_once APPPATH.'third_party/PHPExcel.php';
         $this->excel = new PHPExcel();  
@@ -149,9 +151,6 @@ class AdminController extends CI_Controller {
         $Total_Active=$Total_Active_total/$rowcount;
         $Total_Registered=$Total_Registered_count/$rowcount;
 
-
-
-
         $file_name = $_FILES["lhrattachment"]["name"];
         /*$file_directory = "uploads/attachments/".date("Y").'/'.date("M").'/HLR';
         if(!is_dir($file_directory)){
@@ -177,6 +176,71 @@ class AdminController extends CI_Controller {
         $this->CommonModel->do_insert('t_subscriber_bmobile_main',$result);
         
     }
+
+    function insertflexcelData($type=""){   
+  
+        require_once APPPATH.'third_party/PHPExcel.php';
+        $this->excel = new PHPExcel();  
+        $file_info = pathinfo($_FILES["fsubscriber"]["name"]);
+        $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
+        if(!is_dir($file_directory)){
+            mkdir($file_directory,0777,TRUE);
+        }
+        $new_file_name = $_FILES["fsubscriber"]["name"];
+        move_uploaded_file($_FILES["fsubscriber"]["tmp_name"], $file_directory . $new_file_name);
+        $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
+        $objReader  = PHPExcel_IOFactory::createReader($file_type);
+        $objPHPExcel = $objReader->load($file_directory . $new_file_name); 
+        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);    
+        $Grand_Total=0;
+        $rowcount=0;
+        foreach($sheet_data as $i=> $data) {
+            if($i>4 && $i<25){
+            $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Dzongkhag' => $data['B'],
+                    'Jan' => $data['C'],
+                    'Feb' => $data['D'],
+                    /*'March' => $data['E'],
+                    'Aprl' => $data['F'],
+                    'May' => $data['G'],
+                    'Jun' => $data['H'],
+                    'July' => $data['I'],
+                    'Aug' => $data['J'],
+                    'Sep' => $data['K'],
+                    'Oct' => $data['L'],
+                    'Nov' => $data['M'],
+                    'Dec' => $data['N'],*/
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_On' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_subscriber_fl_excel',$result);
+
+
+            }
+            if($i==25){ 
+              $Grand_Total= $data['C'];     
+        }
+           $result = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Subscriber' => $Grand_Total,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_On' => date("Y-m-d"),
+                );
+            $this->CommonModel->do_insert('t_subscriber_fixed_line_main',$result); 
+        }
+        $page_data['messagefail']="";
+        $page_data['message']="Details are updated.Thank you for using our system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+        
+    }
+
+
+
+
+
     function searchDetails(){
        $page_data['result_list'] =$this->CommonModel->getappdetailsforreport($this->input->post('userid'));
        $this->load->view('admin/searchresult',$page_data); 

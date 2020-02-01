@@ -116,6 +116,10 @@ class CommonModel extends CI_Model{
         $query =$this->db->query("SELECT f.`Id`,f.`Subject`,f.`Application_Number`,f.`Message`,s.`Full_Name`,d.`Designaiton`,f.`Application_Date` FROM `approved_application_tbl` f LEFT JOIN `staff_tbl` s ON f.`Submitted_Id`=s.`Id` LEFT JOIN `designation_tbl` d ON s.`Designation_Id`=d.`Id` WHERE f.`Submitted_Id`='".$ppNo."'")->result_array();
         return $query;
     }
+    function insertBatch($table="",$data=""){
+        $this->db->insert_batch($table,$data);
+
+    }
    
      
 }

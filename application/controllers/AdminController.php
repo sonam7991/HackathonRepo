@@ -495,10 +495,10 @@ function insertrevenueexcelData($type=""){
                 }
                 if($i==23){
                     if($this->input->post('month')==1){
-                        $Prepaid= $data['C']-$Postpaid;  
+                        $Prepaid= $data['C'];  
                     }
                     if($this->input->post('month')==2){
-                        $Prepaid= $data['D']-$Postpaid; 
+                        $Prepaid= $data['D']; 
                     }
                 }
                 
@@ -535,8 +535,9 @@ function insertrevenueexcelData($type=""){
                     'Online_App' => $Online_App,
                     'Inter_Connect' => $Inter_Connect,
                     'International_Roming' => $International_Roming,
-                    'Prepaid' => $Prepaid,
+                    'In_And_Vas_International'=>$In_And_Vas_International,
                     'Postpaid' => $Postpaid,
+                    'Prepaid' => $Prepaid-$Postpaid,
                     'Total_Revinue' => $Total_Revinue,
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_date' => date("Y-m-d"),                    

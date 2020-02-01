@@ -33,7 +33,7 @@
 			                  <td> <?php echo $event['User_Status'];?> </td>
 			                  <td> <?php echo $event['CID'];?> </td>
 			                  <td> <?php echo $event['Full_Name'];?> </td>
-			                  <td> <?php echo $event['Contact_Numer'];?> </td>
+			                  <td> <?php echo $event['Contact_Number'];?> </td>
                               <td> <?php echo $event['Role_Id'];?> </td>
 			                  <td>
 			                  	 <button type="button" class="btn btn-info btn-block" onclick="showrole('<?php echo $event['Id']?>')"><i class="fa fa-edit"></i>Update Role</button>

@@ -36,7 +36,7 @@ class AdminController extends CI_Controller {
         //die($this->input->post('Contact_Numer'));
         $data['CID']=$this->input->post('CID');
         $data['Full_Name']=$this->input->post('Full_Name');
-        $data['Contact_Numer']=$this->input->post('Contact_Numer');
+        $data['Contact_Numer']=$this->input->post('Contact_Number');
         $data['User_Id']=$this->input->post('User_Id');
         $data['Password']=$this->input->post('Password');
         

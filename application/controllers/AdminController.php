@@ -318,7 +318,7 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/acknowledgement', $page_data); 
     }
 
-    function loadreportPage($page="",$type="",$Id=""){
+    function loadreportPage($page="",$type="",$Id="",$month=""){
         $page_data['Details_Report'] ="";
         //die($type);
         if($type=="detailReport"){
@@ -335,8 +335,10 @@ class AdminController extends CI_Controller {
             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'datauser');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
-         if($type=="vas"){
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'vas');
+        if($type=="vas"){
+            $page_data['month'] =$Id;
+            $page_data['year'] =$month;
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'vas',$month);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
          
@@ -350,10 +352,24 @@ class AdminController extends CI_Controller {
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
         if($type=="t_revenue_isp_main"){
-           // die();
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_isp_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
+         if($type=="t_revenue_fixed_line_main"){
+             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_fixed_line_main');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+        
+        if($type=="t_revenue_arpu_main"){
+             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_arpu_main');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+         if($type=="t_revenue_other_main"){
+             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_other_main');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+        
+        
         
         $this->load->view('report/'.$page,$page_data);
     }

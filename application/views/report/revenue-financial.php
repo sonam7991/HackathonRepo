@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Generate Report for <span id="reportName">Revenue Financial</span></h3>
+            <h3 class="box-title">Generate Report for <span id="reportName">Revenue</span></h3>
           </div>
           <div class="box-body">
             <div class="row">
@@ -30,11 +30,10 @@
                       <option value="fixedline"> Revinue FixedLine</option>
                       <option value="arpu"> Revinue APRU</option>
                       <option value="overall"> Revinue Overall</option>
-                    </select>
-                    
+                    </select>                    
                   </div>
                   <div class="col-lg-1 col-md-1 col-sm-1 col-xl-12">
-                    <label>Category</label>
+                    <label>Sub Category</label>
                   </div>
                    <div class="col-lg-3 col-md-3 col-sm-3 col-xl-12">
                     <select id="mobile"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_mobile_main')">
@@ -58,9 +57,25 @@
                         <option value="Broad_Band">Broad_Band</option>
                         <option value="EPR_Service"> EPR_Service</option>
                     </select>
-                    <select id="fixedline"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                    <select id="fixedline"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_fixed_line_main')">
+                        <option value=""> Select</option>
+                        <option value="Telephone_Service"> Telephone_Service</option>
+                        <option value="Int_ISD">Int_ISD</option>
+                        <option value="Total_Revenue"> Total_Revenue</option>
+                        <option value="Broad_Band">Broad_Band</option>
+                        <option value="EPR_Service"> EPR_Service</option>
                     </select>
-                    <select id="arpu"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                    <select id="arpu"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_arpu_main')">
+                       <option value=""> Select</option>
+                        <option value="Prepaid"> Prepaid</option>
+                        <option value="Postpaid">Postpaid</option>
+                    </select>
+                    <select id="overall"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_other_main')">
+                       <option value=""> Select</option>
+                        <option value="Other_Income"> Other_Income</option>
+                        <option value="Total_Revenue">Total_Revenue</option>
+                        <option value="Sale_Of_Product">Sale_Of_Product</option>
+                        
                     </select>
                   </div>
                 </div>
@@ -198,6 +213,7 @@
     $('#arpu').hide();
     $('#overall').hide();
     $('#'+id).show();
+    
   }
   $('#mobile').hide();
     $('#isp').hide();

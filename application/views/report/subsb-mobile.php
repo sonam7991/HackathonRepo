@@ -20,7 +20,7 @@
                       </select>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Subscribe B-Mobile</label>
+                    <label>Select Category</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">

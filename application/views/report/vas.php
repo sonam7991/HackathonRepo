@@ -14,10 +14,32 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" id="selectYr" name="report_type" class="form-control">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>                 
+                      </select>
+                    </p>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
+                     <label>Select Month</label>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
+                    <p class="text-center">
+                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                        <option value=""> Select</option>
+                        <option value="1"> January</option>
+                        <option value="2">Febuary</option>   
+                        <option value="3">Marcha</option>   
+                        <option value="4">April</option>                 
+                        <option value="5">May</option>   
+                        <option value="6">June</option>   
+                        <option value="7">July</option>   
+                        <option value="8">August</option>   
+                        <option value="9">September</option>   
+                        <option value="10">October</option>   
+                        <option value="11">November</option>   
+                        <option value="12">December</option>   
                       </select>
                     </p>
                   </div>
@@ -97,7 +119,7 @@
               color: '#fff' 
           } 
         });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/vas/'+id);
+      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/vas/'+id+'/'+$('#selectYr').val());
        /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
       //setTimeout($.unblockUI, 1000); 
   }

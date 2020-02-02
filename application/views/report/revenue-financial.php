@@ -3,41 +3,65 @@
       <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Generate Report for <span id="reportName">Subscriber B-Mobile</span></h3>
+            <h3 class="box-title">Generate Report for <span id="reportName">Revenue Financial</span></h3>
           </div>
           <div class="box-body">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                 <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xl-12">
                     <label>Select Year</label>
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <select name="report_type" name="report_type" class="form-control" >
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xl-12">
+                    <select name="report_type" name="report_type" class="form-control">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
                       </select>
                   </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Subscribe B-Mobile</label>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xl-12">
+                    <label>Main Category</label>
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
-                        <option value=""> Select</option>
-                        <option value="Prepaid_Active"> Prepaid Active</option>
-                        <option value="Prepaid_Passive"> Prepaid Passive</option>
-                        <option value="Prepaid_Total"> Prepaid Total</option>
-                        <option value="Post_Active"> Post Paid Active</option>
-                        <option value="Post_Passive"> Post Paid Passive</option>
-                        <option value="Post_Total"> Post Paid Total</option>
-                        <option value="Total_Active"> Total Active</option>
-                        <option value="Total_Registered"> Total Registered</option>
-                        <option value="Disconnected"> Disconnected</option>
-                        <option value="HLR"> HLR</option>                    
-                      </select>
-                    </p>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xl-12">
+                    <select name="report_type" name="report_type" class="form-control" onchange="sowList(this.value)">
+                      <option value=""> Select</option>
+                      <option value="mobile"> Revinue Mobile</option>
+                      <option value="isp"> Revinue ISP</option>
+                      <option value="fixedline"> Revinue FixedLine</option>
+                      <option value="arpu"> Revinue APRU</option>
+                      <option value="overall"> Revinue Overall</option>
+                    </select>
+                    
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xl-12">
+                    <label>Category</label>
+                  </div>
+                   <div class="col-lg-3 col-md-3 col-sm-3 col-xl-12">
+                    <select id="mobile"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_mobile_main')">
+                      <option value=""> Select</option>
+                      <option value="Mrc"> Mrc</option>
+                      <option value="E_load">E_load</option>
+                      <option value="In_And_Vas"> In_And_Vas</option>
+                      <option value="Online_App">Online_App</option>
+                      <option value="Inter_Connect"> Inter_Connect</option>
+                      <option value="International_Roming"> International_Roming</option>
+                      <option value="In_And_Vas_International"> In_And_Vas_International</option>
+                      <option value="Prepaid"> Prepaid</option>
+                      <option value="Postpaid"> Postpaid</option>
+                      <option value="Total_Revinue"> Total_Revinue</option>
+                    </select>
+                    <select id="isp"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value,'t_revenue_isp_main')">
+                       <option value=""> Select</option>
+                        <option value="Leased_line"> Leased_line</option>
+                        <option value="Domain_Name">Domain_Name</option>
+                        <option value="Data_Center"> Data_Center</option>
+                        <option value="Broad_Band">Broad_Band</option>
+                        <option value="EPR_Service"> EPR_Service</option>
+                    </select>
+                    <select id="fixedline"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                    </select>
+                    <select id="arpu"name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                    </select>
                   </div>
                 </div>
                 
@@ -60,7 +84,6 @@
                           </div>
                         </div>
                       </div>
-                     
                       </div> 
                     </div>
                   </div>
@@ -97,7 +120,7 @@
                               <td> <?php echo $rep['header'];?> </td>
                           <?php endforeach; }?>
                           </tr>
-                            <input type="hidden" name="" id="valudasd" value="<?=$month?>">
+                          <input type="hidden" name="" id="valudasd" value="<?=$month?>">
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +137,7 @@
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
-  function generateReport(id){
+  function generateReport(id,table){
      /*$.blockUI
         ({ 
           css: 
@@ -128,7 +151,7 @@
               color: '#fff' 
           } 
         });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id);
+      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/revenue-financial/'+table+'/'+id);
        /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
       //setTimeout($.unblockUI, 1000); 
   }
@@ -167,6 +190,18 @@
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
-  })
-
+  });
+  function sowList(id){
+    $('#mobile').hide();
+    $('#isp').hide();
+    $('#fixedline').hide();
+    $('#arpu').hide();
+    $('#overall').hide();
+    $('#'+id).show();
+  }
+  $('#mobile').hide();
+    $('#isp').hide();
+    $('#fixedline').hide();
+    $('#arpu').hide();
+    $('#overall').hide();
 </script>

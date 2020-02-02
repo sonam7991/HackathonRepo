@@ -1,9 +1,59 @@
  <section class="content-header">
-	 <h1>
-	    Home
-	 </h1>
+	
 </section>
+
 <section class="content">
+	 <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><?=explode(".",$Total_Active_User->Total_Active)[0]?></h3>
+              <p>Subscribe B-Mobile Active Users</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-mobile"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?=explode(".",$fixedLine->Subscriber)[0]?> </h3>
+              <p>Subcriber Fixed Line User</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-phone-square"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+        		<h3><?=explode(".",$isp->Broad_Band_count)[0]?> </h3>
+              <p>ISP (Broad Band)</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-building-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-red">
+            <div class="inner">
+             <h3><?=explode(".",$isp->Lease_Line_Count)[0]?> </h3>
+              <p>ISP (Lease Band)</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-bitcoin"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
 	<div class="box box-success">
         <div class="box-header">
           <i class="fa fa-desktop"></i>

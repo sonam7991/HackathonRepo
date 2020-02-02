@@ -29,14 +29,13 @@
           </ul>
         </li> 	 	
    		
-      	<?php }?>
-      	
+      	<?php } if($this->session->userdata('Role_Id')!="3"){?>
       	<li class="treeview">
           <a href="#">
            <i class="fa fa-download"></i>
 	          <span>Import Data</span>
         	  <span class="pull-right-container">
-              <span class="label label-primary pull-right">5</span>
+              <span class="label label-primary pull-right">6</span>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -72,19 +71,45 @@
             </li>
           </ul>
         </li> 
+        <?php }?>
 
         <li class="treeview">
           <a href="#">
            <i class="fa fa-area-chart"></i>
             <span>View/Generate Report</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">5</span>
+              <span class="label label-primary pull-right">6</span>
             </span>
           </a>
           <ul class="treeview-menu">
             <li>
             <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/')">
                 <i class="fa fa-chevron-right"></i> Subscriber B-Mobile
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/revenue-financial/')">
+                <i class="fa fa-chevron-right"></i> Revenue
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-fixedline/')">
+                <i class="fa fa-chevron-right"></i> Subscriber Fixed-Line
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobile_data_user/')">
+                <i class="fa fa-chevron-right"></i> Subscriber Data User
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/')">
+                <i class="fa fa-chevron-right"></i> Subscriber VAS
+              </a>
+            </li>
+            <li>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/')">
+                <i class="fa fa-chevron-right"></i> Subscriber ISP
               </a>
             </li>
           </ul>

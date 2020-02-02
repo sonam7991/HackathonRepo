@@ -22,11 +22,40 @@ class CommonModel extends CI_Model{
     }
 
     //generated file number
-    function getReportDetails($id=""){
-        $query =$this->db->query("SELECT m.`Month`,s.`Year`,Prepaid_Active,Post_Passive,Total_Registered FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` IS NOT NULL")->result_array();
+    function getReportDetails($id="",$type=""){
+        if($type=="bmobile"){
+            $query =$this->db->query("SELECT m.`Month`,s.`Year`,".$id." header FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` IS NOT NULL")->result_array();
+        }
+       //die($type);
+        if($type=="t_revenue_mobile_main"){
+           // die($id);
+            $query =$this->db->query("SELECT m.`Month`,m.`Year`,".$id." header FROM `t_revenue_mobile_main` m ")->result_array();
+        }
+        if($type=="t_revenue_isp_main"){
+           // die($id);
+            $query =$this->db->query("SELECT m.`Month`,".$id." header FROM `t_revenue_isp_main` m ")->result_array();
+        }
+        if($type=="fixline"){
+             $query =$this->db->query("SELECT f.`Subscriber` header FROM `t_subscriber_fixed_line_main` f WHERE f.`Year`=".$id)->result_array();
+        }
+        if($type=="datauser"){
+             $query =$this->db->query("SELECT d.`2_G_User`,d.`3_G_User`,d.`4_G_User` FROM `t_subscriber_mobile_data_user_main` d WHERE d.`Year`=".$id)->result_array();
+        }
+        if($type=="vas"){
+             $query =$this->db->query("SELECT d.`B_Wallet_New`,d.`B_Wallet_Total`,d.`B_Wallet_Towa` FROM `t_subscriber_vas_main` d WHERE d.`Year`=".$id)->result_array();
+        }
+        if($type=="isp"){
+             $query =$this->db->query("SELECT d.`Broad_Band_count`,d.`Contact_Center_Count`,d.`Data_Center_Count`,d.`ERP_Service_Count`,d.`Fleet_Management_Count`,d.`Lease_Line_Count`,d.`LTE_Broad_Band_count` FROM `t_subscriber_isp_main` d WHERE d.`Year`=".$id)->result_array();
+        }
+        if($type=="revenue-financial"){
+            if($id=="mobile"){
+                $query =$this->db->query("SELECT d.`Broad_Band_count`,d.`Contact_Center_Count`,d.`Data_Center_Count`,d.`ERP_Service_Count`,d.`Fleet_Management_Count`,d.`Lease_Line_Count`,d.`LTE_Broad_Band_count` FROM `t_subscriber_isp_main` d WHERE d.`Year`=".$id)->result_array();
+            }
+        }
         //die($query);
         return $query;
     }
+
     //method to get users
     function getverifier($pe=""){
         $query =$this->db->query(" SELECT s.Id,s.`Full_Name`,s.`Email_Id`,s.`Role_Id` FROM `staff_tbl` s WHERE s.`Company_Id`='".$this->session->userdata('companyId')."' AND s.Id <> '".$this->session->userdata('Id')."'")->result_array();
@@ -93,7 +122,7 @@ class CommonModel extends CI_Model{
     }
     function getappdetailsforreport($ppNo=""){
         $query =$this->db->query("SELECT f.`Id`,f.`Subject`,f.`Application_Number`,f.`Message`,s.`Full_Name`,d.`Designaiton`,f.`Application_Date` FROM `approved_application_tbl` f LEFT JOIN `staff_tbl` s ON f.`Submitted_Id`=s.`Id` LEFT JOIN `designation_tbl` d ON s.`Designation_Id`=d.`Id` WHERE f.`Submitted_Id`='".$ppNo."'")->result_array();
-        return $query;
+        return $query; 
     }
     function insertBatch($table="",$data=""){
         $this->db->insert_batch($table,$data);
@@ -104,7 +133,21 @@ class CommonModel extends CI_Model{
         return $query;
         
     }
-   
+   function gettotalDetails($type=""){
+        if($type=="Total_Active_User"){
+            $query =$this->db->query(" SELECT b.`Total_Active` FROM `t_subscriber_bmobile_main` b ")->row();
+       
+        }
+        if($type=="fixedLine"){
+            $query =$this->db->query("SELECT m.`Subscriber` FROM `t_subscriber_fixed_line_main` m ")->row();
+       
+        }
+        if($type=="isp"){
+            $query =$this->db->query("SELECT i.`Broad_Band_count`,i.`Lease_Line_Count` FROM `t_subscriber_isp_main` i ")->row();       
+        }
+        
+     return $query;
+   }
    
      
 }

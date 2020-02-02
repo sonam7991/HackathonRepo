@@ -3,39 +3,21 @@
       <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Generate Report for <span id="reportName">Subscriber B-Mobile</span></h3>
+            <h3 class="box-title">Generate Report for <span id="reportName">VAS</span></h3>
           </div>
           <div class="box-body">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                 <div class="row">
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Select Year</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <select name="report_type" name="report_type" class="form-control" >
-                        <option value=""> Select</option>
-                        <option value="2019"> 2019</option>
-                        <option value="2020">2020</option>
-                      </select>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Subscribe B-Mobile</label>
+                     <label>Select Year</label>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
                       <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
                         <option value=""> Select</option>
-                        <option value="Prepaid_Active"> Prepaid Active</option>
-                        <option value="Prepaid_Passive"> Prepaid Passive</option>
-                        <option value="Prepaid_Total"> Prepaid Total</option>
-                        <option value="Post_Active"> Post Paid Active</option>
-                        <option value="Post_Passive"> Post Paid Passive</option>
-                        <option value="Post_Total"> Post Paid Total</option>
-                        <option value="Total_Active"> Total Active</option>
-                        <option value="Total_Registered"> Total Registered</option>
-                        <option value="Disconnected"> Disconnected</option>
-                        <option value="HLR"> HLR</option>                    
+                        <option value="2019"> 2019</option>
+                        <option value="2020">2020</option>                 
                       </select>
                     </p>
                   </div>
@@ -70,44 +52,31 @@
                     <table id="sliderDetails" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>January</th>
-                            <th>February</th>
-                            <th>March</th>
-                            <th>April</th>
-                            <th>May</th>
-                            <th>June</th>
-                            <th>July</th>
-                            <th>August</th>
-                            <th>September</th>
-                            <th>October</th>
-                            <th>November</th>
-                            <th>December</th>
+                            <th>B-Wallet New</th>
+                            <th>B-Wallet Total</th>
+                            <th>B-Wallet Trowa</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
+
                           <?php  $month=""; if($Details_Report!=""){ ?>
                             <?php foreach($Details_Report as $i=> $rep): 
-                            if($i>0){
-                              $month=$month.','.$rep['header'];
-                            }
-                            else{
-                              $month=$rep['header'];
-                            }?>
-                              <td> <?php echo $rep['header'];?> </td>
+                            $month=$rep['B_Wallet_New'].','.$rep['B_Wallet_Total'].','.$rep['B_Wallet_Towa'];?>
+                             <td> <?php echo $rep['B_Wallet_New'];?> </td>
+                            <td> <?php echo $rep['B_Wallet_Total'];?> </td>
+                            <td> <?php echo $rep['B_Wallet_Towa'];?> </td>
                           <?php endforeach; }?>
                           </tr>
                             <input type="hidden" name="" id="valudasd" value="<?=$month?>">
                         </tbody>
                     </table>
                 </div>
-            </div>
+                </div>
               </div>
             </div>
           </div>
-          <!-- /.box-footer -->
         </div>
-        <!-- /.box -->
       </div>
       <!-- /.col -->
     </div>
@@ -128,7 +97,7 @@
               color: '#fff' 
           } 
         });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id);
+      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/vas/'+id);
        /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
       //setTimeout($.unblockUI, 1000); 
   }
@@ -137,7 +106,7 @@
     var str=[$('#valudasd').val()];
     var mnts=JSON.parse("[" + str + "]");
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','Sep','Oct','Nov','Dec'],
+      labels  : ['B-Wallet New', 'B-Wallet Total', 'B-Wallet Trowa'],
       datasets: [
         {
          // label               : '',

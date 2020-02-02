@@ -146,7 +146,9 @@ class AdminController extends CI_Controller {
         $Post_Active=$Post_Active_count/$rowcount;
         $Post_Passive=$Post_Passive_count/$rowcount;
         $Post_Total=$Post_Total_count/$rowcount;
+
         $Total_Active=$Total_Active_total/$rowcount;
+
         $Total_Registered=$Total_Registered_count/$rowcount;
 
         $disconnect1 = $_FILES["mpostdisconnect"]["name"];
@@ -321,10 +323,46 @@ class AdminController extends CI_Controller {
         //die($type);
         if($type=="detailReport"){
             $page_data['header'] =$Id;
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id);
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'bmobile');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
-        }        
+        } 
+        // die($type);
+        if($type=="subsb-fixedline"){
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'fixline');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        } 
+        if($type=="mobile_data_user"){
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'datauser');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+         if($type=="vas"){
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'vas');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        } 
+         
+         if($type=="isp"){
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'isp');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+        //die($type);
+        if($type=="t_revenue_mobile_main"){
+             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_mobile_main');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+        if($type=="t_revenue_isp_main"){
+           // die();
+             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_isp_main');
+            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+        }
+        
         $this->load->view('report/'.$page,$page_data);
+    }
+
+    function populateDependentDropDown($param1="",$param2=""){
+        $allList="";
+        header('Content-Type: application/json');
+        $allList=$this->ApplicationModel->gettablehear($param1);
+        echo json_encode($allList);
     }
 
 /***

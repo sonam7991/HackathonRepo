@@ -21,7 +21,7 @@ class CommonModel extends CI_Model{
         return $query;
     }
     function mobprepaid($month=""){
-        $query =$this->db->query(" SELECT m.`Prepaid_Total`,m.`Post_Total` FROM `t_subscriber_bmobile_main` m WHERE m.`Month`="'.$month.'" ")->row();
+        $query =$this->db->query(" SELECT m.`Prepaid_Total`,m.`Post_Total` FROM `t_subscriber_bmobile_main` m WHERE m.`Month`=".$month." ")->row();
         return $query;
     }
 

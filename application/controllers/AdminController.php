@@ -959,7 +959,7 @@ function insertisp($type=""){
     }
 
     function insertmobile23user(){
-         $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
+        $file_directory = "uploads/attachments/".date("Y").'/'.date("M");
         if(!is_dir($file_directory)){
             mkdir($file_directory,0777,TRUE);
         }

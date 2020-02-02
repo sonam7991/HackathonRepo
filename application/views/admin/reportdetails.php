@@ -32,7 +32,7 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-yellow">
             <div class="inner">
-        		<h3><?=explode(".",$isp->Broad_Band_count)[0]?> </h3>
+        		<h3><?php if($isp!=""){?><?=explode(".",$isp->Broad_Band_count)[0]?> <?php }else{?>0<?php }?></h3>
               <p>ISP (Broad Band)</p>
             </div>
             <div class="icon">
@@ -44,7 +44,7 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
-             <h3><?=explode(".",$isp->Lease_Line_Count)[0]?> </h3>
+             <h3><?php if($isp!=""){?><?=explode(".",$isp->Lease_Line_Count)[0]?> <?php }else{?>0<?php }?></h3>
               <p>ISP (Lease Band)</p>
             </div>
             <div class="icon">

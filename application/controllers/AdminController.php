@@ -464,6 +464,28 @@ function insertrevenueexcelData($type=""){
         $In_And_Vas_International=0;
         $Postpaid=0;
         $Prepaid=0;
+        $Telephone_Service=0;
+        $Int_ISD=0;
+        $Product1=0;
+        $Product2=0;
+        $Other_Income=0;
+
+        $Broad_Band=0;
+        $a=0;
+        $b=0;
+        $c=0;
+        $d=0;
+        $Leased_line=0;
+        $Domain_Name=0;
+        $IPLC=0;
+        $Domain_Name_int=0;
+        $Leased_Line_int=0;
+        $Contact_Center=0;
+        $Data_Center=0;
+        $Thuraya_Service=0;
+        $EPR_Service=0;
+        $Total_Revenue=0;
+        $Overall_total_revenue=0;
         foreach($sheet_data as $i=> $data) {
             if($i>8){
                 if($i==12){
@@ -539,7 +561,150 @@ function insertrevenueexcelData($type=""){
                         $Prepaid= $data['D']; 
                     }
                 }
-                
+                if($i==9){
+                    if($this->input->post('month')==1){
+                        $Telephone_Service= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Telephone_Service= $data['D']; 
+                    }
+                }
+                if($i==10){
+                    if($this->input->post('month')==1){
+                        $Int_ISD= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Int_ISD= $data['D']; 
+                    }
+                }
+                if($i==51){
+                    if($this->input->post('month')==1){
+                        $Producta= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Producta= $data['D']; 
+                    }
+                }
+                if($i==54){
+                    if($this->input->post('month')==1){
+                        $Productb= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Productb= $data['D']; 
+                    }
+                }
+                if($i==91){
+                    if($this->input->post('month')==1){
+                        $Other_Income= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Other_Income= $data['D']; 
+                    }
+                }
+                if($i==24){
+                    if($this->input->post('month')==1){
+                        $a= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $a= $data['D']; 
+                    }
+                }
+                if($i==25){
+                    if($this->input->post('month')==1){
+                        $b= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $b= $data['D']; 
+                    }
+                }
+                if($i==33){
+                    if($this->input->post('month')==1){
+                        $c= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $c= $data['D']; 
+                    }
+                }
+                if($i==34){
+                    if($this->input->post('month')==1){
+                        $d= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $d= $data['D']; 
+                    }
+                }
+                if($i==26){
+                    if($this->input->post('month')==1){
+                        $Leased_line= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Leased_line= $data['D']; 
+                    }
+                }
+                if($i==27){
+                    if($this->input->post('month')==1){
+                        $Domain_Name= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Domain_Name= $data['D']; 
+                    }
+                }
+                if($i==30){
+                    if($this->input->post('month')==1){
+                        $IPLC= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $IPLC= $data['D']; 
+                    }
+                }
+                if($i==31){
+                    if($this->input->post('month')==1){
+                        $Domain_Name_int= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Domain_Name_int= $data['D']; 
+                    }
+                }
+                if($i==32){
+                    if($this->input->post('month')==1){
+                        $Leased_Line_int= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Leased_Line_int= $data['D']; 
+                    }
+                }
+                if($i==36){
+                    if($this->input->post('month')==1){
+                        $Contact_Center= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Contact_Center= $data['D']; 
+                    }
+                }
+                if($i==38){
+                    if($this->input->post('month')==1){
+                        $Data_Center= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Data_Center= $data['D']; 
+                    }
+                }
+                if($i==39){
+                    if($this->input->post('month')==1){
+                        $Thuraya_Service= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Thuraya_Service= $data['D']; 
+                    }
+                }
+                if($i==40){
+                    if($this->input->post('month')==1){
+                        $EPR_Service= $data['C'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $EPR_Service= $data['D']; 
+                    }
+                }
                 
             $result = array(
                     'Year' => $this->input->post('Year'),
@@ -563,7 +728,11 @@ function insertrevenueexcelData($type=""){
                 $this->CommonModel->do_insert('t_revenue_financial_excel',$result);
             }
         }
-          $Total_Revinue= $Mrc+$E_load+$In_And_Vas+$Online_App+$Inter_Connect+$International_Roming+$In_And_Vas_International+$Postpaid+$Prepaid;
+
+
+        $Prepaid=(int)str_replace(",","",$Prepaid);
+        //die($In_And_Vas_International.':'.$Postpaid.':'.$Prepaid);
+          $Total_Revinueo= $Mrc+$E_load+$In_And_Vas+$Online_App+$Inter_Connect+$International_Roming+$In_And_Vas_International+$Postpaid+$Prepaid;
             $resultmo = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -576,14 +745,84 @@ function insertrevenueexcelData($type=""){
                     'In_And_Vas_International'=>$In_And_Vas_International,
                     'Postpaid' => $Postpaid,
                     'Prepaid' => $Prepaid-$Postpaid,
-                    'Total_Revinue' => $Total_Revinue,
+                    'Total_Revinue' => $Total_Revinueo,
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_date' => date("Y-m-d"),                    
                 );
                 $this->CommonModel->do_insert('t_revenue_mobile_main',$resultmo);
+        $ptotal= $Mrc+$E_load+$In_And_Vas+$Online_App+$In_And_Vas_International;
+        $resultarpu = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Postpaid' => $Postpaid,
+                    'Prepaid' => $ptotal,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_arpu_main',$resultarpu);
+
+
+        $Total_Revenuetw= $Telephone_Service+$Int_ISD;
+        $resultfixedline = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Telephone_Service' => $Telephone_Service,
+                    'Int_ISD' => $Int_ISD,
+                    'Total_Revenue' => $Total_Revenuetw,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_fixed_line_main',$resultfixedline); 
+
+        $Total_Revenuetr= $a+$b+$c+$d+$Leased_line+$Domain_Name+$IPLC+$Domain_Name_int+$Leased_Line_int+$Contact_Center+$Data_Center+$Thuraya_Service+$EPR_Service;    
+        $resultispmain = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Broad_Band' => $a+$b+$c+$d,
+                    'Leased_line' => $Leased_line,
+                    'Domain_Name' => $Domain_Name,
+                    'IPLC' => $IPLC,
+                    'Domain_Name_int' => $Domain_Name_int,
+                    'Leased_Line_int' => $Leased_Line_int,
+                    'Contact_Center' => $Contact_Center,
+                    'Data_Center' => $Data_Center,
+                    'Thuraya_Service' => $Thuraya_Service,
+                    'EPR_Service' => $EPR_Service,
+                    'Total_Revenue' => $Total_Revenuetr,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_isp_main',$resultispmain);
+
+        $Other_Income=(int)str_replace(",","",$Other_Income);
+        $Productb=(int)str_replace(",","",$Productb);
+        $Total_Revenuef= $Other_Income+$Producta+$Productb;
+        $resultothermain = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Sale_Of_Product' => $Producta+$Productb,
+                    'Other_Income' => $Other_Income,
+                    'Total_Revenue' => $Total_Revenuef,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_other_main',$resultothermain);
+
+        $Overall_total_revenue=$Total_Revenuef+$Total_Revenuetr+$Total_Revenuetw+$Total_Revinueo;
+        $resultrevenueoverall = array(
+                    'Year' => $this->input->post('Year'),
+                    'Month' => $this->input->post('month'),
+                    'Grand_Total' =>$Overall_total_revenue,
+                    'User_Id' => $this->session->userdata('User_table_id'),
+                    'Added_date' => date("Y-m-d"),                    
+                );
+                $this->CommonModel->do_insert('t_revenue_overall_main',$resultrevenueoverall);
+
         $page_data['messagefail']="";
         $page_data['message']="Details are updated.Thank you for using our system";
-        $this->load->view('admin/acknowledgement', $page_data); 
+        $this->load->view('admin/acknowledgement', $page_data);
+
+
     }
 
 /**
@@ -646,8 +885,7 @@ function insertisp($type=""){
                     'Status' => $data['H'],
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_On' => date("Y-m-d"),                    
-                );                   
-                
+                );                                   
                 $this->CommonModel->do_insert('t_subscriber_bb_prepaid_isp_excel',$result);
             }
         }
@@ -741,5 +979,7 @@ function insertisp($type=""){
         $page_data['message']="Details are inserted. Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 
     }
+
+    
 }
 

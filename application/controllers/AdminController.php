@@ -466,8 +466,8 @@ function insertrevenueexcelData($type=""){
         $Prepaid=0;
         $Telephone_Service=0;
         $Int_ISD=0;
-        $Product1=0;
-        $Product2=0;
+        $Producta=0;
+        $Productb=0;
         $Other_Income=0;
 
         $Broad_Band=0;
@@ -750,12 +750,14 @@ function insertrevenueexcelData($type=""){
                     'Added_date' => date("Y-m-d"),                    
                 );
                 $this->CommonModel->do_insert('t_revenue_mobile_main',$resultmo);
-        $ptotal= $Mrc+$E_load+$In_And_Vas+$Online_App+$In_And_Vas_International;
-        $resultarpu = array(
+                $pre_sub_mo=$this->CommonModel->mobprepaid($this->input->post('month'))->Prepaid_Total;
+                $post_sub_mo=$this->CommonModel->mobprepaid($this->input->post('month'))->Post_Total;
+                $ptotal= $Mrc+$E_load+$In_And_Vas+$Online_App+$In_And_Vas_International;
+                $resultarpu = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
-                    'Postpaid' => $Postpaid,
-                    'Prepaid' => $ptotal,
+                    'Postpaid' => $Postpaid/($post_sub_mo-$pre_sub_mo),
+                    'Prepaid' => $ptotal/$pre_sub_mo,
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_date' => date("Y-m-d"),                    
                 );
@@ -796,6 +798,7 @@ function insertrevenueexcelData($type=""){
 
         $Other_Income=(int)str_replace(",","",$Other_Income);
         $Productb=(int)str_replace(",","",$Productb);
+        
         $Total_Revenuef= $Other_Income+$Producta+$Productb;
         $resultothermain = array(
                     'Year' => $this->input->post('Year'),

@@ -20,6 +20,10 @@ class CommonModel extends CI_Model{
        $query =$this->db->query(" SELECT u.`CID`,u.`Contact_Numer`,u.`Full_Name`,u.`User_Id` Email_Id,u.`Id` user_id,IF(u.`User_Status`='Y','Yes','No') Active_status FROM t_user_details u LEFT JOIN t_role_master r ON r.`Id`=u.`Role_Id` ")->result_array();
         return $query;
     }
+    function mobprepaid($month=""){
+        $query =$this->db->query(" SELECT m.`Prepaid_Total`,m.`Post_Total` FROM `t_subscriber_bmobile_main` m WHERE m.`Month`="'.$month.'" ")->row();
+        return $query;
+    }
 
     //generated file number
     function getReportDetails($id="",$type=""){

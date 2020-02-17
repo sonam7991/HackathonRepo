@@ -38,20 +38,6 @@ class AdminController extends CI_Controller {
         $page_data['userDetils'] =$this->CommonModel->getuserDetails($id);
 		$this->load->view('common/'.$page,$page_data);
 	}
-    function updateUser(){
-       $page_data['messagefail']="";/*
-        //die($this->input->post('Contact_Numer'));
-        $data['CID']=$this->input->post('CID');
-        $data['Full_Name']=$this->input->post('Full_Name');
-        $data['Contact_Numer']=$this->input->post('Contact_Number');
-        $data['User_Id']=$this->input->post('User_Id');
-        $data['Password']=$this->input->post('Password');
-        
-        $this->db->where('Id',  $this->input->post('userId'));
-        $this->db->update('t_user_details`', $data);*/
-        $page_data['message']="Details are updated. Thank you for using the system";
-        $this->load->view('admin/acknowledgement', $page_data); 
-    }
     //function to delete users
 	function updatestaus($iserId="",$stus=""){
         if($stus=="Yes" || $stus=="Y"){
@@ -971,7 +957,7 @@ function insertisp($type=""){
             'Year' => $this->input->post('Year'),
             'Month' => $this->input->post('month'),
             '2_G_User' =>  $this->input->post('twog'),
-            '3_G_User' =>   $this->db->get_where('t_subscriber_bmobile_main',array('Month'=>$this->input->post('month')))->row()->Total_Registered-($this->input->post('twog')+$this->input->post('fourg')),
+            '3_G_User' =>   $this->db->get_where('t_subscriber_bmobile_main',array('Month'=>$this->input->post('month')))->row()->Total_Registered+($this->input->post('twog')+$this->input->post('fourg')),
             '4_G_User' =>  $this->input->post('fourg'),
             'Attachment_2_G' =>$attache2g,
             'Attachment_4_G' =>$attached4g,

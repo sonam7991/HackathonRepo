@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<!--------------<aside class="main-sidebar">
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
       <li class=" active header">
@@ -22,13 +22,12 @@
             	</a>
             </li>
             <li>
-            	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/listUser/')">
+            	<a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/ListUser/')">
             	<i class="fa fa-chevron-right"></i> List Users
             	</a>
             </li>
           </ul>
-        </li> 	 	
-   		
+        </li> 	 	   		
       	<?php } if($this->session->userdata('Role_Id')!="3"){?>
       	<li class="treeview">
           <a href="#">
@@ -116,4 +115,54 @@
         </li>
     </ul>
   </section>
-</aside>
+</aside>----------------->
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="brand-link">
+    <img src="assest/admin/version3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="logo-lg"><b>BT-DASHBOARD</b></span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+        <img src="#" onerror="this.src='<?php echo base_url();?>uploads/logo.png'" class="user-image" alt="User Image">
+              
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"> <span class="hidden-xs"><?php echo $this->session->userdata('Full_Name');?></span></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <?php if($this->session->userdata('Role_Id')=="1"){?>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                User Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <a class="nav-link active" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
+             <i class="far fa-circle nav-icon"></i> Add User
+              </a>
+            </li>
+            <li>
+              <a class="nav-link active" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/ListUser/')">
+              <i class="far fa-circle nav-icon"></i> List Users
+              </a>
+            </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>

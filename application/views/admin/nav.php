@@ -1,85 +1,197 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-secondary elevation-1">
   <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="brand-link">
   <img src="<?php echo base_url();?>uploads/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="logo-lg"><b>BT-DASHBOARD</b></span>
+    <span class="logo-lg"><b>BI-DASHBOARD</b></span>
   </a>
-  <div class="sidebar"> 
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <?php if($this->session->userdata('Role_Id')=="1"){?>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
-             <i class="nav-icon fa fa-user-plus"></i> Add User
+  <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <?php if($this->session->userdata('Role_Id')=="1"){?>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-users"></i>
+              <p>
+                User Management
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">2</span>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/addUser/')">
+                  <i class="nav-icon fa fa-user-plus"></i>
+                  <p>Add Users</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/ListUser/')">
+                  <i class="nav-icon fa fa-users"></i>
+                  <p>List Users</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadAdminPage/ListUser/')">
-            <i class="nav-icon fa fa-users"></i> List Users
+          <?php } if($this->session->userdata('Role_Id')!="3"){?>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-download"></i>
+              <p>
+                Import Data
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                 <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/revenue/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Revenue Finacial</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-mobile/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Subscriber B-Mobile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-fixedline/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Subscriber Fixed-Line</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/mobile_data_user/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Subscriber Data User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/vas/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Subscriber VAS</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/isp/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Subscriber ISP</p>
+                </a>
+              </li>
+            </ul>
           </li>
-        <?php } if($this->session->userdata('Role_Id')!="3"){?>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/revenue/')">
-            <i class="nav-icon fa fa-download"></i> Import Revenue Finacial
+        <?php }?>
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class=" fas fa-chart-pie"></i>
+              <p>
+                View/Generate Reports
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-mobile/')">
-            <i class="nav-icon fa fa-download"></i> Import Subs  B-Mobile
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+              <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/')">                  
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Subscriber B-Mobile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/revenue-financial/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Revenue Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-fixedline/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Subscriber Fixed-Line</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobile_data_user/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Subscriber DataUser</p> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Subscriber VAS</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Generate Subscriber ISP</p>
+                </a>
+              </li>
+            </ul>
+           </li>
+           <!--------------------------------New Features------------------------------------->
+           <!--------------------------------Mail Function------------------------------------>
+           <li class="nav-item has-treeview">
+            <a  class="nav-link" href="#">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                Mailbox
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/newPage/mailbox/')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inbox</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/newPage/compose/')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compose</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/newPage/read-mail/')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Read</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/subsb-fixedline/')">
-            <i class="nav-icon fa fa-download"></i> Import Subs Fixed-Line
+          <!-----------------------------------Market Target Analysis------------------->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                Market Target Analysis
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../mailbox/mailbox.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Finacial Target Analysis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../mailbox/compose.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Non-Finanical Target</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../mailbox/read-mail.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Company Target</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/mobile_data_user/')">
-            <i class="nav-icon fa fa-download"></i> Import Subs Data User
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/vas/')">
-            <i class="nav-icon fa fa-download"></i> Import Subscriber VAS
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/isp/')">
-            <i class="nav-icon fa fa-download"></i> Import Subscriber ISP
-            </a>
-          </li>
-      <?php }?>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Subs B-Mobile
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/revenue-financial/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Revenue
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-fixedline/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Subs Fixed-Line
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobile_data_user/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Subs Data User
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"  onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/vas/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Subscriber VAS
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/')">
-          <i class="nav-icon fa fa-align-justify"></i> Generate Subscriber ISP
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+
+
+
+        </ul>
+      </nav>
 </aside>

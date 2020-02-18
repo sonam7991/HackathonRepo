@@ -38,7 +38,18 @@ class AdminController extends CI_Controller {
         $page_data['userDetils'] =$this->CommonModel->getuserDetails($id);
 		$this->load->view('common/'.$page,$page_data);
 	}
-    //function to delete users
+    function updateUser(){
+       $page_data['messagefail']="";
+        $data['CID']=$this->input->post('CID');
+        $data['Full_Name']=$this->input->post('Full_Name');
+        $data['Contact_Number']=$this->input->post('Contact_Number');
+        $data['User_Id']=$this->input->post('User_Id');
+        $data['Password']=$this->input->post('Password');
+        $this->db->where('Id',  $this->input->post('userId'));
+        $this->db->update('t_user_details`', $data);
+        $page_data['message']="Details are updated. Thank you for using the system";
+        $this->load->view('admin/acknowledgement', $page_data); 
+    }
 	function updatestaus($iserId="",$stus=""){
         if($stus=="Yes" || $stus=="Y"){
 		  $data['User_Status']='N';

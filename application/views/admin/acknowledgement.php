@@ -5,11 +5,8 @@
   </h1>
 </section>
 <section class="content">
-  	<div class="box box-primary">
-	    <div class="box-header with-border">
-	      <h3 class="box-title">Message</h3>
-	    </div>
-	    <div class="box-body">
+  	<div class="card card-primary">
+	    <div class="card-body">
 	    	<?php  
 				if($message!='Undefined' && $message!=''){
 			?>

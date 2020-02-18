@@ -1,21 +1,34 @@
 <section class="content-header">
-	 <h1>
-	    Home
-	    <small>Add New User</small>
-	 </h1>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1></h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Add New User</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
 </section>
 <section class="content">
-	<div class="box box-primary">
-    <div class="box-header with-border">
-      <h3 class="box-title">User Details</h3>
-    </div>
-    <div class="box-body">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'adduserform', 'enctype' => 'multipart/form-data'));?>
+  <div class="container-fluid">
+    <!-- SELECT2 EXAMPLE -->
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">User Details</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+        </div>
+      </div>
+      <div class="card-body">
+         <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'adduserform', 'enctype' => 'multipart/form-data'));?>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="form-group">
+                  <div class="form-group row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>CID:</label>
                           <input type="number" name="CID" id="CID" class="form-control" placeholder="CID number" onclick="removeer('cid_err')">
@@ -27,11 +40,11 @@
                         <span id="name_err" class="text-danger"></span>
                       </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Email/User Id:</label>
                           <input type="text" name="User_Id" id="User_Id" class="form-control" placeholder="Email Id/User Id" onclick="removeer('email_err')">
-                        <span id="email_err" class="text-denger"></span>
+                        <span id="email_err" class="text-danger"></span>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <label>Contact Number:</label>
@@ -39,7 +52,7 @@
                         <span id="contact_err" class="text-danger"></span>
                       </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Role:</label>
                           <select name="Role_Id" id="Role_Id" class="form-control" placeholder="Role" onclick="removeer('role_err')">
@@ -55,7 +68,7 @@
                         <span id="password_err" class="text-danger"></span>
                       </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group row">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <button class="btn btn-success pull-right" type="button" onclick="addUserDetails()">Add</button>
                       </div>
@@ -63,11 +76,10 @@
                 </div>
             </div>
           </form>
-        </div>
       </div>
     </div>
+  </div>
 </section>
-
 <script type="text/javascript">
   	function addUserDetails(){
       //need to do validation

@@ -10,7 +10,7 @@
 </div>
 
 <div class="header-bottom">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-green navbar-light">
         <div class="navbar-header navbar-left">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>

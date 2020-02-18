@@ -70,6 +70,10 @@ class AdminController extends CI_Controller {
         $page_data['rolelist'] ="";
         $this->load->view('data/'.$page,$page_data);
     }
+    function newPage($page=""){
+        $page_data['rolelist'] ="";
+        $this->load->view('mail/'.$page,$page_data);
+    }
 
 
     function insertexcelData($type=""){     

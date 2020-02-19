@@ -7,7 +7,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">View/Generate Reports</li>
+          <li class="breadcrumb-item active">Generate Reports</li>
         </ol>
       </div>
     </div>
@@ -58,21 +58,20 @@
                     </p>
                   </div>
                 </div>
-                
                 <section class="content">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="box box-success">
-                        <div class="box-header with-border">
-                          <h3 class="box-title">Bar Chart</h3>
+                      <div class="card card-success">
+                        <div class="card-header with-border">
+                          <h3 class="card-title">Bar Chart</h3>
 
-                          <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          <div class="card-tools pull-right">
+                            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                           </div>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                           <div class="chart">
                             <canvas id="barChart" style="height:230px"></canvas>
                           </div>

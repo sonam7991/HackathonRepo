@@ -74,6 +74,56 @@
   </div>
 </div>
 </section>
+<!------------------------------------------IMPORT VIEW----------------------------------------->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">View Data for Finanical(Revenue)</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+        </div>
+      </div>
+      <div class="card-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+             <table id="Revenue_data" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="header">Year</th>
+                <th class="header">Month</th>                           
+                <th class="header">Service Revenue Id</th>                      
+                <th class="header">Jan</th>
+                <th class="header">Feb</th>
+                <th class="header">March</th>
+                <th class="header">Apr</th>
+                <th class="header">May</th>
+                <th class="header">Jun</th>
+                <th class="header">July</th>
+                <th class="header">Aug</th>
+                <th class="header">Sept</th>
+                <th class="header">Oct</th>
+                <th class="header">Nov</th>
+                <th class="header">Dec</th>
+                <th class="header">User Id</th>
+                <th class="header">Added Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!------------Table Data---------------->
+        </tbody>
+    </table>
+</div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!------------------------------------------IMPORT VIEW END--------------------------------------->
 
 <script type="text/javascript">
     function updaterv(){

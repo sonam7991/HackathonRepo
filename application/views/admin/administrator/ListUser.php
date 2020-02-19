@@ -1,15 +1,29 @@
 <section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1></h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Manage Users Details</li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="content">
-  	<div class="box box-primary">
-	    <div class="box-header with-border">
-	      <h4 class="box-title">Manage Users Details</h4>
-	    </div>
-	    <div class="box-body">
+	 <section class="content">
+      <div class="container-fluid">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Manage Users Details</h4>
+              </div>
+              <div class="card-body">
 	    	<?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'uerdet', 'enctype' => 'multipart/form-data'));?>
 	    	<div class="row">
 	        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	        		<table id="sliderDetails" class="table table-bordered table-striped">
+	        		<table id="sliderDetails" class="table table-bordered">
 			            <thead>
 			              <tr>
 			                <th>Sl No.</th>
@@ -19,6 +33,7 @@
 			                <th>Name</th>
                             <th>Contact</th>
 			                <th>Role</th>
+			                <th>User Type</th>
 			                <th>Action</th>
 			              </tr>
 			            </thead>
@@ -48,22 +63,21 @@
 			            </tbody>
 			        </table>
 			    </div>
-			</div>
-	    	</form>
-	    	
-		</div>
+
+</div>
+	    
 	</div>
 </section>
-<div class="modal modal-default" id="deleteSlider">
-  	<div class="modal-dialog modal-lg">
-    	<div class="modal-content">
-      		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          		<span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">Update Role</h4>
-      		</div>
-      		<div class="modal-body">
-      			<?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'roleupdate', 'enctype' => 'multipart/form-data'));?>
+ <div class="modal fade" id="deleteSlider">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"> Update Role</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'roleupdate', 'enctype' => 'multipart/form-data'));?>
   				 	<div class="row">
 			            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			            	<div class="form-group">
@@ -83,16 +97,17 @@
 				            <div class="form-group">
 				                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				                	<input type="hidden" name="deleteId" id="deleteId">
-				                	<button class="btn btn-success" type="button" onclick="updaterole()"> <i class="fa fa-check"></i>Update</button>
+				                	<button class="btn btn-success" type="button" onclick="updaterole()"> <i class="fa fa-check"></i> Update</button>
 				                </div>
 				            </div>
 			            </div>
 			        </div>
-      			</form>
-      		</div>
-      	</div>
-  	</div>
-</div>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
 
 <script type="text/javascript">
 	$('.summernote').summernote({

@@ -110,7 +110,6 @@
     </div>
     </div>
 </section>
-
 <script type="text/javascript">
     function updateDetails(){
       if(validate()){

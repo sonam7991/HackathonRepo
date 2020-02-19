@@ -61,7 +61,7 @@
         </div>
       </div>
     </form>
-       
+       <!---User Account---->
   <li class="dropdown user user-menu">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
       <img src="#" onerror="this.src='<?php echo base_url();?>uploads/user.png'" class="user-image" alt="User Image">
@@ -77,7 +77,7 @@
       </li>
       <li class="user-footer">
         <div >                  
-          <a href="#" class="btn btn-success btn-flat pull-left" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')">   Profile</a>
+          <a href="#" class="btn btn-success btn-flat pull-left" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')"> Profile</a>
             <a href="#" class="btn btn-default btn-flat pull-right" data-toggle="modal" data-target="#modal-logout">Sign out</a>
          </div>
       </li>
@@ -102,4 +102,4 @@
         </div>
       </div>
     </div>
-  </div>--->
+  </div>

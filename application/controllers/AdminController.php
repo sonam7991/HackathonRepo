@@ -167,7 +167,7 @@ class AdminController extends CI_Controller {
                 if($this->input->post('month')==2){
                     $Rowtotalpost=$Rowtotalpost+$data['E'];
                 }
-                /*if($this->input->post('month')==3){
+                if($this->input->post('month')==3){
                     $Rowtotalpost=$Rowtotalpost+$data['F'];
                 }
                 if($this->input->post('month')==4){
@@ -196,7 +196,7 @@ class AdminController extends CI_Controller {
                 }
                 if($this->input->post('month')==12){
                     $Rowtotalpost=$Rowtotalpost+$data['O'];
-                }*/
+                }
                 $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -204,7 +204,7 @@ class AdminController extends CI_Controller {
                     'Name' => $data['B'],
                     'Jan' => $data['D'],
                     'Feb' => $data['E'],
-                    /*'Mar' => $data['F'],
+                    'Mar' => $data['F'],
                     'Apr' => $data['G'],
                     'May' => $data['H'],
                     'June' => $data['I'],
@@ -213,7 +213,7 @@ class AdminController extends CI_Controller {
                     'Sep' => $data['L'],
                     'Oct' => $data['M'],
                     'Nov' => $data['N'],
-                    'Dec' => $data['O'],*/
+                    'Dec' => $data['O'],
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_Date' => date("Y-m-d"),                    
                 );
@@ -236,7 +236,7 @@ class AdminController extends CI_Controller {
                 if($this->input->post('month')==2){
                     $Rowtotalpre=$Rowtotalpre+$data['E'];
                 }
-               /* if($this->input->post('month')==3){
+                if($this->input->post('month')==3){
                     $Rowtotalpre=$Rowtotalpre+$data['F'];
                 }
                 if($this->input->post('month')==4){
@@ -265,7 +265,7 @@ class AdminController extends CI_Controller {
                 }
                 if($this->input->post('month')==12){
                     $Rowtotalpre=$Rowtotalpre+$data['O'];
-                }*/
+                }
                 $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
@@ -273,7 +273,7 @@ class AdminController extends CI_Controller {
                     'Name' => $data['B'],
                     'Jan' => $data['D'],
                     'Feb' => $data['E'],
-                    /*'Mar' => $data['F'],
+                    'Mar' => $data['F'],
                     'Apr' => $data['G'],
                     'May' => $data['H'],
                     'June' => $data['I'],
@@ -282,7 +282,7 @@ class AdminController extends CI_Controller {
                     'Sep' => $data['L'],
                     'Oct' => $data['M'],
                     'Nov' => $data['N'],
-                    'Dec' => $data['O'],*/
+                    'Dec' => $data['O'],
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_Date' => date("Y-m-d"),                    
                 );

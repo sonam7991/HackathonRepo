@@ -8,7 +8,7 @@
       <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
+      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobileSubsGraph/')" class="nav-link">Mobile Scriber</a>
     </li>
   </ul>
 

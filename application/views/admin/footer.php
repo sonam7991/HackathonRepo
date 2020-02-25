@@ -23,8 +23,6 @@
 <!-- Sparkline -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="<?php echo base_url();?>assest/admin/version3/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -49,6 +47,16 @@
 <script src="<?php echo base_url();?>assest/jquery.form.js"></script>
 <script src="<?php echo base_url();?>assest/jquery-blockUI.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assest/summernote/summernote-lite.js"></script>
+
+<!-----------------------------------------New Pages Script------------------------------------------------>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/raphael/raphael.min.js"></script>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<!-- ChartJS -->
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard2.js"></script>
 <script type="text/javascript">
   function removeer(errid){
     $('#'+errid).html('');  

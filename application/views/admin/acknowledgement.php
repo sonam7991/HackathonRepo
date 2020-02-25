@@ -12,7 +12,8 @@
 			?>
 			<div class="row">
 	          	<div class="col-xs-12 col-sm-12 col-md-12 col-la-12">
-	          		<div class="callout callout-success text-center">
+	          		  <div class="alert alert-success alert-dismissible"><h5><i class="icon fas fa-check"></i>Alerts!
+	          		  </h5>
 	          			<?=$message?>
 	          		</div>
 	          	</div>
@@ -22,7 +23,7 @@
 			?>
 			<div class="row">
 	          	<div class="col-xs-12 col-sm-12 col-md-12 col-la-12">
-	          		<div class="callout callout-danger text-center">
+	          		 <div class="alert alert-danger alert-dismissible"><h5><i class="icon fas fa-ban"></i> Alert!</h5>
 	          			<?=$messagefail?>
 	          		</div>
 	          	</div>

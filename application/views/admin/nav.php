@@ -84,7 +84,7 @@
             <a href="#" class="nav-link">
               <i class=" fas fa-chart-pie"></i>
               <p>
-                View/Generate Reports
+                View & Generate Reports
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
@@ -129,13 +129,12 @@
             </ul>
            </li>
            <!--------------------------------New Features------------------------------------->
-           <!--------------------------------Mail Function------------------------------------>
+           <!--------------------------------Mail Function------------------------------------
            <li class="nav-item has-treeview">
             <a  class="nav-link" href="#">
               <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
+              <p>Mailbox
+                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">3</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -158,14 +157,13 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li>----------------------------------->
           <!-----------------------------------Market Target Analysis------------------->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Market Target Analysis
-                <i class="fas fa-angle-left right"></i>
+              <i class="nav-icon fas fa-edit"></i>
+              <p>Market Target Analysis
+                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">3</span>
               </p>
             </a>
             <ul class="nav nav-treeview">

@@ -113,7 +113,7 @@
                         </div>
                         <div class="card-body">
                           <div class="chart">
-                            <canvas id="barChart" style="height:230px"></canvas>
+                            <canvas id="barChart" style="height:220px"></canvas>
                           </div>
                         </div>
                       </div>

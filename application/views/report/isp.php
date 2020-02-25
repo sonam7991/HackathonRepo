@@ -32,10 +32,15 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
-                        <option value="2020">2020</option>                 
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>                
                       </select>
                     </p>
                   </div>
@@ -106,23 +111,24 @@
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
+  
+  $('#report_type').val('<?php echo $year;?>');
   function generateReport(id){
-     /*$.blockUI
-        ({ 
-          css: 
-          { 
-              border: 'none', 
-              padding: '15px', 
-              backgroundColor: '#000', 
-              '-webkit-border-radius': '10px', 
-              '-moz-border-radius': '10px', 
-              opacity: .5, 
-              color: '#fff' 
-          } 
-        });*/
+      $.blockUI
+      ({ 
+        css: 
+        { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } 
+      });
       $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/isp/'+id);
-       /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
-      //setTimeout($.unblockUI, 1000); 
+      setTimeout($.unblockUI, 1000); 
   }
 
   $(function () {

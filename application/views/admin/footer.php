@@ -6,20 +6,10 @@
     reserved.
 </footer>
 
-
-
-<!-- jQuery -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
+<<<<<<< HEAD
 <!-- Sparkline -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -39,13 +29,13 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
+=======
+<script src="<?php echo base_url();?>assest/admin/version3/dist/js/adminlte.min.js"></script>
+>>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/demo.js"></script>
-
-<script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard3.js"></script>
-
-
 <script src="<?php echo base_url();?>assest/jquery.form.js"></script>
 <script src="<?php echo base_url();?>assest/jquery-blockUI.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="<?php echo base_url();?>assest/summernote/summernote-lite.js"></script>
 
 <!-----------------------------------------New Pages Script------------------------------------------------>
@@ -58,6 +48,9 @@
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard2.js"></script>
 <script type="text/javascript">
+=======
+<script type="text/javascript"> 
+>>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
   function removeer(errid){
     $('#'+errid).html('');  
   }
@@ -117,4 +110,127 @@
             $('#'+buttonId).show();
         }
     }
+
+
+
+$(function () {
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+      datasets: [
+        {
+          label               : 'Target',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [28, 48, 40, 19, 86, 27, 90,34,56,78,23,45]
+        },
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 40,45,44,56,78,99]
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+   var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+   
+var donutData        = {
+      labels: [
+          'Chrome', 
+          'IE',
+          'FireFox', 
+          'Safari', 
+          'Opera', 
+          'Navigator', 
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+  })
+
 </script>

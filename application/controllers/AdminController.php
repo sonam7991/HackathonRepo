@@ -318,18 +318,26 @@ class AdminController extends CI_Controller {
         $page_data['message']="Details are inserted. Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 
     }
-
-    function loadreportPage($page="",$type="",$Id="",$month=""){
+ 
+    function loadreportPage($page="",$type="",$Id="",$month="",$year="",$param1=""){
         $page_data['Details_Report'] ="";
-        //die($type);
+        $page_data['year'] =$year;
+        $page_data['rtype'] =$param1;
+        $page_data['subtypeval'] =$Id;
+        $page_data['subtype'] ="";
+        $page_data['Months'] ="";
+        //subsb-mobile
         if($type=="detailReport"){
             $page_data['header'] =$Id;
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'bmobile');
+            $page_data['rtype'] =$Id;
+            $page_data['year'] =$year;
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'bmobile','',$year);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
         // die($type);
         if($type=="subsb-fixedline"){
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'fixline');
+            $page_data['Months'] =$this->CommonModel->getmonths();
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'fixline','',$year);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
         if($type=="mobile_data_user"){
@@ -337,40 +345,43 @@ class AdminController extends CI_Controller {
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
         if($type=="vas"){
-            $page_data['month'] =$Id;
+            $page_data['Months'] =$Id;
             $page_data['year'] =$month;
             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'vas',$month);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
          
          if($type=="isp"){
+            $page_data['year'] =$Id;
             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'isp');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
-        //die($type);
+        
         if($type=="t_revenue_mobile_main"){
-             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_mobile_main');
-            //$this->load->view('report/reportDetaisreportDetais',$page_data);
+            $page_data['subtype'] ='mobile';
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_mobile_main','',$year);
         }
         if($type=="t_revenue_isp_main"){
+            $page_data['subtype'] ='isp';
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_isp_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
          if($type=="t_revenue_fixed_line_main"){
+            $page_data['subtype'] ='fixedline';
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_fixed_line_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
         
         if($type=="t_revenue_arpu_main"){
+            $page_data['subtype'] ='arpu';
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_arpu_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
          if($type=="t_revenue_other_main"){
+            $page_data['subtype'] ='overall';
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_other_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
-        
-        
         
         $this->load->view('report/'.$page,$page_data);
     }
@@ -386,8 +397,7 @@ class AdminController extends CI_Controller {
 Fixed Line Data
 ****/
 
-    function insertflexcelData($type=""){   
-  
+    function insertflexcelData($type=""){     
         require_once APPPATH.'third_party/PHPExcel.php';
         $this->excel = new PHPExcel();  
         $file_info = pathinfo($_FILES["fsubscriber"]["name"]);
@@ -403,6 +413,7 @@ Fixed Line Data
         $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);    
         $Grand_Total=0;
         $rowcount=0;
+        $isdata_exist=$this->CommonModel->checkdataAndDelete('t_subscriber_fl_excel',$this->input->post('Year'),$this->input->post('month'));
         foreach($sheet_data as $i=> $data) {
             if($i>4 && $i<25){
             $result = array(
@@ -411,7 +422,7 @@ Fixed Line Data
                     'Dzongkhag' => $data['B'],
                     'Jan' => $data['C'],
                     'Feb' => $data['D'],
-                    /*'March' => $data['E'],
+                    'March' => $data['E'],
                     'Aprl' => $data['F'],
                     'May' => $data['G'],
                     'Jun' => $data['H'],
@@ -420,13 +431,12 @@ Fixed Line Data
                     'Sep' => $data['K'],
                     'Oct' => $data['L'],
                     'Nov' => $data['M'],
-                    'Dec' => $data['N'],*/
+                    'Dec' => $data['N'],
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_On' => date("Y-m-d"),                    
                 );
+
                 $this->CommonModel->do_insert('t_subscriber_fl_excel',$result);
-
-
             }
             if($i==25){ 
                 if($this->input->post('month')==1){
@@ -435,18 +445,49 @@ Fixed Line Data
                 if($this->input->post('month')==2){
                     $Grand_Total= $data['D']; 
                 }
+                if($this->input->post('month')==3){
+                    $Grand_Total= $data['E']; 
+                }
+                if($this->input->post('month')==4){
+                    $Grand_Total= $data['F']; 
+                }
+                if($this->input->post('month')==5){
+                    $Grand_Total= $data['G']; 
+                }
+                if($this->input->post('month')==6){
+                    $Grand_Total= $data['H']; 
+                }
+                if($this->input->post('month')==7){
+                    $Grand_Total= $data['I']; 
+                }
+                if($this->input->post('month')==8){
+                    $Grand_Total= $data['J']; 
+                }
+                if($this->input->post('month')==9){
+                    $Grand_Total= $data['K']; 
+                }
+                if($this->input->post('month')==10){
+                    $Grand_Total= $data['L']; 
+                }
+                if($this->input->post('month')==11){
+                    $Grand_Total= $data['M']; 
+                }
+                if($this->input->post('month')==12){
+                    $Grand_Total= $data['N']; 
+                }
                  
             }
             
         }
         $result = array(
-                    'Year' => $this->input->post('Year'),
-                    'Month' => $this->input->post('month'),
-                    'Subscriber' => $Grand_Total,
-                    'User_Id' => $this->session->userdata('User_table_id'),
-                    'Added_On' => date("Y-m-d"),
-                );
-            $this->CommonModel->do_insert('t_subscriber_fixed_line_main',$result);
+            'Year' => $this->input->post('Year'),
+            'Month' => $this->input->post('month'),
+            'Subscriber' => $Grand_Total,
+            'User_Id' => $this->session->userdata('User_table_id'),
+            'Added_On' => date("Y-m-d"),
+        );
+        $isdata_exist=$this->CommonModel->checkdataAndDelete('t_subscriber_fixed_line_main',$this->input->post('Year'),$this->input->post('month'));
+        $this->CommonModel->do_insert('t_subscriber_fixed_line_main',$result);
         $page_data['messagefail']="";
         $page_data['message']="Details are updated.Thank you for using our system";
         $this->load->view('admin/acknowledgement', $page_data); 

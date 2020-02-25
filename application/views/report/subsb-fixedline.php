@@ -32,15 +32,19 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" id="report_type_Id" class="form-control" onchange="generateReport(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
-                        <option value="2020">2020</option>                 
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>              
                       </select>
                     </p>
                   </div>
-                </div>
-                
+                </div>                
                 <section class="content">
                   <div class="row">
                     <div class="col-md-12">
@@ -85,15 +89,22 @@
                         <tbody>
                           <tr>
                           <?php  $month=""; if($Details_Report!=""){ ?>
-                            <?php foreach($Details_Report as $i=> $rep): 
-                            if($i>0){
-                              $month=$month.','.$rep['header'];
-                            }
-                            else{
-                              $month=$rep['header'];
-                            }?>
-                              <td> <?php echo $rep['header'];?> </td>
-                          <?php endforeach; }?>
+                            <?php foreach($Months as $i=> $mon): 
+                              $display=0;$currentmon=0;
+                                foreach($Details_Report as $j=> $rep): 
+                                  if($i+1==$rep['Month']){
+                                    $display=$rep['header'];
+                                    $currentmon=$rep['header'];
+                                  }
+                                endforeach;
+                                if($i>0){
+                                  $month=$month.','.$currentmon;
+                                }
+                                else{
+                                  $month=$currentmon;
+                                } ?>
+                              <td> <?php echo $display;?> </td>
+                            <?php endforeach; }?>
                           </tr>
                             <input type="hidden" name="" id="valudasd" value="<?=$month?>">
                         </tbody>
@@ -111,7 +122,7 @@
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
   function generateReport(id){
-     /*$.blockUI
+     $.blockUI
         ({ 
           css: 
           { 
@@ -123,10 +134,9 @@
               opacity: .5, 
               color: '#fff' 
           } 
-        });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-fixedline/subsb-fixedline/'+id);
-       /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
-      //setTimeout($.unblockUI, 1000); 
+        });
+      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-fixedline/subsb-fixedline/Subscriber/0/'+id);
+      setTimeout($.unblockUI, 1000); 
   }
 
   $(function () {

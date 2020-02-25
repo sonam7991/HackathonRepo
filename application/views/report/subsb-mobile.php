@@ -23,63 +23,64 @@
           <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
         </div>
       </div>
-          <div class="card-body">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group row">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>Select Year</label>
+                <select name="report_year" onclick="removereer('report_year_err')" id="report_year" class="form-control" >
+                  <option value=""> Select</option>
+                  <option value="2019"> 2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                </select>
+                <span id="report_year_err" class="text-danger"></span>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">  
+                <label>Select Category</label>
+                <p class="text-center">
+                  <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
+                    <option value=""> Select</option>
+                    <option value="Prepaid_Active"> Prepaid Active</option>
+                    <option value="Prepaid_Passive"> Prepaid Passive</option>
+                    <option value="Prepaid_Total"> Prepaid Total</option>
+                    <option value="Post_Active"> Post Paid Active</option>
+                    <option value="Post_Passive"> Post Paid Passive</option>
+                    <option value="Post_Total"> Post Paid Total</option>
+                    <option value="Total_Active"> Total Active</option>
+                    <option value="Total_Registered"> Total Registered</option>
+                    <option value="Disconnected"> Disconnected</option>
+                    <option value="HLR"> HLR</option>                    
+                  </select>
+                </p>
+              </div>
+            </div>
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Select Year</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <select name="report_type" name="report_type" class="form-control" >
-                        <option value=""> Select</option>
-                        <option value="2019"> 2019</option>
-                        <option value="2020">2020</option>
-                      </select>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
-                    <label>Select Category</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
-                        <option value=""> Select</option>
-                        <option value="Prepaid_Active"> Prepaid Active</option>
-                        <option value="Prepaid_Passive"> Prepaid Passive</option>
-                        <option value="Prepaid_Total"> Prepaid Total</option>
-                        <option value="Post_Active"> Post Paid Active</option>
-                        <option value="Post_Passive"> Post Paid Passive</option>
-                        <option value="Post_Total"> Post Paid Total</option>
-                        <option value="Total_Active"> Total Active</option>
-                        <option value="Total_Registered"> Total Registered</option>
-                        <option value="Disconnected"> Disconnected</option>
-                        <option value="HLR"> HLR</option>                    
-                      </select>
-                    </p>
+               <div class="row">
+                  <div class="col-md-12">
+                    <div class="card card-success">
+                      <div class="card-header with-border">
+                        <h3 class="card-title">Bar Chart</h3>
+                        <div class="card-tools pull-right">
+                          <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          </button>
+                          <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="chart">
+                          <canvas id="barChart" style="height:230px"></canvas>
+                        </div>
+                      </div>
+                    </div> 
                   </div>
                 </div>
-                <section class="content">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card card-success">
-                        <div class="card-header with-border">
-                          <h3 class="card-title">Bar Chart</h3>
-
-                          <div class="card-tools pull-right">
-                            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                          </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="chart">
-                            <canvas id="barChart" style="height:230px"></canvas>
-                          </div>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>
-                </section>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <table id="sliderDetails" class="table table-bordered table-striped">
@@ -117,18 +118,20 @@
                     </table>
                 </div>
             </div>
-              </div>
-            </div>
           </div>
-          <!-- /.box-footer -->
         </div>
-        <!-- /.box -->
       </div>
+    </div>
+  </div>
+</div>
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
+  $('#report_year').val('<?php echo $year;?>');
+  $('#report_type').val('<?php echo $rtype;?>');
   function generateReport(id){
-     /*$.blockUI
+    if(validateMonth()){
+      $.blockUI
         ({ 
           css: 
           { 
@@ -140,10 +143,27 @@
               opacity: .5, 
               color: '#fff' 
           } 
-        });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id);
+        });
+        $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id+'/0/'+$("#report_year").val());
+        setTimeout($.unblockUI, 1000); 
+    }
+     
+      
        /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
-      //setTimeout($.unblockUI, 1000); 
+      //
+  }
+  function removereer(errid){
+    $('#report_type').val("");
+    $('#'+errid).html('');  
+  }
+  function validateMonth(){
+    var rety=true;
+    if($("#report_year").val()==""){
+
+      $('#report_year_err').html('Please select year');
+      rety=false;
+    }
+    return rety;
   }
 
   $(function () {

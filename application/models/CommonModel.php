@@ -78,6 +78,35 @@ class CommonModel extends CI_Model{
         //die($query);
         return $query;
     }
+
+    //comparegraph
+    function getCompareDetails($year="",$type=""){
+        if($type=="comparebmobile"){
+            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Prepaid_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+        }
+         if($type=="comparepmobile"){
+            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Post_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+        }
+        if($type=="compareta"){
+            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Total_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+        }
+        if($type=="comparetd"){
+            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Disconnected` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+        }
+
+        return $query;
+
+    }
+    function getfixedlineDetails($year=""){
+         $query =$this->db->query( "SELECT f.`Dzongkhag`, f.`Jan`, f.`Feb`,f.`March`,f.`Aprl`,f.`May`,f.`Jun`,f.`July`,f.`Aug`,f.`Sep`,f.`Oct`,f.`Nov`,f.`Dec` FROM `t_subscriber_fl_excel` f WHERE f.`Year` ='".$year."'")->
+            result_array();
+        return $query;
+    }
+
+    
+
+
+
     function getmonths(){
         $query =$this->db->query("SELECT * FROM `t_month_master` ")->result_array();
         return $query;

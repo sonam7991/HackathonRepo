@@ -72,37 +72,10 @@
           </div>
         </div>
 <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Target and Achievement for Revenue</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-<<<<<<< HEAD
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">Nu 18,230.00</span>
-                    <span>Sales Over Time</span>
-                  </p>
-                  
-                </div>
-                <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
-                </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Target
-                  </span>
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Achievement
-                  </span>
-=======
+        <div class="col-md-6">
                  <div class="card card-success">
                   <div class="card-header">
-                    <h3 class="card-title">Bar Chart</h3>
+                    <h3 class="card-title">Target and Achievement for Revenue</h3>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -115,17 +88,15 @@
                       <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                   </div>
->>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
                 </div>
               </div>
             </div>
           </div>
-      </div>
-    </div>
     </section>
+    <!---------------------------------------------------
     <section class="content">
       <div class="container-fluid">
-        <!-- Info boxes -->
+      
         <div class="row">
           <div class="col-lg-3 col-6">
             <div class="info-box">
@@ -150,7 +121,7 @@
             </div>
           </div>
 
-          <!-- fix for small devices only -->
+     
           <div class="clearfix hidden-md-up"></div>
 
           <div class="col-12 col-sm-6 col-md-3">
@@ -210,7 +181,7 @@
                     </p>
 
                     <div class="chart">
-                      <!-- Sales Chart Canvas -->
+                     
                       <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
                     </div>
                   </div>
@@ -226,8 +197,6 @@
                         <div class="progress-bar bg-primary" style="width: 80%"></div>
                       </div>
                     </div>
-                    <!-- /.progress-group -->
-
                     <div class="progress-group">
                       Average Revenue Per User Postpaid
                       <span class="float-right"><b>10000</b>/15918</span>
@@ -235,8 +204,6 @@
                         <div class="progress-bar bg-danger" style="width: 75%"></div>
                       </div>
                     </div>
-
-                    <!-- /.progress-group -->
                     <div class="progress-group">
                       <span class="progress-text">Average Revenue Per User Prepaid</span>
                       <span class="float-right"><b>30000</b>/31431</span>
@@ -289,41 +256,9 @@
             </div>
           </div>
         </div>
-
-        <div class="card">
-              <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            </div>
       </div>
     </section>
-<script>
+    ---------------------------->
   
- 
-</script>
-
- <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src=<?php echo base_url();?>assest/admin/version3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url();?>assest/admin/version3/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url();?>assest/admin/version3/dist/js/demo.js"></script>     
 
     

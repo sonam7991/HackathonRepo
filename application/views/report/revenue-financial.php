@@ -105,17 +105,11 @@
                           </button>
                           <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                         </div>
-<<<<<<< HEAD
-                        <div class="card-body">
-                          <div class="chart">
-                            <canvas id="barChart" style="height:220px"></canvas>
-                          </div>
-=======
+
                       </div>
                       <div class="card-body">
                         <div class="chart">
                           <canvas id="barChart" style="height:230px"></canvas>
->>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
                         </div>
                       </div>
                     </div>

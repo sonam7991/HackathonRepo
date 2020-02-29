@@ -3,9 +3,6 @@
     $this->load->view('web/header.php');
 ?> 
 <body>
-    <?php
-        $this->load->view('web/nevagation.php');
-    ?> 
     <div id="mainpublicContent">     	
     	<div class="register">
     		<br/><br/>

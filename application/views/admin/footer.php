@@ -9,7 +9,6 @@
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
-<<<<<<< HEAD
 <!-- Sparkline -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -29,28 +28,20 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-=======
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/adminlte.min.js"></script>
->>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/demo.js"></script>
 <script src="<?php echo base_url();?>assest/jquery.form.js"></script>
 <script src="<?php echo base_url();?>assest/jquery-blockUI.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="<?php echo base_url();?>assest/summernote/summernote-lite.js"></script>
-
-<!-----------------------------------------New Pages Script------------------------------------------------>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/raphael/raphael.min.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
-
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard2.js"></script>
-<script type="text/javascript">
-=======
+
 <script type="text/javascript"> 
->>>>>>> 4875cdbbe4bfb17f2c115d689422501e658afd00
   function removeer(errid){
     $('#'+errid).html('');  
   }
@@ -93,6 +84,7 @@
       $("#"+formId).ajaxSubmit(options);
       setTimeout($.unblockUI, 600); 
     }
+    
     function checkfilesize(file,fileId,errorId,buttonId){
       var val=file.files[0].size/1024/1024,ext=$('#'+fileId).val().split('.').pop();
         if(val > 2){
@@ -110,8 +102,6 @@
             $('#'+buttonId).show();
         }
     }
-
-
 
 $(function () {
     var areaChartData = {

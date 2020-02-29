@@ -24,7 +24,7 @@
             <nav class="link-effect-2" id="link-effect-2">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo base_url();?>"><span data-hover="Home">Home</span></a></li>
-                    <li><a href="#" onclick="loadpage('Contact')"><span data-hover="Contact Us">Contact Us</span></a></li>
+                    <li><a href="#" onclick="loadpage('contact')"><span data-hover="Contact Us">Contact Us</span></a></li>
                   
                 </ul>
             </nav>

@@ -92,18 +92,18 @@
                 <th class="header">Year</th>
                 <th class="header">Month</th>                           
                 <th class="header">Service Revenue Id</th>                      
-                <th class="header">Jan</th>
-                <th class="header">Feb</th>
+                <th class="header">January</th>
+                <th class="header">Feburary</th>
                 <th class="header">March</th>
-                <th class="header">Apr</th>
+                <th class="header">April</th>
                 <th class="header">May</th>
-                <th class="header">Jun</th>
+                <th class="header">June</th>
                 <th class="header">July</th>
-                <th class="header">Aug</th>
-                <th class="header">Sept</th>
-                <th class="header">Oct</th>
-                <th class="header">Nov</th>
-                <th class="header">Dec</th>
+                <th class="header">August</th>
+                <th class="header">September</th>
+                <th class="header">October</th>
+                <th class="header">November</th>
+                <th class="header">December</th>
                 <th class="header">User Id</th>
                 <th class="header">Added Date</th>
             </tr>
@@ -119,7 +119,6 @@
       </div>
     </div>
 </section>
-<!------------------------------------------IMPORT VIEW END--------------------------------------->
 
 <script type="text/javascript">
     function updaterv(){

@@ -378,9 +378,32 @@ class AdminController extends CI_Controller {
              $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'t_revenue_other_main');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
-        
         $this->load->view('report/'.$page,$page_data);
     }
+
+    function comparegraph($page="",$type="",$year=""){
+        $page_data['Details_Report'] ="";
+        $page_data['Details_post_Report'] ="";
+        $page_data['Details_ta'] ="";
+        $page_data['Details_td'] ="";
+        $page_data['year'] =$year;
+        if($type=="bcompare"){
+            $page_data['Details_Report'] =$this->CommonModel->getCompareDetails($year,'comparebmobile');
+            $page_data['Details_post_Report'] =$this->CommonModel->getCompareDetails($year,'comparepmobile');
+            $page_data['Details_ta'] =$this->CommonModel->getCompareDetails($year,'compareta');
+            $page_data['Details_td'] =$this->CommonModel->getCompareDetails($year,'comparetd');
+        }
+        $this->load->view('graphComp/'.$page,$page_data);
+    }
+    function fixedlinegraph($page="",$type="",$year=""){
+         $page_data['fixedline_Report_dzongkhagWise'] ="";
+         $page_data['year'] =$year;
+        if($type=="fixedline"){
+            $page_data['fixedline_Report_dzongkhagWise'] =$this->CommonModel->getfixedlineDetails($year,'getfixedlineDetails');
+        }
+        $this->load->view('graphComp/'.$page,$page_data);
+    }
+
 
     function populateDependentDropDown($param1="",$param2=""){
         $allList="";

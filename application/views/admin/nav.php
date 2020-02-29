@@ -168,21 +168,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../mailbox/mailbox.html" class="nav-link">
+                <a  href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/')">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Finacial Target Analysis</p>
+                  <p>Finanical Target Analysis</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../mailbox/compose.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Non-Finanical Target</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../mailbox/read-mail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Company Target</p>
                 </a>
               </li>
             </ul>

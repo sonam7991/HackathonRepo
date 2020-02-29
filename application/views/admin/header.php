@@ -1,14 +1,20 @@
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobileSubsGraph/')" class="nav-link">Mobile Scriber</a>
+      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/mobileSubsGraph/')" class="nav-link">Mobile Subscriber</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/fixedlinegraph/FixedlineGraph/')" class="nav-link">Fixed Line</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobileSubsGraph/')" class="nav-link">VAS</a>
     </li>
   </ul>
 
@@ -55,4 +61,5 @@
           </div>
         </div>
       </div>
+      
      

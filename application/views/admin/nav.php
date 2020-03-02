@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-secondary elevation-1">
+<aside class="main-sidebar sidebar-dark-primary elevation-1">
   <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="brand-link">
   <img src="<?php echo base_url();?>uploads/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="logo-lg"><b>BI-DASHBOARD</b></span>
@@ -30,6 +30,32 @@
               </li>
             </ul>
           </li>
+          <div class="dropdown-divider"></div>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-users"></i>
+              <p>
+                Target Management
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadTarget/addTarget/')">
+                  <i class="nav-icon fa fa-user-plus"></i>
+                  <p>Add Target</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadTarget/ListTarget/')">
+                  <i class="nav-icon fa fa-users"></i>
+                  <p>List Targrt</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <div class="dropdown-divider"></div>
           <?php } if($this->session->userdata('Role_Id')!="3"){?>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -79,7 +105,8 @@
               </li>
             </ul>
           </li>
-        <?php }?>
+          <div class="dropdown-divider"></div>
+          <?php }?>
            <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class=" fas fa-chart-pie"></i>
@@ -159,6 +186,7 @@
             </ul>
           </li>----------------------------------->
           <!-----------------------------------Market Target Analysis------------------->
+         <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -168,9 +196,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a  href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/')">
+                <a href="../mailbox/compose.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Finanical Target Analysis</p>
+                  <p>Non-Finanical Target</p>
                 </a>
               </li>
               <li class="nav-item">

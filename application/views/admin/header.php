@@ -7,9 +7,18 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="nav-link">Home</a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/mobileSubsGraph/')" class="nav-link">Mobile Subscriber</a>
-    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mobile Subscriber
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/mobileSubsGraph/')" class="nav-link">Postpaid Vs Prepaid Active Users</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/totalactived/')" class="nav-link">Total Active Users Vs Total Disconnected</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/userscount/')" class="nav-link">Subscriber B-Mobile New Customers</a>
+        </div>
+      </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/fixedlinegraph/FixedlineGraph/')" class="nav-link">Fixed Line</a>
     </li>

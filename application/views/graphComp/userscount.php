@@ -13,10 +13,15 @@
     </div>
   </div>
 </section>
-<section class="content">
+    <!----------------------------------Subscriber B-mobile New Registred Customer------------------------->
+    <section class="content">
       <div class="container-fluid">
         <div class="card-header">
-          <h3 class="card-title">Postpaid Active Vs Prepaid Active</h3>
+          <h3 class="card-title">Subscriber B-mobile New Registered Customer</h3>
+            <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -27,7 +32,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" name="report_type" class="form-control" onchange="generatetotal(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -45,11 +50,11 @@
           </div>
 
         <section class="content">
-        <div class="form-group row">
+          <div class="form-group row">
           <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Bar Chart for the Year: <span id="appendyear"></span></h3>
+                <h3 class="card-title">Bar Chart for the year: <span id="appendyear"></span></h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -59,7 +64,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="barChart" style="height:270px"></canvas>
+                  <canvas id="barChartRegistered" style="height:270px"></canvas>
                 </div>
               </div>
             </div>
@@ -81,9 +86,7 @@
                 </canvas>
               </div>
             </div>
-          </div>
         </div>
-
       </section>
         <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -103,54 +106,57 @@
                             <th>October</th>
                             <th>November</th>
                             <th>December</th>
-
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td> Prepaid </td>
-                          <?php  $month=""; $total=0;if($Details_Report!=""){ ?>
-                            <?php foreach($Details_Report as $i=> $rep): 
+                            <td> Total Active Users </td>
+                          <?php  $month=""; $total=0; if($Details_ta!=""){ ?>
+                            <?php foreach($Details_ta as $i=> $rep): 
                             if($i>0){
-                              $month=$month.','.$rep['Prepaid_Active'];
+                              $month=$month.','.$rep['Total_Active'];
                             }
                             else{
-                              $month=$rep['Prepaid_Active'];
+                              $month=$rep['Total_Active'];
                             }
                             $total=$total + (int) $month;
                             ?>
-                            <td> <?php echo $rep['Prepaid_Active'];?> </td>
+                            <td> <?php echo $rep['Total_Active'];?> </td>
                           <?php endforeach; }?>
                           </tr>
 
                           <tr>
-                            <td> Postpaid </td>
-                          <?php  $month1=""; $total1=0; if($Details_post_Report!=""){ ?>
-                            <?php foreach($Details_post_Report as $i=> $rep): 
+                            <td> Total Disconnected Users </td>
+                          <?php  $month1=""; $total1=0;if($Details_td!=""){ ?>
+                            <?php foreach($Details_td as $i=> $rep): 
                             if($i>0){
-                              $month1=$month1.','.$rep['Post_Active'];
+                              $month1=$month1.','.$rep['Disconnected'];
                             }
                             else{
-                              $month1=$rep['Post_Active'];
+                              $month1=$rep['Disconnected'];
                             }
-                               $total1=$total1 + (int) $month1;
+                            $total=$total1 + (int) $month1;
                             ?>
-                            <td> <?php echo $rep['Post_Active'];?> </td>
+                            <td> <?php echo $rep['Disconnected'];?> </td>
                           <?php endforeach; }?>
                           </tr>
-                            <input type="hidden" name="" id="pvpa" value="<?=$month?>">
+                            <input type="hidden" name="" id="ta" value="<?=$month?>">
                             <input type="hidden" name="" id="total" value="<?=$total?>">
-                            <input type="hidden" name="" id="pvpa1" value="<?=$month1?>">
+                            <input type="hidden" name="" id="td" value="<?=$month1?>">
                             <input type="hidden" name="" id="total1" value="<?=$total1?>">
+
                         </tbody>
                     </table>
                 </div>
             </div>
     </section>
+
 <script type="text/javascript">
   $('#appendyear').html('<?php echo $year;?>');
 
-  function generateReport(year){
+
+  //Graph for New Registered Customer
+function generatetotal(year){
     $.blockUI
         ({ 
           css: 
@@ -164,20 +170,21 @@
               color: '#fff' 
           } 
         });
-        $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/comparegraph/mobileSubsGraph/bcompare/'+year);
+        $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/comparegraph/userscount/bcompare/'+year);
           setTimeout($.unblockUI, 1000); 
   }
-
   $(function () {
-    var str=[$('#pvpa').val()];
+    var str=[$('#ta').val()];
     var mnts=JSON.parse("[" + str + "]");
-    var str=[$('#pvpa1').val()];
+    var str=[$('#td').val()];
+    var mnts1=JSON.parse("[" + str + "]");
+    var str=[$('#td').val()];
     var mnts1=JSON.parse("[" + str + "]");
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','Sep','Oct','Nov','Dec'],
       datasets: [
         {
-          label               : 'Postpaid Active Users',
+          label               : 'New Registered Customers',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -188,7 +195,18 @@
           data                : mnts1
         },
         {
-          label               : 'Prepaid Active Users',
+          label               : 'Total Disconnected',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : mnts
+        },
+        {
+          label               : 'Total Disconnected',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -219,8 +237,8 @@
         }]
       }
     }
-/*************************BarChart For Total Postpaid and Total Prepaid************************/
-    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+/************Bar Chart For New Registered************************/
+    var barChartCanvas = $('#barChartRegistered').get(0).getContext('2d')
     var barChartData = jQuery.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
     var temp1 = areaChartData.datasets[1]
@@ -239,17 +257,13 @@
       options: barChartOptions
     })
 
-
     var tatlpie1=$('#total').val();
     $('#pietol').html("tsotasdfknjsad: "+tatlpie1);
-    var mnts=JSON.parse("[" + str + "]");
     var totalpei2=$('#total1').val();
-    var mnts1=JSON.parse("[" + str + "]");
-
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
       var pieData        = {
       labels: [
-          'Postpaid Active Users', 
+          'New Registered Customers', 
           'Prepaid  Active Users',
       ],
       datasets: [
@@ -270,5 +284,4 @@
       options: pieOptions      
     })
   })
-
 </script>  

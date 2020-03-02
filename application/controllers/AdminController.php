@@ -9,6 +9,12 @@ class AdminController extends CI_Controller {
     }
 	public function index(){
 	}
+    function loadTarget($page=""){
+        $page_data['targetlist']= $this->db->get('t_target')->result_array();
+        $this->load->view('admin/Traget/'.$page,$page_data);
+
+    }
+
 
     function loadAdminPage($page=""){
         $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();

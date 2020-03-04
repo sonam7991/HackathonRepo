@@ -2,21 +2,17 @@
 <?php
     $this->load->view('web/header.php');
 ?> 
-<body>
+<body  style="background-image: url('<?php echo base_url();?>uploads/photo.jpg');background-repeat: no-repeat;-webkit-background-size: cover;"> 
     <div id="mainpublicContent">     	
-    	<div class="register">
+    	<div class="register" >
     		<br/><br/>
 			<div class="container">
-				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<img src="<?php echo base_url();?>uploads/logo.png" alt="no imaged" onerror="this.src='<?php echo base_url();?>uploads/user.png'" width="108%" align="left">
-						</div>
-					</div>
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<b>Login Form</b>
-					<br/><br/>
+					
+					<br/><br/><br/><br/><br/><br/>
+					<b>Login Form</b><br/><br/>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<?php echo form_open('?baseController/loginuser' , array('class' =>'form-horizontal','id' => 'loginform'));?>
@@ -29,11 +25,20 @@
 							</form>
 						</div>
 					</div>
+					<br/><br/><br/><br/><br/><br/><br/><br/>
+					<hr />
+					<footer class="text-center">
+					 <div class="d-none d-sm-block ">
+					      <b>Version</b> 1.0.0
+					    </div>
+					    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Design by BhutanSyncITS</a>.</strong> All rights reserved.
+					</footer>
 				</div>
 			</div>
 		</div>
     </div>
-    <br/><br/>
+    
+   <!--   -->
 	<?php
 	    $this->load->view('web/footer.php');
 	?>

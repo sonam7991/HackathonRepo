@@ -26,6 +26,14 @@ class AdminController extends CI_Controller {
         $page_data['ListTarget'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
         $this->load->view('admin/administrator'.$param2,$page_data);
     }
+
+    function deletetarget($targetId="",$page=""){
+        $this->db->where('Id', $targetId);
+        $this->db->delete('t_target');
+        $page_data['targetlist'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
+        $this->load->view('admin/administrator/'.$page,$page_data);
+    }
+
     function addTarget(){
         $page_data['message']="";
         $page_data['messagefail']="";

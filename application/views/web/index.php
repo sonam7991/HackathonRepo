@@ -2,17 +2,20 @@
 <?php
     $this->load->view('web/header.php');
 ?> 
-<body  style="background-image: url('<?php echo base_url();?>uploads/photo.jpg');background-repeat: no-repeat;-webkit-background-size: cover;"> 
+<body  style="background-color:orange;background-repeat: no-repeat;-webkit-background-size: cover;"> 
     <div id="mainpublicContent">     	
     	<div class="register" >
     		<br/><br/>
 			<div class="container">
+				<section class="content" style="background-image: url('<?php echo base_url();?>uploads/photo.png');background-repeat: no-repeat;-webkit-background-size: cover;">
+      <div class="container-fluid">
+            <div class="card">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 					
-					<br/><br/><br/><br/><br/><br/>
-					<b>Login Form</b><br/><br/>
+					<br/><br/><br/><br/>
+					<h4 style="text-align: center;">Login Form</h4><br/>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<?php echo form_open('?baseController/loginuser' , array('class' =>'form-horizontal','id' => 'loginform'));?>
@@ -21,11 +24,11 @@
 							<span id="EmailId_err" class="text-danger"></span><br />
 							
 							<input name="password" id="password" onclick="removeerr('password_err')" placeholder="Password" type="password" class="form-control"><span id="password_err" class="text-danger"></span><br>
-							<button type="button" onclick="user_login()" class="btn btn-info btn-block"> Login to Access <i class="fa fa-arrow-right"></i></button>
+							<button type="button" onclick="user_login()" class="btn btn-block btn-info btn-lg"> Login to Access</i></button>
 							</form>
 						</div>
 					</div>
-					<br/><br/><br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/><br/><br/>
 					<hr />
 					<footer class="text-center">
 					 <div class="d-none d-sm-block ">
@@ -35,6 +38,11 @@
 					</footer>
 				</div>
 			</div>
+		</div>
+				</section>
+				<br/><br/><br/>
+			</div>
+		</div>
 		</div>
     </div>
     

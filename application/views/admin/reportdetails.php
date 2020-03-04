@@ -72,7 +72,7 @@
           </div>
         </div>
         <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
                  <div class="card card-success">
                   <div class="card-header">
                     <h3 class="card-title">Target and Achievement for Revenue</h3>

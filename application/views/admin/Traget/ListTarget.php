@@ -71,7 +71,7 @@
                 <span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-              <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'targetupdate', 'enctype' => 'multipart/form-data'));?>
+              <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'addtargetupdate', 'enctype' => 'multipart/form-data'));?>
   				 	<div class="row">
                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="form-group row">
@@ -106,7 +106,7 @@
                 <div class="form-group">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <input type="hidden" name="deleteId" id="deleteId">
-                          <button class="btn btn-success" type="button" onclick="updatetargetdetails()"> <i class="fa fa-check"></i>Update</button>
+                          <button class="btn btn-success" type="button" onclick="addtargetetails()"> <i class="fa fa-check"></i>Update</button>
                         </div>
                     </div>
 			        </div>
@@ -160,5 +160,44 @@ function showrole(id,year,revenue,arpupost,arpupre,au,vivo){
     $('#deleteSlider').modal('show');
   }
  
+function deletetarget(id){
+      $.blockUI
+          ({ 
+            css: 
+            { 
+                  border: 'none', 
+                  padding: '15px', 
+                  backgroundColor: '#000', 
+                  '-webkit-border-radius': '10px', 
+                  '-moz-border-radius': '10px', 
+                  opacity: .5, 
+                  color: '#fff' 
+            } 
+          });
+        var url='<?php echo base_url();?>index.php?adminController/deletetarget/'+id+'/ListTarget';
+         $("#mainContentdiv").load(url);
+         setTimeout($.unblockUI, 1000);
+    }
+    function addtargetetails(){
+      $.blockUI
+        ({ 
+          css: 
+          { 
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+          } 
+        });
+      var url='<?php echo base_url();?>index.php?adminController/addtargetupdate/ListTarget';
+      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#addtargetupdate").serialize()}; 
+      $("#addtargetupdate").ajaxSubmit(options);
+      $('#adddepartmentid').modal('hide');
+      setTimeout($.unblockUI, 600);
+    }
+
 </script>
   	

@@ -109,11 +109,6 @@ class CommonModel extends CI_Model{
         return $query;
 
     }
-
-    
-
-
-
     function getmonths(){
         $query =$this->db->query("SELECT * FROM `t_month_master` ")->result_array();
         return $query;

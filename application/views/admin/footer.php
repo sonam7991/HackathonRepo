@@ -152,7 +152,7 @@ $(function () {
       }
     }
 
-   var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
     var lineChartData = jQuery.extend(true, {}, areaChartData)
     lineChartData.datasets[0].fill = false;
     lineChartData.datasets[1].fill = false;

@@ -24,6 +24,7 @@
         </div>
       </div>
       <div class="card-body">
+        <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'addtargetform', 'enctype' => 'multipart/form-data'));?>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row">
@@ -43,7 +44,7 @@
                       <div class="form-group row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                           <label>Input Average Revenue Per User(Prepaid):<span class="text-danger">*</span></label>
-                          <input type="text" name="arpupre" id="arpupre" class="form-control" placeholder="Average Revenue Per User(Prepaid)" onclick="removeer('email_err')">
+                          <input type="text" name="arpupre" id="arpupre" class="form-control" placeholder="Average Revenue Per User(Prepaid)" onclick="removeer('arpupre_err')">
                         <span id="arpupre_err" class="text-danger"></span>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -67,7 +68,7 @@
                   </div>
                   <div class="form-group row">
                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <button class="btn btn-success pull-right" type="button" onclick="addUserDetails()">Add</button>
+                        <button class="btn btn-success pull-right" type="button" onclick="addtargetDetails()">Add</button>
                       </div>
                   </div>
                 </div>
@@ -79,7 +80,8 @@
 </section>
 
 <script type="text/javascript">
-  	function addUserDetails(){
+  	function addtargetDetails(){
+
       //need to do validation
     if(validateform()){
       $.blockUI
@@ -95,13 +97,41 @@
               color: '#fff' 
         } 
       });
-      var url='<?php echo base_url();?>index.php?adminController/addUser/';
-      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#adduserform").serialize()}; 
-      $("#adduserform").ajaxSubmit(options);
+      var url='<?php echo base_url();?>index.php?adminController/addTarget/';
+      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#addtargetform").serialize()}; 
+      $("#addtargetform").ajaxSubmit(options);
       setTimeout($.unblockUI, 600); 
 
     }
     }
+  function validateform(){
+    var returntype=true;
+    if($('#year').val()==""){
+      $('#year_err').html('*Year Number is required');  
+      returntype=false;
+    }
+    if($('#ftarget').val()==""){
+      $('#ftarget_err').html('*Financial Target is required'); 
+      returntype=false;
+    }
+    if($('#arpupre').val()==""){
+      $('#arpupre_err').html('*ARPU Prepaid is required'); 
+      returntype=false;
+    }
+    if($('#arpupost').val()==""){
+      $('#arpupost_err').html('ARPU Postpaid is required');  
+      returntype=false;
+    }
+    if($('#activeu').val()==""){
+      $('#activeu_err').html('Number of Active Users is required');  
+      returntype=false;
+    }
+    if($('#sales').val()==""){
+      $('#sales_err').html('Sales of Vivo Phones is required');  
+      returntype=false;
+    }
+    return returntype;
+  }
   function removeer(errid){
 		$('#'+errid).html('');	
 	}

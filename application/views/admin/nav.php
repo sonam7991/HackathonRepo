@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-1">
   <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="brand-link">
-  <img src="<?php echo base_url();?>uploads/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+  <img src="<?php echo base_url();?>uploads/btlogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="logo-lg"><b>BI-DASHBOARD</b></span>
   </a>
   <nav class="mt-2">

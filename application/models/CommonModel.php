@@ -103,6 +103,13 @@ class CommonModel extends CI_Model{
         return $query;
     }
 
+    function getfinancialtarget($year=""){
+        $query = $this->db->query("SELECT f.`Revenue`, f.`Arpu_post`,f.`Arpu_pre`,f.`Active_user`,f.`Vivophone` FROM `t_target` f WHERE f.`Year`='".$year."'")->
+        result_array();
+        return $query;
+
+    }
+
     
 
 

@@ -1,5 +1,5 @@
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-orange navbar-light">
   <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
@@ -8,6 +8,7 @@
       <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="nav-link">Home</a>
     </li>
     <li class="nav-item dropdown">
+
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mobile Subscriber
         </a>
@@ -30,20 +31,18 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <img src="<?php echo base_url();?>uploads/user.png" class="img-circle elevation-2" alt="User Image" style="width:40px">
+          <i class="fa fa-user-circle" style="font-size:28px;">
           <?php echo $this->session->userdata('Full_Name');?>
-        </a>
+          </i>
         <div class="dropdown-menu dropdown-menu dropdown-menu-right">
           <a href="#" class="">
-
             <div class="user text-center">
               <img src="<?php echo base_url();?>uploads/user.png" style="width:80px" alt="User Avatar" class="img-circle">
               <div class="user-body">
                 
-                 <a href="#" class="btn btn-success" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')">     Profile
-                </a>
-                <a href="#" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-logout">    Sign out
-                </a>
+                 <a href="#" class="btn btn-success" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')">Profile</a>
+
+                 <a href="#" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-logout"> Sign out</a>
               </div>
             </div>
           </a>
@@ -54,8 +53,8 @@
 </header>
 <div class="modal fade" id="modal-logout">
         <div class="modal-dialog">
-          <div class="modal-content modal-lg">
-            <div class="modal-header">
+          <div class="modal-content ">
+            <div class="modal-header bg-warning">
               <h4 class="modal-title">Sign Out</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>

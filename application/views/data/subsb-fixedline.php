@@ -15,7 +15,7 @@
 </section>
 <section class="content">
   <div class="container-fluid">
-    <div class="card card-default">
+    <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title">Load Data for Fixed Line Report(Subscriber)</h3>
         <div class="card-tools">

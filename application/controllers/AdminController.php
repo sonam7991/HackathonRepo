@@ -14,14 +14,41 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/Traget/'.$page,$page_data);
 
     }
-
-
+    function updatetargetdetails($param2=""){
+        $data['Year']=$this->input->post('year');
+        $data['Revenue']=$this->input->post('ftarget');
+        $data['Arpu_post']=$this->input->post('arpupost');
+        $data['Arpu_pre']=$this->input->post('arpupre');
+        $data['Active_user']=$this->input->post('activeu');
+        $data['Vivophone']=$this->input->post('sales');
+        $this->db->where('Id',  $this->input->post('deleteId'));
+        $this->db->update('t_target`', $data);
+        $page_data['ListTarget'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
+        $this->load->view('admin/administrator'.$param2,$page_data);
+    }
+    function addTarget(){
+        $page_data['message']="";
+        $page_data['messagefail']="";
+        $data['Year']=$this->input->post('year');
+        $data['Revenue']=$this->input->post('ftarget');
+        $data['Arpu_post']=$this->input->post('arpupost');
+        $data['Arpu_pre']=$this->input->post('arpupre');
+        $data['Active_user']=$this->input->post('activeu');
+        $data['Vivophone']=$this->input->post('sales');
+        $this->CommonModel->do_insert('t_target', $data); 
+        if($this->db->affected_rows()>0){
+            $page_data['message']="Target details for ".$this->input->post('year')."</b>. Thank you for using our system";
+        }
+        else{
+            $page_data['messagefail']='Target is not able to submit. Please try again';
+        }
+        $this->load->view('admin/acknowledgement', $page_data);
+    }
     function loadAdminPage($page=""){
         $page_data['rolelist'] = $this->db->get_where('t_role_master',array('Role_Status'=>'Y'))->result_array();
         $page_data['userList'] = $this->db->get('t_User_details')->result_array();
         $this->load->view('admin/administrator/'.$page,$page_data);
     }
-
     function addUser(){
         $page_data['message']="";
         $page_data['messagefail']="";

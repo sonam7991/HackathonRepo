@@ -43,7 +43,7 @@
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Select Month</label>
-                    <select name="report_type" id="selectMonth" class="form-control" onchange="generateReport(this.value)">
+                    <select name="report_type" id="selectMonth" class="form-control" onchange="generateReportvas(this.value)">
                         <option value=""> Select</option>
                         <option value="1"> January</option>
                         <option value="2">Febuary</option>   
@@ -86,7 +86,7 @@
                 </section>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <table id="sliderDetails" class="table table-bordered table-striped">
+                    <table id="vasDetails" class="table table-bordered table-striped">
                         <thead>
                           <tr>
                             <th>B-Wallet New</th>
@@ -110,6 +110,11 @@
                     </table>
                 </div>
                 </div>
+                 <div class="row pt-4" id="donwbtn" style="display: none">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                    <button class="btn btn-primary" type="button" onclick="exportTableToExcel('vasDetails', 'vas')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -118,9 +123,14 @@
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
+
   $('#report_year').val('<?php echo $year;?>');
   $('#selectMonth').val('<?php echo $Months;?>');
-  function generateReport(id){
+  if('<?php echo $year;?>'!=""){
+    $('#donwbtn').show();
+  }
+
+  function generateReportvas(id){
     if(validateMonth()){
       $.blockUI
       ({ 
@@ -187,5 +197,5 @@
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
-  })
+  });
 </script>

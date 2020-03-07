@@ -32,7 +32,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generatetotal(this.value)">
+                      <select name="report_type" id="report_type" class="form-control" onchange="generatetotal(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -90,10 +90,10 @@
       </section>
         <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <table id="sliderDetails" class="table table-bordered table-striped">
+                    <table id="newDetails" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th></th>
+                            <th>Type</th>
                             <th>January</th>
                             <th>February</th>
                             <th>March</th>
@@ -111,49 +111,70 @@
                         <tbody>
                           <tr>
                             <td> Total Active Users </td>
-                          <?php  $month=""; $total=0; if($Details_ta!=""){ ?>
-                            <?php foreach($Details_ta as $i=> $rep): 
-                            if($i>0){
-                              $month=$month.','.$rep['Total_Active'];
-                            }
-                            else{
-                              $month=$rep['Total_Active'];
-                            }
-                            $total=$total + (int) $month;
+                            <?php  $month=""; $total=0; if($Details_ta!=""){ 
+                              foreach($Months as $i=> $mon): 
+                              $display=0;$currentmon=0;
+                                foreach($Details_ta as $k=> $rep): 
+                                  if($i+1==$rep['Month']){
+                                    $display=$rep['Total_Active'];
+                                    $currentmon=$rep['Total_Active'];
+                                  }
+                                endforeach;
+                                if($i>0){
+                                  $month=$month.','.$currentmon;
+                                }
+                                else{
+                                  $month=$currentmon;
+                                }
+                                $total=$total + (int) $month;
                             ?>
-                            <td> <?php echo $rep['Total_Active'];?> </td>
-                          <?php endforeach; }?>
+                            <td> <?php echo $display;?> </td>
+                            <?php endforeach; }?>
                           </tr>
 
                           <tr>
                             <td> Total Disconnected Users </td>
-                          <?php  $month1=""; $total1=0;if($Details_td!=""){ ?>
-                            <?php foreach($Details_td as $i=> $rep): 
-                            if($i>0){
-                              $month1=$month1.','.$rep['Disconnected'];
-                            }
-                            else{
-                              $month1=$rep['Disconnected'];
-                            }
-                            $total=$total1 + (int) $month1;
+                          <?php  $month1=""; $total1=0;if($Details_td!=""){
+                            foreach($Months as $i=> $mon):  
+                              $display=0;$currentmon=0;
+                              foreach($Details_td as $k=> $rep): 
+                              if($i+1==$rep['Month']){
+                                  $display=$rep['Disconnected'];
+                                  $currentmon=$rep['Disconnected'];
+                                }
+                              endforeach;
+                              if($i>0){
+                                $month1=$month1.','.$currentmon;
+                              }
+                              else{
+                                $month1=$currentmon;
+                              }  
+                              $total=$total1 + (int) $month1;
                             ?>
-                            <td> <?php echo $rep['Disconnected'];?> </td>
+                            <td> <?php echo $display;?> </td>
                           <?php endforeach; }?>
                           </tr>
                             <input type="hidden" name="" id="ta" value="<?=$month?>">
                             <input type="hidden" name="" id="total" value="<?=$total?>">
                             <input type="hidden" name="" id="td" value="<?=$month1?>">
                             <input type="hidden" name="" id="total1" value="<?=$total1?>">
-
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="row pt-4" id="donwbtn" style="display: none">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                <button class="btn btn-primary" type="button" onclick="exportTableToExcel('newDetails', 'new-registered')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+              </div>
             </div>
     </section>
 
 <script type="text/javascript">
   $('#appendyear').html('<?php echo $year;?>');
-
+$('#report_type').val('<?php echo $year;?>');
+  if('<?php echo $year;?>'!=""){
+    $('#donwbtn').show();
+  }
 
   //Graph for New Registered Customer
 function generatetotal(year){

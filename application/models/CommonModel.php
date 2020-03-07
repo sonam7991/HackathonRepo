@@ -33,7 +33,7 @@ class CommonModel extends CI_Model{
     //generated file number
     function getReportDetails($id="",$type="",$months="",$year=""){
         if($type=="bmobile"){
-            $query =$this->db->query("SELECT m.`Month`,s.`Year`,".$id." header FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+            $query =$this->db->query("SELECT s.`Month`,s.`Year`,".$id." header FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
         }
        //die($type);
         if($type=="t_revenue_mobile_main"){
@@ -82,16 +82,16 @@ class CommonModel extends CI_Model{
     //comparegraph
     function getCompareDetails($year="",$type=""){
         if($type=="comparebmobile"){
-            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Prepaid_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+            $query =$this->db->query("SELECT s.`Month`,s.`Year`,s.`Prepaid_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
         }
          if($type=="comparepmobile"){
-            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Post_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+            $query =$this->db->query("SELECT s.`Month`,s.`Year`,s.`Post_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
         }
         if($type=="compareta"){
-            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Total_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+            $query =$this->db->query("SELECT s.`Month`,s.`Year`,s.`Total_Active` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
         }
         if($type=="comparetd"){
-            $query =$this->db->query("SELECT m.`Month`,s.`Year`,s.`Disconnected` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
+            $query =$this->db->query("SELECT s.`Month`,s.`Year`,s.`Disconnected` FROM `t_month_master` m LEFT JOIN `t_subscriber_bmobile_main` s ON s.`Month`=m.`Id` WHERE s.`Year` ='".$year."'")->result_array();
         }
 
         return $query;

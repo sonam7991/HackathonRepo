@@ -82,7 +82,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive">
                     <table id="sliderDetails" class="table table-bordered table-striped">
                         <thead>
                           <tr>
@@ -103,20 +103,33 @@
                         <tbody>
                           <tr>
                           <?php  $month=""; if($Details_Report!=""){ ?>
-                            <?php foreach($Details_Report as $i=> $rep): 
-                            if($i>0){
-                              $month=$month.','.$rep['header'];
-                            }
-                            else{
-                              $month=$rep['header'];
-                            }?>
-                              <td> <?php echo $rep['header'];?> </td>
+                            <?php foreach($Months as $i=> $mon):
+                              $display=0;$currentmon=0;
+                              foreach($Details_Report as $j=> $rep):
+                                if($i+1==$rep['Month']){
+                                  $display=$rep['header'];
+                                  $currentmon=$rep['header'];
+                                }
+                              endforeach;
+                              if($i>0){
+                                $month=$month.','.$currentmon;
+                              }
+                              else{
+                                $month=$currentmon;
+                              } ?>
+                              <td> <?php echo $display;?> </td>
                           <?php endforeach; }?>
+                            
                           </tr>
                             <input type="hidden" name="" id="valudasd" value="<?=$month?>">
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="row pt-4" id="donwbtn" style="display: none">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                <button class="btn btn-primary" type="button" onclick="exportTableToExcel('sliderDetails', 'Subscriber-Mobile')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+              </div>
             </div>
           </div>
         </div>
@@ -129,6 +142,10 @@
 <script type="text/javascript">
   $('#report_year').val('<?php echo $year;?>');
   $('#report_type').val('<?php echo $rtype;?>');
+  if('<?php echo $rtype;?>'!=""){
+    $('#donwbtn').show();
+  }
+  
   function generateReport(id){
     if(validateMonth()){
       $.blockUI
@@ -200,6 +217,8 @@
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
-  })
+  });
+
+
 
 </script>

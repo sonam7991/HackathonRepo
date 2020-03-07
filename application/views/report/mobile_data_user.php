@@ -32,7 +32,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -70,7 +70,7 @@
                 </section>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <table id="sliderDetails" class="table table-bordered table-striped">
+                    <table id="datausertbl" class="table table-bordered table-striped">
                         <thead>
                           <tr>
                             <th>2G</th>
@@ -94,6 +94,11 @@
                     </table>
                 </div>
                 </div>
+                <div class="row pt-4" id="donwbtn" style="display: none">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                    <button class="btn btn-primary" type="button" onclick="exportTableToExcel('datausertbl', 'Data-user')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -104,6 +109,10 @@
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
+   $('#report_type').val('<?php echo $year;?>');
+    if('<?php echo $year;?>'!=""){
+      $('#donwbtn').show();
+    }
   function generateReport(id){
      /*$.blockUI
         ({ 

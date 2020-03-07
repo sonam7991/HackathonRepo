@@ -69,7 +69,7 @@
                 </section>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <table id="sliderDetails" class="table table-bordered table-striped">
+                    <table id="fixline" class="table table-bordered table-striped">
                         <thead>
                           <tr>
                             <th>January</th>
@@ -111,6 +111,11 @@
                     </table>
                 </div>
             </div>
+            <div class="row pt-4" id="donwbtn" style="display: none">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                <button class="btn btn-primary" type="button" onclick="exportTableToExcel('fixline', 'Subscriber-fixLine')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+              </div>
+            </div>
               </div>
             </div>
           </div>
@@ -121,6 +126,10 @@
 </section>
 <script src="<?php echo base_url();?>assest/admin/bower_components/chart.js/Chart.js"></script>
 <script type="text/javascript">
+  $('#report_type_Id').val('<?php echo $year;?>');
+  if('<?php echo $year;?>'!=""){
+    $('#donwbtn').show();
+  }
   function generateReport(id){
      $.blockUI
         ({ 

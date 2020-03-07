@@ -364,6 +364,7 @@ class AdminController extends CI_Controller {
         $page_data['subtype'] ="";
         $page_data['Months'] ="";
         //subsb-mobile
+        $page_data['Months'] =$this->CommonModel->getmonths();
         if($type=="detailReport"){
             $page_data['header'] =$Id;
             $page_data['rtype'] =$Id;
@@ -373,11 +374,11 @@ class AdminController extends CI_Controller {
         } 
         // die($type);
         if($type=="subsb-fixedline"){
-            $page_data['Months'] =$this->CommonModel->getmonths();
             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'fixline','',$year);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
         if($type=="mobile_data_user"){
+            $page_data['year'] =$Id;
             $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'datauser');
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
@@ -428,6 +429,7 @@ class AdminController extends CI_Controller {
         $page_data['Details_ta'] ="";
         $page_data['Details_td'] ="";
         $page_data['year'] =$year;
+        $page_data['Months'] =$this->CommonModel->getmonths();
         if($type=="bcompare"){
             $page_data['Details_Report'] =$this->CommonModel->getCompareDetails($year,'comparebmobile');
             $page_data['Details_post_Report'] =$this->CommonModel->getCompareDetails($year,'comparepmobile');

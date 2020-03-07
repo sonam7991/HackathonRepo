@@ -27,7 +27,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
                     <p class="text-center">
-                      <select name="report_type" name="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -87,10 +87,10 @@
       </section>
         <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <table id="sliderDetails" class="table table-bordered table-striped">
+                    <table id="comsubmotbl" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th></th>
+                            <th>Type</th>
                             <th>January</th>
                             <th>February</th>
                             <th>March</th>
@@ -103,39 +103,54 @@
                             <th>October</th>
                             <th>November</th>
                             <th>December</th>
-
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                           <tr>
                             <td> Prepaid </td>
-                          <?php  $month=""; $total=0;if($Details_Report!=""){ ?>
-                            <?php foreach($Details_Report as $i=> $rep): 
-                            if($i>0){
-                              $month=$month.','.$rep['Prepaid_Active'];
-                            }
-                            else{
-                              $month=$rep['Prepaid_Active'];
-                            }
-                            $total=$total + (int) $month;
-                            ?>
-                            <td> <?php echo $rep['Prepaid_Active'];?> </td>
-                          <?php endforeach; }?>
+                            <?php  $month=""; $total=0;if($Details_Report!=""){
+                              foreach($Months as $i=> $mon): 
+                                $display=0;$currentmon=0;
+                                foreach($Details_Report as $j=> $rep): 
+                                  if($i+1==$rep['Month']){
+                                    $display=$rep['Prepaid_Active'];
+                                    $currentmon=$rep['Prepaid_Active'];
+                                  }
+                                endforeach;
+                                if($i>0){
+                                  $month=$month.','.$currentmon;
+                                }
+                                else{
+                                  $month=$currentmon;
+                                }
+                                $total=$total + (int) $month;
+                              
+                              ?>
+                              <td> <?php echo $display;?> </td>
+                            <?php endforeach; }?>
                           </tr>
 
                           <tr>
                             <td> Postpaid </td>
-                          <?php  $month1=""; $total1=0; if($Details_post_Report!=""){ ?>
-                            <?php foreach($Details_post_Report as $i=> $rep): 
-                            if($i>0){
-                              $month1=$month1.','.$rep['Post_Active'];
-                            }
-                            else{
-                              $month1=$rep['Post_Active'];
-                            }
-                               $total1=$total1 + (int) $month1;
+                          <?php  $month1=""; $total1=0; if($Details_post_Report!=""){
+                            foreach($Months as $i=> $mon):  
+                              $display=0;$currentmon=0;
+                              foreach($Details_post_Report as $k=> $rep): 
+                                if($i+1==$rep['Month']){
+                                  $display=$rep['Post_Active'];
+                                  $currentmon=$rep['Post_Active'];
+                                }
+                              endforeach;
+                              if($i>0){
+                                $month1=$month1.','.$currentmon;
+                              }
+                              else{
+                                $month1=$currentmon;
+                              }
+                              $total1=$total1 + (int) $month1;
+                               //$total1=$total1 + (int) $month1;
                             ?>
-                            <td> <?php echo $rep['Post_Active'];?> </td>
+                            <td> <?php echo $display;?> </td>
                           <?php endforeach; }?>
                           </tr>
                             <input type="hidden" name="" id="pvpa" value="<?=$month?>">
@@ -146,10 +161,18 @@
                     </table>
                 </div>
             </div>
+            <div class="row pt-4" id="donwbtn" style="display: none">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
+                <button class="btn btn-primary" type="button" onclick="exportTableToExcel('comsubmotbl', 'post-vs-pre')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
+              </div>
+            </div>
     </section>
 <script type="text/javascript">
   $('#appendyear').html('<?php echo $year;?>');
-
+  $('#report_type').val('<?php echo $year;?>');
+  if('<?php echo $year;?>'!=""){
+    $('#donwbtn').show();
+  }
   function generateReport(year){
     $.blockUI
         ({ 

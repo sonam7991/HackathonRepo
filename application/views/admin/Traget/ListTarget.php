@@ -95,6 +95,7 @@
                         </div>
                     </div>
                 </div>
+              </div>
 			          <div class="form-group row">
                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <input type="text" name="activeu" id="activeu" class="form-control">
@@ -109,6 +110,7 @@
                           <button class="btn btn-success" type="button" onclick="addtargetetails()"> <i class="fa fa-check"></i>Update</button>
                         </div>
                     </div>
+                  </form>
 			        </div>
             </div>
           </div>
@@ -129,7 +131,7 @@
         'autoWidth'   : true
       });
     });
-  function updatetargetdetails(){
+  function addtargetetails(){
       $.blockUI
         ({ 
           css: 
@@ -144,18 +146,18 @@
           } 
         });
       var url='<?php echo base_url();?>index.php?adminController/updatetargetdetails/ListTarget';
-      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#targetupdate").serialize()}; 
-      $("#targetupdate").ajaxSubmit(options);
+      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#addtargetupdate").serialize()}; 
+      $("#addtargetupdate").ajaxSubmit(options);
       $('#deleteSlider').modal('hide');
       setTimeout($.unblockUI, 600); 
     }
 function showrole(id,year,revenue,arpupost,arpupre,au,vivo){
     $('#Year').val(year);
-    $('#Revenue').val(revenue);
-    $('#Arpu_post').val(arpupost);
-    $('#Arpu_pre').val(arpupre);
-    $('#Active_user').val(au);
-    $('#Vivophone').val(vivo);
+    $('#ftarget').val(revenue);
+    $('#arpupost').val(arpupost);
+    $('#arpupre').val(arpupre);
+    $('#activeu').val(au);
+    $('#sales').val(vivo);
     $('#deleteId').val(id);
     $('#deleteSlider').modal('show');
   }
@@ -178,26 +180,5 @@ function deletetarget(id){
          $("#mainContentdiv").load(url);
          setTimeout($.unblockUI, 1000);
     }
-    function addtargetetails(){
-      $.blockUI
-        ({ 
-          css: 
-          { 
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-          } 
-        });
-      var url='<?php echo base_url();?>index.php?adminController/addtargetupdate/ListTarget';
-      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#addtargetupdate").serialize()}; 
-      $("#addtargetupdate").ajaxSubmit(options);
-      $('#adddepartmentid').modal('hide');
-      setTimeout($.unblockUI, 600);
-    }
-
 </script>
   	

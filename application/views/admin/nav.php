@@ -59,7 +59,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadTarget/ListTarget/')">
                   <i class="nav-icon fa fa-users"></i>
-                  <p>List Targrt</p>
+                  <p>List Target</p>
                 </a>
               </li>
             </ul>
@@ -80,6 +80,12 @@
                  <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/revenue/')">
                   <i class="fa fa-chevron-right"></i>
                   <p>Import Revenue Finacial</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link" href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadimportPage/temp_revenue/')">
+                  <i class="fa fa-chevron-right"></i>
+                  <p>Import Temp_Revenue Finacial</p>
                 </a>
               </li>
               <li class="nav-item">

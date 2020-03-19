@@ -14,7 +14,14 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/Traget/'.$page,$page_data);
 
     }
+    function loadRevenue_temp($page=""){
+        $page_data['revenuelist']= $this->db->get('t_revenue_financial_excel_before')->result_array();
+        $this->load->view('admin/data/'.$page,$page_data);
+
+    }
+
     function updatetargetdetails($param2=""){
+
         $data['Year']=$this->input->post('year');
         $data['Revenue']=$this->input->post('ftarget');
         $data['Arpu_post']=$this->input->post('arpupost');
@@ -23,15 +30,15 @@ class AdminController extends CI_Controller {
         $data['Vivophone']=$this->input->post('sales');
         $this->db->where('Id',  $this->input->post('deleteId'));
         $this->db->update('t_target`', $data);
-        $page_data['ListTarget'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
-        $this->load->view('admin/administrator'.$param2,$page_data);
+        $page_data['ListTarget'] = $this->db->get_where('t_target')->result_array();
+        $this->load->view('admin/Target'.$param2,$page_data);
     }
 
     function deletetarget($targetId="",$page=""){
         $this->db->where('Id', $targetId);
         $this->db->delete('t_target');
-        $page_data['targetlist'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
-        $this->load->view('admin/administrator/'.$page,$page_data);
+        $page_data['targetlist'] = $this->db->get('t_target')->result_array();
+        $this->load->view('admin/Target/ListTarget'.$page,$page_data);
     }
 
     function addTarget(){
@@ -897,22 +904,18 @@ function insertrevenueexcelData($type=""){
                     }
                 }
                 
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==1){
+                   $crrmonth= 'Jan'; $currentdata= $data['E'];  
+                }
+                if($this->input->post('month')==2){
+                   $crrmonth= 'Feb'; $currentdata= $data['F']; 
+                }
             $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
                     'Service_Revenue_Id' => $data['D'],
-                    'Jan' => $data['E'],
-                    /*'Feb' => $data['F'],
-                    'Mar' => $data['G'],
-                    /*'Apr' => $data['F'],
-                    'May' => $data['G'],
-                    'Jun' => $data['H'],
-                    'July' => $data['I'],
-                    'Aug' => $data['J'],
-                    'Sep' => $data['K'],
-                    'Oct' => $data['L'],
-                    'Nov' => $data['M'],
-                    'Dec' => $data['N'],*/
+                    $crrmonth => $currentdata,
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_date' => date("Y-m-d"),                    
                 );
@@ -921,7 +924,7 @@ function insertrevenueexcelData($type=""){
         }
 
 
-        $Prepaid=(int)str_replace(",","",$Prepaid);
+        $Prepaid=(int)str_replace("","",$Prepaid);
         //die($In_And_Vas_International.':'.$Postpaid.':'.$Prepaid);
           $Total_Revinueo= $Mrc+$E_load+$In_And_Vas+$Online_App+$Inter_Connect+$International_Roming+$In_And_Vas_International+$Postpaid+$Prepaid;
             $resultmo = array(

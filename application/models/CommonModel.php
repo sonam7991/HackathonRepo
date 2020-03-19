@@ -127,6 +127,7 @@ class CommonModel extends CI_Model{
         return $query;
     }
     //method to get users
+    /******************************************************************
     function getverifier($pe=""){
         $query =$this->db->query(" SELECT s.Id,s.`Full_Name`,s.`Email_Id`,s.`Role_Id` FROM `staff_tbl` s WHERE s.`Company_Id`='".$this->session->userdata('companyId')."' AND s.Id <> '".$this->session->userdata('Id')."'")->result_array();
         return $query;
@@ -202,7 +203,7 @@ class CommonModel extends CI_Model{
         $query =$this->db->query(" SELECT COUNT(*) lcoaunt FROM  `t_subscriber_leaseline_isp_excel` a WHERE a.`PRG_Name`='ISP Lease Line'")->row();
         return $query;
         
-    }
+    }****************/
    function gettotalDetails($type=""){
         if($type=="Total_Active_User"){
             $query =$this->db->query(" SELECT b.`Total_Active` FROM `t_subscriber_bmobile_main` b ")->row();
@@ -221,7 +222,7 @@ class CommonModel extends CI_Model{
    function getrevenueexcel($type="")
    {
    $query=$this->db->query("SELECT s.`Month`,s.`Service_Revenue_Id`,s.`Jan`,s.`Feb`,s.`Mar`,s.`Apr`,s.`May`,s.`Jun`,s.`July`,s.`Aug`,s.`Sep`,s.`Oct`,s.`Nov`,s.`Dec` FROM `t_revenue_financial_excel` s WHERE s.`Year`='".$year."'")->result_array();
+    return $query;
 
    }
-   return $query;
 }

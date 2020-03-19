@@ -14,24 +14,25 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/Traget/'.$page,$page_data);
 
     }
-    function updatetargetdetails($param2=""){
+    function editTargetDetails($param2=""){
+        die('sdsds: '. $this->input->post('updateTagetId'));
         $data['Year']=$this->input->post('year');
         $data['Revenue']=$this->input->post('ftarget');
         $data['Arpu_post']=$this->input->post('arpupost');
         $data['Arpu_pre']=$this->input->post('arpupre');
         $data['Active_user']=$this->input->post('activeu');
         $data['Vivophone']=$this->input->post('sales');
-        $this->db->where('Id',  $this->input->post('deleteId'));
+        $this->db->where('Id',  $this->input->post('updateTagetId'));
         $this->db->update('t_target`', $data);
-        $page_data['ListTarget'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
+        $page_data['ListTarget'] = $this->db->get('t_target')->result_array();
         $this->load->view('admin/administrator'.$param2,$page_data);
     }
 
     function deletetarget($targetId="",$page=""){
         $this->db->where('Id', $targetId);
         $this->db->delete('t_target');
-        $page_data['targetlist'] = $this->db->get_where('t_target',array('Status'=>'Y'))->result_array();
-        $this->load->view('admin/administrator/'.$page,$page_data);
+        $page_data['targetlist'] = $this->db->get('t_target')->result_array();
+        $this->load->view('admin/Traget/'.$page,$page_data);
     }
 
     function addTarget(){

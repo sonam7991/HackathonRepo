@@ -40,11 +40,7 @@
                         <input type="text" name="ftarget" id="ftarget"  class="form-control" placeholder="Financial Target" onclick="removeer('ftarget_err')">
                         <span id="ftarget_err" class="text-danger"></span>
                       </div>
-                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <label>Input Monthly Financial Target (Revenue in Million Nu.):<span class="text-danger">*</span></label>
-                        <input type="text" name="mtarget" id="mtarget"  class="form-control" placeholder="Financial Target" onclick="removeer('mtarget_err')">
-                        <span id="mtarget_err" class="text-danger"></span>
-                      </div>
+                      
                       </div>
                       <div class="form-group row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

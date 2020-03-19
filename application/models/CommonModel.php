@@ -107,16 +107,45 @@ class CommonModel extends CI_Model{
             result_array();
         return $query;
     }
-    function getfinancialtarget($year="",$type=""){
-        if($type=="companytarget"){
-            $query =$this->db->query("SELECT f.`Month`,f.`Revenue`, f.`Arpu_post`, f.`Arpu_pre`,f.`Active_user`,f.`Vivophone`,f.`m_revenue` FROM `t_target` f WHERE f.`Year` = '".$year."'")->result_array();
-        }
-        if($type=="monthlytarget"){
-            $query =$this->db->query("SELECT s.`Month`,s.`Grand_Total` FROM `t_revenue_overall_main` s  WHERE s.`Year` ='".$year."'")->result_array();
-        }
+    function getmonthlyTarget($type=""){
+        $query =$this->db->query("SELECT ".$type."/12 Revenue  FROM t_target  WHERE Year =EXTRACT(YEAR FROM CURRENT_DATE)")->row()->Revenue;
         return $query;
     }   
 
+    function getmonthlyachievement($type=""){
+        if($type=="Revenue"){
+             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+        }
+        if($type=="Active_user"){
+             $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+        }
+        if($type=="Arpu_pre"){
+             $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+        }
+        if($type=="Arpu_post"){
+             $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+        }
+       
+        return $query;
+    }
+    function getlastmonthlyachievement($type=""){
+        if($type=="Revenue"){
+             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1")->result_array();
+        }
+        if($type=="Active_user"){
+            $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1")->result_array();
+        }
+        if($type=="Arpu_pre"){
+            $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1 ")->result_array();
+        }
+        if($type=="Arpu_post"){
+            $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1 ")->result_array();
+        }
+        
+       
+        return $query;
+        
+    }
     function getSubscriber_bmobileDetails(){
         $query=$this->db->query("SELECT f.`Month`, f.`Prepaid_Active`, f.`Prepaid_Passive`,f.`Prepaid_Total`,f.`Post_Active`, f.`Post_Passive`, f.`Post_Total`,f.`Total_Active`,
             f.`Total_Registered`,f.`Disconnected`,f.`Churn_Rate`,f.`HLR`, f.`HLR_Attachment` FROM `t_subscriber_bmobile_main` f WHERE f.`Year` = '".$year."'")->result_array();

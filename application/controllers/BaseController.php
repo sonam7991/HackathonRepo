@@ -50,11 +50,28 @@ class BaseController extends CI_Controller {
             redirect(base_url(), 'refresh');
         }
         else{
+            $page_data['Months'] =$this->CommonModel->getmonths();
             $page_data['Total_Active_User'] =$this->CommonModel->gettotalDetails('Total_Active_User');
             $page_data['fixedLine'] =$this->CommonModel->gettotalDetails('fixedLine');
             $page_data['isp'] =$this->CommonModel->gettotalDetails('isp');
-            
-            //$this->CommonModel->getAllApplicationSubmitted('group');
+            $page_data['targetrev'] =$this->CommonModel->getmonthlyTarget('Revenue');
+            $page_data['achievementrev'] =$this->CommonModel->getmonthlyachievement('Revenue');
+            $page_data['lastachievementrev'] =$this->CommonModel->getlastmonthlyachievement('Revenue');
+            $page_data['targetActiveUser'] =$this->CommonModel->getmonthlyTarget('Active_user');
+            $page_data['achievementActiveUser'] =$this->CommonModel->getmonthlyachievement('Active_user');
+            $page_data['lastachieActiveUser'] =$this->CommonModel->getlastmonthlyachievement('Active_user');
+
+            $page_data['targetActiveUserprepaid'] =$this->CommonModel->getmonthlyTarget('Arpu_pre');
+            $page_data['achievementarpupre'] =$this->CommonModel->getmonthlyachievement('Arpu_pre');
+            $page_data['lastachiearpupre'] =$this->CommonModel->getlastmonthlyachievement('Arpu_pre');
+
+            $page_data['targetActivearpupostpaid'] =$this->CommonModel->getmonthlyTarget('Arpu_post');
+            $page_data['achievementpostarpu'] =$this->CommonModel->getmonthlyachievement('Arpu_post');
+            $page_data['lastachiepostarpu'] =$this->CommonModel->getlastmonthlyachievement('Arpu_post');
+
+            $page_data['targetActiveVivophone'] =$this->CommonModel->getmonthlyTarget('Vivophone');
+            //$page_data['achievementVivophone'] =$this->CommonModel->getmonthlyachievement('Vivophone');
+            //$page_data['lastachieVivophone'] =$this->CommonModel->getlastmonthlyachievement('Vivophone');
             $this->load->view('admin/dashboard', $page_data);
         }
     }

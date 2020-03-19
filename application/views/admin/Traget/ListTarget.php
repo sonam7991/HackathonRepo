@@ -47,7 +47,7 @@
 			                  <td> <?php echo $event['Active_user'];?> </td>
                         <td> <?php echo $event['Vivophone'];?> </td>
                                     <td>
-                           <button type="button" class="btn btn-info btn-block" onclick="showrole('<?php echo $event['Id']?>','<?php echo $event['Year']?>','<?php echo $event['Revenue']?>','<?php echo $event['Arpu_post']?>','<?php echo $event['Arpu_pre']?>','<?php echo $event['Active_user']?>','<?php echo $event['Vivophone']?>')"><i class="fa fa-edit"></i>Update</button>
+                           <button type="button" class="btn btn-info btn-block" onclick="showeditdetails('<?php echo $event['Id']?>','<?php echo $event['Year']?>','<?php echo $event['Revenue']?>','<?php echo $event['Arpu_post']?>','<?php echo $event['Arpu_pre']?>','<?php echo $event['Active_user']?>','<?php echo $event['Vivophone']?>')"><i class="fa fa-edit"></i>Update</button>
 
                            <button type="button" class="btn btn-danger btn-block" onclick="deletetarget('<?php echo $event['Id']?>')"><i class="fa fa-times"></i>Delete</button>
                         </td>
@@ -62,59 +62,63 @@
 	    
 	</div>
 </section>
- <div class="modal fade" id="deleteSlider">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title"> Update Target</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'addtargetupdate', 'enctype' => 'multipart/form-data'));?>
-  				 	<div class="row">
-               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="Year" id="Year" class="form-control">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="ftarget" id="ftarget" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="arpupre" id="arpupre" class="form-control">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="arpupost" id="arpupost" class="form-control">
-                        </div>
-                    </div>
-                </div>
-			          <div class="form-group row">
-                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="activeu" id="activeu" class="form-control">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="sales" id="sales" class="form-control">
-                        </div>
-                </div>
-                <div class="form-group">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <input type="hidden" name="deleteId" id="deleteId">
-                          <button class="btn btn-success" type="button" onclick="addtargetetails()"> <i class="fa fa-check"></i>Update</button>
-                        </div>
-                    </div>
-			        </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
+<div class="modal fade" id="updateTargetmodel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Update Target</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body"> 
+        <?php echo form_open('#' , array('class' => 'form-horizontal validatable','id'=>'targetupdateformId', 'enctype' => 'multipart/form-data'));?>  
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Please mention the year</label>
+                  <input type="number" name="Year" id="Year" class="form-control">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Financial Target(Revenue in Million Nu.)</label>
+                  <input type="number" name="ftarget" id="ftarget" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Average Revenue Per User(Prepaid)</label>
+                    <input type="number" name="arpupre" id="arpupre" class="form-control">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Average Revenue Per User(Postpaid)</label>
+                  <input type="number" name="arpupost" id="arpupost" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Active User</label>
+                  <input type="number" name="activeu" id="activeu" class="form-control">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <label>Sales of Vivo Phones</label>
+                  <input type="number" name="sales" id="sales" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <input type="hidden" name="updateTagetId" id="updateTagetId">
+                  <button class="btn btn-success" type="button" onclick="updatetargetetails()"> <i class="fa fa-check"></i>Update</button>
+                </div>
+              </div>
+            </div>
+          </div>     
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
 	$('.summernote').summernote({
       height:250
@@ -129,75 +133,58 @@
         'autoWidth'   : true
       });
     });
-  function updatetargetdetails(){
-      $.blockUI
-        ({ 
-          css: 
-          { 
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-          } 
-        });
-      var url='<?php echo base_url();?>index.php?adminController/updatetargetdetails/ListTarget';
-      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#targetupdate").serialize()}; 
-      $("#targetupdate").ajaxSubmit(options);
-      $('#deleteSlider').modal('hide');
-      setTimeout($.unblockUI, 600); 
-    }
-function showrole(id,year,revenue,arpupost,arpupre,au,vivo){
+  
+  function showeditdetails(id,year,revenue,arpupost,arpupre,au,vivo){
     $('#Year').val(year);
-    $('#Revenue').val(revenue);
-    $('#Arpu_post').val(arpupost);
-    $('#Arpu_pre').val(arpupre);
-    $('#Active_user').val(au);
-    $('#Vivophone').val(vivo);
-    $('#deleteId').val(id);
-    $('#deleteSlider').modal('show');
+    $('#ftarget').val(revenue);
+    $('#arpupost').val(arpupost);
+    $('#arpupre').val(arpupre);
+    $('#activeu').val(au);
+    $('#sales').val(vivo);
+    $('#updateTagetId').val(id);
+    $('#updateTargetmodel').modal('show');
   }
+
+  function updatetargetetails(){
+  $.blockUI
+    ({ 
+      css: 
+      { 
+        border: 'none', 
+        padding: '15px', 
+        backgroundColor: '#000', 
+        '-webkit-border-radius': '10px', 
+        '-moz-border-radius': '10px', 
+        opacity: .5, 
+        color: '#fff' 
+      } 
+    });
+    var url='<?php echo base_url();?>index.php?adminController/editTargetDetails/';
+    var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#targetupdateformId").serialize()}; 
+    $("#targetupdateformId").ajaxSubmit(options);
+    $('#updateTargetmodel').modal('hide');
+    setTimeout($.unblockUI, 600);
+}
  
 function deletetarget(id){
-      $.blockUI
-          ({ 
-            css: 
-            { 
-                  border: 'none', 
-                  padding: '15px', 
-                  backgroundColor: '#000', 
-                  '-webkit-border-radius': '10px', 
-                  '-moz-border-radius': '10px', 
-                  opacity: .5, 
-                  color: '#fff' 
-            } 
-          });
-        var url='<?php echo base_url();?>index.php?adminController/deletetarget/'+id+'/ListTarget';
-         $("#mainContentdiv").load(url);
-         setTimeout($.unblockUI, 1000);
-    }
-    function addtargetetails(){
-      $.blockUI
-        ({ 
-          css: 
-          { 
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-          } 
-        });
-      var url='<?php echo base_url();?>index.php?adminController/addtargetupdate/ListTarget';
-      var options = {target: '#mainContentdiv',url:url,type:'POST',data: $("#addtargetupdate").serialize()}; 
-      $("#addtargetupdate").ajaxSubmit(options);
-      $('#adddepartmentid').modal('hide');
-      setTimeout($.unblockUI, 600);
-    }
+  $.blockUI
+    ({ 
+      css: 
+      { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+      } 
+    });
+  var url='<?php echo base_url();?>index.php?adminController/deletetarget/'+id+'/ListTarget';
+  $("#mainContentdiv").load(url);
+  setTimeout($.unblockUI, 1000);
+}
+
 
 </script>
   	

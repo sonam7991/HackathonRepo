@@ -221,7 +221,8 @@ class CommonModel extends CI_Model{
    function getrevenueexcel($type="")
    {
    $query=$this->db->query("SELECT s.`Month`,s.`Service_Revenue_Id`,s.`Jan`,s.`Feb`,s.`Mar`,s.`Apr`,s.`May`,s.`Jun`,s.`July`,s.`Aug`,s.`Sep`,s.`Oct`,s.`Nov`,s.`Dec` FROM `t_revenue_financial_excel` s WHERE s.`Year`='".$year."'")->result_array();
+   return $query;
 
    }
-   return $query;
+   
 }

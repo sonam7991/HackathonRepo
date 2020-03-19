@@ -23,8 +23,6 @@
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url();?>assest/admin/version3/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -40,6 +38,8 @@
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url();?>assest/admin/version3/dist/js/pages/dashboard2.js"></script>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <script type="text/javascript"> 
   function removeer(errid){

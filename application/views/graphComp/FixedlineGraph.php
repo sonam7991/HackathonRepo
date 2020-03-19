@@ -7,7 +7,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Mobile subscriber Graph</li>
+          <li class="breadcrumb-item active">FixedLine subscriber Graph</li>
         </ol>
       </div>
     </div>
@@ -16,7 +16,7 @@
 <section class="content">
       <div class="container-fluid">
         <div class="card-header">
-          <h3 class="card-title">Postpaid Active Vs Prepaid Active</h3>
+          <h3 class="card-title">FixedLine Subscriber Information</h3>
             <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
             <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
@@ -47,9 +47,15 @@
               </div>
             </div>
           </div>
-        <div class="row">
+          <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <table id="comsubmotblid" class="table table-bordered table-hover">
+            <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Subscriber FixedLine Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="comsubmotblid" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Dzongkhag</th>
@@ -90,11 +96,36 @@
             </table>
         </div>
     </div>
+  </div>
+</div>
+    <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table id="comsubmotblid2" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Total Number of Subscriber</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php  $month=""; if($fixedline_total!=""){ ?>
+                    <?php foreach($fixedline_total as $i=> $Total):?>
+                     <tr>
+                      <td> <?php echo $Total['year'];?> </td>
+                      <td> <?php echo $Total['Subscriber'];?> </td>
+                    </tr>
+                  <?php endforeach; }?>
+                </tbody>
+            </table>
+          </div>
+    </div>
+
     <div class="row pt-4" id="donwbtn" style="display: none">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-right">
         <button class="btn btn-primary" type="button" onclick="exportTableToExcel('comsubmotblid', 'fixedLine')"><i class="fa fa-download"></i> Export Table Data To Excel File</button>
       </div>
     </div>
+    <br>
     </section>
 
       
@@ -120,5 +151,16 @@
         $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/fixedlinegraph/FixedlineGraph/fixedline/'+year);
           setTimeout($.unblockUI, 1000); 
   }
+  $(function () {
+    $("#comsubmotblid").DataTable();
+    $('#comsubmotblid1').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
 
 </script>  

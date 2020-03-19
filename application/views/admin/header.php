@@ -1,5 +1,5 @@
 
-<nav class="main-header navbar navbar-expand navbar-orange navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
@@ -23,21 +23,18 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/fixedlinegraph/FixedlineGraph/')" class="nav-link">Fixed Line</a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadreportPage/mobileSubsGraph/')" class="nav-link">VAS</a>
-    </li>
   </ul>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-user-circle" style="font-size:28px;">
-          <?php echo $this->session->userdata('Full_Name');?>
+          <i class="fa fa-user-circle" style="font-size:28px; color: red">
           </i>
         <div class="dropdown-menu dropdown-menu dropdown-menu-right">
           <a href="#" class="">
             <div class="user text-center">
-              <img src="<?php echo base_url();?>uploads/user.png" style="width:80px" alt="User Avatar" class="img-circle">
+              <img src="<?php echo base_url();?>uploads/user1-128x128.jpg" style="width:80px" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <hr>
               <div class="user-body">
                 
                  <a href="#" class="btn btn-success" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadPage/profie/<?php echo $this->session->userdata('User_table_id');?>')">Profile</a>
@@ -68,6 +65,6 @@
             </div>
           </div>
         </div>
-      </div>
+  </div>
       
      

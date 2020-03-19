@@ -45,11 +45,11 @@
                     <label>Main Category</label>
                      <select id="maincat" name="maincat" class="form-control" onchange="sowList(this.value)">
                       <option value=""> Select</option>
-                      <option value="mobile"> Revinue Mobile</option>
-                      <option value="isp"> Revinue ISP</option>
-                      <option value="fixedline"> Revinue FixedLine</option>
-                      <option value="arpu"> Revinue APRU</option>
-                      <option value="overall"> Revinue Overall</option>
+                      <option value="mobile"> Revenue Mobile</option>
+                      <option value="isp"> Revenue ISP</option>
+                      <option value="fixedline"> Revenue FixedLine</option>
+                      <option value="arpu"> Revenue APRU</option>
+                      <option value="overall"> Revenue Overall</option>
                     </select>  
                   </div>
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

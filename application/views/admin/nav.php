@@ -1,11 +1,20 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-1">
   <a href="<?php echo base_url();?>index.php?baseController/dashboard" class="brand-link">
   <img src="<?php echo base_url();?>uploads/btlogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="logo-lg"><b>BI-DASHBOARD</b></span>
+    <span class="brand-text font-weight-light"><b>BI-DASHBOARD</b></span>
   </a>
   <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <?php if($this->session->userdata('Role_Id')=="1"){?>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active" onclick="loadpage('<?php echo base_url();?>index.php?adminController/dashboard')">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="fa fa-users"></i>
@@ -188,21 +197,21 @@
           <!-----------------------------------Market Target Analysis------------------->
          <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" >
               <i class="nav-icon fas fa-edit"></i>
               <p>Market Target Analysis
-                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">3</span>
+                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">2</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../mailbox/compose.html" class="nav-link">
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/financialtarget/financial_target/')" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Non-Finanical Target</p>
+                  <p>Finanical Target</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../mailbox/compose.html" class="nav-link">
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/financialtarget/non_financial_target/')" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Non-Finanical Target</p>
                 </a>

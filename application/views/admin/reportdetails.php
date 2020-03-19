@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1></h1>
+        <h1 class="m-0 text-dark">Dashboard</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -71,25 +71,49 @@
             </div>
           </div>
         </div>
-        <div class="row">
-        <div class="col-md-12">
-                 <div class="card card-success">
-                  <div class="card-header">
-                    <h3 class="card-title">Target and Achievement for Revenue</h3>
+      </div>
+    </section>
+    <section>
+      <div class="form-group row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Bar Chart for the Year: <span id="appendyear"></span></h3>
 
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart">
-                      <canvas id="barChart" style="height: 270px"></canvas>
-                    </div>
-                  </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="height:270px"></canvas>
                 </div>
               </div>
             </div>
           </div>
+        </div>
     </section>
+
+    
+  
+<script type="text/javascript">
+function generateReport(year){
+    $.blockUI
+        ({ 
+          css: 
+          { 
+              border: 'none', 
+              padding: '15px', 
+              backgroundColor: '#000', 
+              '-webkit-border-radius': '10px', 
+              '-moz-border-radius':  '10px', 
+              opacity: .5, 
+              color: '#fff' 
+          } 
+        });
+        $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/Subscriber_bmobile/reportdetails/subscriber_b/'+year);
+          setTimeout($.unblockUI, 1000); 
+  }
+</script>

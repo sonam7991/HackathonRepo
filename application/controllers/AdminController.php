@@ -39,6 +39,7 @@ class AdminController extends CI_Controller {
         $page_data['messagefail']="";
         $data['Year']=$this->input->post('year');
         $data['Revenue']=$this->input->post('ftarget');
+        $data['m_revenue']=$this->input->post('mtarget');
         $data['Arpu_post']=$this->input->post('arpupost');
         $data['Arpu_pre']=$this->input->post('arpupre');
         $data['Active_user']=$this->input->post('activeu');
@@ -437,15 +438,52 @@ class AdminController extends CI_Controller {
             $page_data['Details_td'] =$this->CommonModel->getCompareDetails($year,'comparetd');
         }
         $this->load->view('graphComp/'.$page,$page_data);
+    
     }
+    function financialtarget($page="",$type="",$year=""){
+        $page_data['ftarget'] ="";
+        $page_data['mtarget'] ="";
+        $page_data['year']=$year;
+        $page_data['Months'] =$this->CommonModel->getmonths();
+        if($type=="Companytarget"){
+            $page_data['ftarget'] =$this->CommonModel->getfinancialtarget($year,'companytarget');
+            $page_data['mtarget'] =$this->CommonModel->getfinancialtarget($year,'monthlytarget');
+        }
+        $this->load->view('admin/finanical/'.$page,$page_data);
+    }
+
     function fixedlinegraph($page="",$type="",$year=""){
          $page_data['fixedline_Report_dzongkhagWise'] ="";
+         $page_data['fixedline_total'] ="";
          $page_data['year'] =$year;
         if($type=="fixedline"){
             $page_data['fixedline_Report_dzongkhagWise'] =$this->CommonModel->getfixedlineDetails($year,'getfixedlineDetails');
+            $page_data['fixedline_total'] =$this->CommonModel->getfixedlinetotal($year,'getfixedlinetotal');
         }
+        
+        if($type=="fixedlinetotal"){
+            
+        }
+
         $this->load->view('graphComp/'.$page,$page_data);
     }
+    function Subscriber_bmobile($page="",$type="",$year=""){
+         $page_data['sub_bmoblie'] ="";
+         $page_data['year'] =$year;
+        if($type=="subscriber_b"){
+            $page_data['sub_bmoblie'] =$this->CommonModel->getSubscriber_bmobileDetails($year,'getSubscriber_bmobileDetails');
+            
+        }
+        $this->load->view('admin/'.$page,$page_data);
+    }
+ /**   function Erevenuexceldata($page="",$type="",$year=""){
+        $page_data['Revenue_Report_all'] ="";
+         $page_data['year'] =$year;
+          if($type=="Revenuebefore"){
+            $page_data[Revenue_Report_all] =$this->CommonModel->getRevenueallDetails($year,'getRevenueallDetails');
+        }
+
+    }**/
 
 
     function populateDependentDropDown($param1="",$param2=""){
@@ -555,6 +593,7 @@ Fixed Line Data
         $this->load->view('admin/acknowledgement', $page_data); 
         
     }
+
 /***
 Revenue
 ****/
@@ -572,7 +611,7 @@ function insertrevenueexcelData($type=""){
         $file_type  = PHPExcel_IOFactory::identify($file_directory . $new_file_name);
         $objReader  = PHPExcel_IOFactory::createReader($file_type);
         $objPHPExcel = $objReader->load($file_directory . $new_file_name); 
-        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);    
+        $sheet_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);   
         $Grand_Total=0;
         $rowcount=0;
         $Mrc=0;
@@ -607,232 +646,264 @@ function insertrevenueexcelData($type=""){
         $Total_Revenue=0;
         $Overall_total_revenue=0;
         foreach($sheet_data as $i=> $data) {
-            if($i>8){
-                if($i==12){
+            if($i>9){
+                if($i==13){
                     if($this->input->post('month')==1){
-                        $Mrc= $data['C'];  
+                        $Mrc= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Mrc= $data['D']; 
+                        $Mrc= $data['F']; 
                     }
-                }
-                if($i==14){
-                    
-                    if($this->input->post('month')==1){
-                        $E_load= $data['C'];  
+                   if($this->input->post('month')==3){
+                        $Mrc= $data['G'];  
                     }
-                    if($this->input->post('month')==2){
-                        $E_load= $data['D']; 
+                    if($this->input->post('month')==4){
+                        $Mrc= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Mrc= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Mrc= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Mrc= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Mrc= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Mrc= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Mrc= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Mrc= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Mrc= $data['P']; 
                     }
                 }
                 if($i==15){
+                    
                     if($this->input->post('month')==1){
-                        $In_And_Vas= $data['C'];  
+                        $E_load= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $In_And_Vas= $data['D']; 
+                        $E_load= $data['F']; 
+                    }
+                    
+                }
+                if($i==16){
+                    if($this->input->post('month')==1){
+                        $In_And_Vas= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $In_And_Vas= $data['F']; 
+                    }
+                   
+                }
+                if($i==17 || $i==19 || $i==23){
+                    if($this->input->post('month')==1){
+                        $Online_App+= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Online_App+= $data['F']; 
                     }
                 }
-                if($i==16 || $i==18 || $i==22){
+                if($i==18){
                     if($this->input->post('month')==1){
-                        $Online_App+= $data['C'];  
+                        $Inter_Connect= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Online_App+= $data['D']; 
-                    }
-                }
-                if($i==17){
-                    if($this->input->post('month')==1){
-                        $Inter_Connect= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Inter_Connect= $data['D']; 
-                    }
-                }
-                if($i==19){
-                    if($this->input->post('month')==1){
-                        $International_Roming= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $International_Roming= $data['D']; 
+                        $Inter_Connect= $data['F']; 
                     }
                 }
                 if($i==20){
                     if($this->input->post('month')==1){
-                        $In_And_Vas_International= $data['C'];  
+                        $International_Roming= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $In_And_Vas_International= $data['D']; 
+                        $International_Roming= $data['F']; 
+                    }
+                }
+                if($i==21){
+                    if($this->input->post('month')==1){
+                        $In_And_Vas_International= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $In_And_Vas_International= $data['F']; 
                     }
                 }
                 if($i==13){
                     if($this->input->post('month')==1){
-                        $Postpaid= $data['C'];  
+                        $Postpaid= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Postpaid= $data['D']; 
-                    }
-                }
-                if($i==23){
-                    if($this->input->post('month')==1){
-                        $Prepaid= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Prepaid= $data['D']; 
-                    }
-                }
-                if($i==9){
-                    if($this->input->post('month')==1){
-                        $Telephone_Service= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Telephone_Service= $data['D']; 
-                    }
-                }
-                if($i==10){
-                    if($this->input->post('month')==1){
-                        $Int_ISD= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Int_ISD= $data['D']; 
-                    }
-                }
-                if($i==51){
-                    if($this->input->post('month')==1){
-                        $Producta= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Producta= $data['D']; 
-                    }
-                }
-                if($i==54){
-                    if($this->input->post('month')==1){
-                        $Productb= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Productb= $data['D']; 
-                    }
-                }
-                if($i==91){
-                    if($this->input->post('month')==1){
-                        $Other_Income= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Other_Income= $data['D']; 
+                        $Postpaid= $data['F']; 
                     }
                 }
                 if($i==24){
                     if($this->input->post('month')==1){
-                        $a= $data['C'];  
+                        $Prepaid= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $a= $data['D']; 
+                        $Prepaid= $data['F']; 
+                    }
+                }
+                if($i==10){
+                    if($this->input->post('month')==1){
+                        $Telephone_Service= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Telephone_Service= $data['F']; 
+                    }
+                }
+                if($i==11){
+                    if($this->input->post('month')==1){
+                        $Int_ISD= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Int_ISD= $data['F']; 
+                    }
+                }
+                if($i==52){
+                    if($this->input->post('month')==1){
+                        $Producta= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Producta= $data['F']; 
+                    }
+                }
+                if($i==55){
+                    if($this->input->post('month')==1){
+                        $Productb= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Productb= $data['F']; 
+                    }
+                }
+                if($i==93){
+                    if($this->input->post('month')==1){
+                        $Other_Income= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Other_Income= $data['F']; 
                     }
                 }
                 if($i==25){
                     if($this->input->post('month')==1){
-                        $b= $data['C'];  
+                        $a= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $b= $data['D']; 
-                    }
-                }
-                if($i==33){
-                    if($this->input->post('month')==1){
-                        $c= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $c= $data['D']; 
-                    }
-                }
-                if($i==34){
-                    if($this->input->post('month')==1){
-                        $d= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $d= $data['D']; 
+                        $a= $data['F']; 
                     }
                 }
                 if($i==26){
                     if($this->input->post('month')==1){
-                        $Leased_line= $data['C'];  
+                        $b= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Leased_line= $data['D']; 
+                        $b= $data['F']; 
                     }
                 }
-                if($i==27){
+                if($i==34){
                     if($this->input->post('month')==1){
-                        $Domain_Name= $data['C'];  
+                        $c= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Domain_Name= $data['D']; 
-                    }
-                }
-                if($i==30){
-                    if($this->input->post('month')==1){
-                        $IPLC= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $IPLC= $data['D']; 
-                    }
-                }
-                if($i==31){
-                    if($this->input->post('month')==1){
-                        $Domain_Name_int= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Domain_Name_int= $data['D']; 
-                    }
-                }
-                if($i==32){
-                    if($this->input->post('month')==1){
-                        $Leased_Line_int= $data['C'];  
-                    }
-                    if($this->input->post('month')==2){
-                        $Leased_Line_int= $data['D']; 
+                        $c= $data['F']; 
                     }
                 }
                 if($i==36){
                     if($this->input->post('month')==1){
-                        $Contact_Center= $data['C'];  
+                        $d= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Contact_Center= $data['D']; 
+                        $d= $data['F']; 
                     }
                 }
-                if($i==38){
+                if($i==27){
                     if($this->input->post('month')==1){
-                        $Data_Center= $data['C'];  
+                        $Leased_line= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Data_Center= $data['D']; 
+                        $Leased_line= $data['F']; 
+                    }
+                }
+                if($i==28){
+                    if($this->input->post('month')==1){
+                        $Domain_Name= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Domain_Name= $data['F']; 
+                    }
+                }
+                if($i==31){
+                    if($this->input->post('month')==1){
+                        $IPLC= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $IPLC= $data['F']; 
+                    }
+                }
+                if($i==32){
+                    if($this->input->post('month')==1){
+                        $Domain_Name_int= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Domain_Name_int= $data['F']; 
+                    }
+                }
+                if($i==33){
+                    if($this->input->post('month')==1){
+                        $Leased_Line_int= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Leased_Line_int= $data['F']; 
+                    }
+                }
+                if($i==37){
+                    if($this->input->post('month')==1){
+                        $Contact_Center= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Contact_Center= $data['F']; 
                     }
                 }
                 if($i==39){
                     if($this->input->post('month')==1){
-                        $Thuraya_Service= $data['C'];  
+                        $Data_Center= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $Thuraya_Service= $data['D']; 
+                        $Data_Center= $data['F']; 
+                    }
+                }
+                if($i==41){
+                    if($this->input->post('month')==1){
+                        $Thuraya_Service= $data['E'];  
+                    }
+                    if($this->input->post('month')==2){
+                        $Thuraya_Service= $data['F']; 
                     }
                 }
                 if($i==40){
                     if($this->input->post('month')==1){
-                        $EPR_Service= $data['C'];  
+                        $EPR_Service= $data['E'];  
                     }
                     if($this->input->post('month')==2){
-                        $EPR_Service= $data['D']; 
+                        $EPR_Service= $data['F']; 
                     }
                 }
                 
             $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
-                    'Service_Revenue_Id' => $data['B'],
-                    'Jan' => $data['C'],
-                    'Feb' => $data['D'],
-                    'Mar' => $data['E'],
+                    'Service_Revenue_Id' => $data['D'],
+                    'Jan' => $data['E'],
+                    /*'Feb' => $data['F'],
+                    'Mar' => $data['G'],
                     /*'Apr' => $data['F'],
                     'May' => $data['G'],
                     'Jun' => $data['H'],

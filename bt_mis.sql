@@ -43,7 +43,7 @@ CREATE TABLE `t_month_master` (
 
 /*Data for the table `t_month_master` */
 
-insert  into `t_month_master`(`Id`,`Month`) values (1,'January'),(2,'February'),(3,'March'),(4,'April'),(5,'May'),(6,'June'),(7,'July'),(8,'August'),(9,'September'),(10,'October'),(11,'November'),(12,'December');
+insert  into `t_month_master`(`Id`,`Month`) values (1,'January'),(2,'Febarury'),(3,'March'),(4,'April'),(5,'May'),(6,'June'),(7,'July'),(8,'August'),(9,'September'),(10,'October'),(11,'November'),(12,'December ');
 
 /*Table structure for table `t_revenue_arpu_main` */
 
@@ -89,6 +89,34 @@ CREATE TABLE `t_revenue_financial_excel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `t_revenue_financial_excel` */
+
+/*Table structure for table `t_revenue_financial_excel_before` */
+
+DROP TABLE IF EXISTS `t_revenue_financial_excel_before`;
+
+CREATE TABLE `t_revenue_financial_excel_before` (
+  `Id` int(5) NOT NULL AUTO_INCREMENT,
+  `Year` int(5) DEFAULT NULL,
+  `Month` int(2) DEFAULT NULL,
+  `Service_Revenue_Id` varchar(200) DEFAULT NULL,
+  `Jan` varchar(10) DEFAULT NULL,
+  `Feb` varchar(10) DEFAULT NULL,
+  `Mar` varchar(10) DEFAULT NULL,
+  `Apr` varchar(10) DEFAULT NULL,
+  `May` varchar(10) DEFAULT NULL,
+  `Jun` varchar(10) DEFAULT NULL,
+  `July` varchar(10) DEFAULT NULL,
+  `Aug` varchar(10) DEFAULT NULL,
+  `Sep` varchar(10) DEFAULT NULL,
+  `Oct` varchar(10) DEFAULT NULL,
+  `Nov` varchar(10) DEFAULT NULL,
+  `Dec` varchar(10) DEFAULT NULL,
+  `User_Id` int(2) DEFAULT NULL,
+  `Added_date` date DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `t_revenue_financial_excel_before` */
 
 /*Table structure for table `t_revenue_fixed_line_main` */
 
@@ -206,7 +234,7 @@ CREATE TABLE `t_role_master` (
 
 /*Data for the table `t_role_master` */
 
-insert  into `t_role_master`(`Id`,`Role_Name`,`Role_Status`) values (1,'Admin','Y'),(2,'Marketing Division','Y'),(3,'Head','Y');
+insert  into `t_role_master`(`Id`,`Role_Name`,`Role_Status`) values (1,'Admin','Y'),(2,'Marketing','Y'),(3,'Boss','Y');
 
 /*Table structure for table `t_sub_category_master` */
 
@@ -218,11 +246,9 @@ CREATE TABLE `t_sub_category_master` (
   `Sub_Category_Name` varchar(200) DEFAULT NULL,
   `Active_Status` char(1) DEFAULT 'Y',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `t_sub_category_master` */
-
-insert  into `t_sub_category_master`(`Id`,`Category_Id`,`Sub_Category_Name`,`Active_Status`) values (1,1,'B-Mobile','Y'),(2,1,'ISP','Y'),(3,1,'VAS','Y'),(4,1,'Mobile Data User','Y'),(5,1,'Fixed Line','Y'),(6,2,'Mobile','Y'),(7,2,'ISP','Y'),(8,2,'Fixed Line','Y'),(9,2,'Others','Y'),(10,2,'ARPU','Y');
 
 /*Table structure for table `t_subscriber_base_disconnect_excel` */
 
@@ -479,6 +505,27 @@ CREATE TABLE `t_subscriber_vas_main` (
 
 /*Data for the table `t_subscriber_vas_main` */
 
+/*Table structure for table `t_target` */
+
+DROP TABLE IF EXISTS `t_target`;
+
+CREATE TABLE `t_target` (
+  `Id` int(50) NOT NULL AUTO_INCREMENT,
+  `Year` year(4) DEFAULT NULL,
+  `Revenue` varchar(250) DEFAULT NULL,
+  `Arpu_post` varchar(200) DEFAULT NULL,
+  `Arpu_pre` varchar(200) DEFAULT NULL,
+  `Active_user` varchar(200) DEFAULT NULL,
+  `Vivophone` varchar(200) DEFAULT NULL,
+  `m_revenue` varchar(200) DEFAULT NULL,
+  `Month` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+/*Data for the table `t_target` */
+
+insert  into `t_target`(`Id`,`Year`,`Revenue`,`Arpu_post`,`Arpu_pre`,`Active_user`,`Vivophone`,`m_revenue`,`Month`) values (1,2020,'4500','31431','15918','423753','10000','375','1'),(4,0000,'45565','566212','15512102','4115156','931559',NULL,'1'),(5,2001,'2','4','3','5','6',NULL,'1'),(6,2030,'500','250','250','69','290','250','1'),(7,2013,'100','12','12','12','12','50','1'),(8,2019,'4500','123','123','123','10','375','1');
+
 /*Table structure for table `t_user_details` */
 
 DROP TABLE IF EXISTS `t_user_details`;
@@ -494,11 +541,11 @@ CREATE TABLE `t_user_details` (
   `Role_Id` int(5) DEFAULT NULL,
   `Image_Name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `t_user_details` */
 
-insert  into `t_user_details`(`Id`,`User_Id`,`Password`,`User_Status`,`CID`,`Full_Name`,`Contact_Number`,`Role_Id`,`Image_Name`) values (1,'admin','admin','Y','12312312312','Sonam Dorji','12312312',1,'acknowledgement.JPG');
+insert  into `t_user_details`(`Id`,`User_Id`,`Password`,`User_Status`,`CID`,`Full_Name`,`Contact_Number`,`Role_Id`,`Image_Name`) values (1,'admin','admin','Y','11704001413','Sonam Dorji','17458669',1,NULL),(2,'pema@bt.bt','123','Y','111223','pema ','145666',2,NULL),(3,'ceo@bt.bt','123','Y','4556525','ceo','17566566',3,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

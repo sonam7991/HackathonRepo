@@ -20,18 +20,20 @@ class AdminController extends CI_Controller {
 
     }
 
-    function updatetargetdetails($param2=""){
 
+    function editTargetDetails($param2=""){
+        die('sdsds: '. $this->input->post('updateTagetId'));
         $data['Year']=$this->input->post('year');
         $data['Revenue']=$this->input->post('ftarget');
         $data['Arpu_post']=$this->input->post('arpupost');
         $data['Arpu_pre']=$this->input->post('arpupre');
         $data['Active_user']=$this->input->post('activeu');
         $data['Vivophone']=$this->input->post('sales');
-        $this->db->where('Id',  $this->input->post('deleteId'));
+        $this->db->where('Id',  $this->input->post('updateTagetId'));
         $this->db->update('t_target`', $data);
         $page_data['ListTarget'] = $this->db->get_where('t_target')->result_array();
         $this->load->view('admin/Target'.$param2,$page_data);
+
     }
 
     function deletetarget($targetId="",$page=""){
@@ -39,6 +41,7 @@ class AdminController extends CI_Controller {
         $this->db->delete('t_target');
         $page_data['targetlist'] = $this->db->get('t_target')->result_array();
         $this->load->view('admin/Target/ListTarget'.$page,$page_data);
+        $this->load->view('admin/Traget/'.$page,$page_data);
     }
 
     function addTarget(){
@@ -910,6 +913,41 @@ function insertrevenueexcelData($type=""){
                 }
                 if($this->input->post('month')==2){
                    $crrmonth= 'Feb'; $currentdata= $data['F']; 
+                }
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==3){
+                   $crrmonth= 'Mar'; $currentdata= $data['G'];  
+                }
+                if($this->input->post('month')==4){
+                   $crrmonth= 'Apr'; $currentdata= $data['H']; 
+                }
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==5){
+                   $crrmonth= 'May'; $currentdata= $data['I'];  
+                }
+                if($this->input->post('month')==6){
+                   $crrmonth= 'Jun'; $currentdata= $data['J']; 
+                }
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==7){
+                   $crrmonth= 'July'; $currentdata= $data['K'];  
+                }
+                if($this->input->post('month')==8){
+                   $crrmonth= 'Aug'; $currentdata= $data['L']; 
+                }
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==9){
+                   $crrmonth= 'Sep'; $currentdata= $data['M'];  
+                }
+                if($this->input->post('month')==10){
+                   $crrmonth= 'Oct'; $currentdata= $data['O']; 
+                }
+                $crrmonth="";$currentdata="";
+                if($this->input->post('month')==11){
+                   $crrmonth= 'Nov'; $currentdata= $data['P'];  
+                }
+                if($this->input->post('month')==12){
+                   $crrmonth= 'Dec'; $currentdata= $data['Q']; 
                 }
             $result = array(
                     'Year' => $this->input->post('Year'),

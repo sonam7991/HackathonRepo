@@ -4,6 +4,99 @@
     </div>
     <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Design by BhutanSyncITS</a>.</strong> All rights
     reserved.
+    
+      <?php  $lastmonth=""; $month=""; 
+        $lastactusr=0;$actuser=0;
+        $lastarpucount=0;$arpucount=0;
+        $lastpostarpucount=0;$postarpucount=0;
+        foreach($Months as $i=> $mon): 
+          $currentmon=0;$lastmonthach=0;
+          $currentactiveusr=0;$lastcurrentactiveusr=0;
+          $arpupre=0;$lastarpupre=0;
+          $arpupost=0;$lastarpupost=0;
+          foreach($achievementrev as $j=> $rep): 
+            if($i+1==$rep['Month']){
+              $currentmon=$rep['Grand_Total'];
+            }
+          endforeach;
+          foreach($lastachievementrev as $j=> $las): 
+            if($i+1==$las['Month']){
+              $lastmonthach=$las['Grand_Total'];
+            }
+          endforeach;
+
+          foreach($achievementActiveUser as $j=> $act): 
+            if($i+1==$act['Month']){
+              $currentactiveusr=$act['Total_Active'];
+            }
+          endforeach;
+          foreach($lastachieActiveUser as $j=> $lasact): 
+            if($i+1==$lasact['Month']){
+              $lastcurrentactiveusr=$lasact['Total_Active'];
+            }
+          endforeach;
+
+          foreach($achievementarpupre as $j=> $act): 
+            if($i+1==$act['Month']){
+              $arpupre=$act['Prepaid'];
+            }
+          endforeach;
+          foreach($lastachiearpupre as $j=> $lasact): 
+            if($i+1==$lasact['Month']){
+              $lastarpupre=$lasact['Prepaid'];
+            }
+          endforeach;
+
+          foreach($achievementpostarpu as $j=> $act): 
+            if($i+1==$act['Month']){
+              $arpupost=$act['Postpaid'];
+            }
+          endforeach;
+          foreach($lastachiepostarpu as $j=> $lasact): 
+            if($i+1==$lasact['Month']){
+              $lastarpupost=$lasact['Postpaid'];
+            }
+          endforeach;
+          
+
+          if($i>0){
+            $month=$month.','.$currentmon;
+            $lastmonth=$lastmonth.','.$lastmonthach;
+
+            $actuser=$actuser.','.$currentactiveusr;
+            $lastactusr=$lastactusr.','.$lastcurrentactiveusr;
+
+            $arpucount=$arpucount.','.$arpupre;
+            $lastarpucount=$lastarpucount.','.$lastarpupre;
+
+            $postarpucount=$postarpucount.','.$arpupost;
+            $lastpostarpucount=$lastpostarpucount.','.$lastarpupost;
+          }
+          else{
+            $month=$currentmon;
+            $lastmonth=$lastmonthach;
+
+            $actuser=$currentactiveusr;
+            $lastactusr=$lastcurrentactiveusr;
+
+            $arpucount=$arpupre;
+            $lastarpucount=$lastarpupre;
+
+            $postarpucount=$arpupost;
+            $lastpostarpucount=$lastarpupost;
+          } 
+        endforeach; ?>
+      <input type="hidden" name="" id="valudasd" value="<?=$month?>">
+      <input type="hidden" name="" id="lastmonthAchierev" value="<?=$lastmonth?>">
+
+      <input type="hidden" name="" id="monthactusr" value="<?=$actuser?>">
+      <input type="hidden" name="" id="lastmonthactusr" value="<?=$lastactusr?>">
+
+      <input type="hidden" name="" id="montharpuprepaid" value="<?=$arpucount?>">
+      <input type="hidden" name="" id="lastmontharpuprepaid" value="<?=$lastarpucount?>">
+
+      <input type="hidden" name="" id="montharpupostpaid" value="<?=$postarpucount?>">
+      <input type="hidden" name="" id="lastmontharpupostpaid" value="<?=$lastpostarpucount?>">
 </footer>
 
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
@@ -61,10 +154,7 @@
         });
       $("#mainContentdiv").load(url);
       setTimeout($.unblockUI, 1000);
-      
-      
     }
-
     function update(type,formId){
       $.blockUI
         ({ 
@@ -102,11 +192,36 @@
             $('#'+buttonId).show();
         }
     }
+var d = new Date();
+var nr = d.getFullYear();    
+$('#appendyear').html(nr);
+$('#actuveappendyear').html(nr);
+$('#actuveappendyearprepaid').html(nr);
+$('#postyear').html(nr);
+$('#ivoyear').html(nr);
+
+var revenueAchievement=[$('#valudasd').val()];
+var mnts_revenueAchievement=JSON.parse("[" + revenueAchievement + "]");
+
+var laswerevenueAchievement=[$('#lastmonthAchierev').val()];
+var last_mnts_revenueAchievement=JSON.parse("[" + laswerevenueAchievement + "]");
 
 $(function () {
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
       datasets: [
+        
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(10, 14, 122, 1)',
+          borderColor         : 'rgba(10, 14, 122, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : mnts_revenueAchievement
+        },
         {
           label               : 'Target',
           backgroundColor     : 'rgba(60,141,188,0.9)',
@@ -116,18 +231,18 @@ $(function () {
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90,34,56,78,23,45]
+          data                : [<?=$targetrev?>, <?=$targetrev?>, <?=$targetrev?>, <?=$targetrev?>, <?=$targetrev?>, <?=$targetrev?>, <?=$targetrev?>,<?=$targetrev?>,<?=$targetrev?>,<?=$targetrev?>,<?=$targetrev?>,<?=$targetrev?>]
         },
         {
-          label               : 'Achievement',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
+          label               : 'Last year Achievement',
+          backgroundColor     : 'rgba(50, 233, 22, 1)',
+          borderColor         : 'rgba(50, 233, 22, 1)',
           pointRadius         : false,
           pointColor          : 'rgba(210, 214, 222, 1)',
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40,45,44,56,78,99]
+          data                : last_mnts_revenueAchievement
         },
       ]
     }
@@ -158,7 +273,7 @@ $(function () {
     lineChartData.datasets[1].fill = false;
     lineChartOptions.datasetFill = false
    
-var donutData        = {
+    var donutData        = {
       labels: [
           'Chrome', 
           'IE',
@@ -178,6 +293,7 @@ var donutData        = {
     //-------------
     //- BAR CHART -
     //-------------
+    var barChartCanvas = $('#barChartactiveusers').get(0).getContext('2d')
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = jQuery.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
@@ -221,7 +337,566 @@ var donutData        = {
       data: stackedBarChartData,
       options: stackedBarChartOptions
     })
-  })
+  });
+
+//target active user bar graph
+var actveuser=[$('#monthactusr').val()];
+var activetotuser=JSON.parse("[" + actveuser + "]");
+
+var lasactveuser=[$('#lastmonthactusr').val()];
+var lastactivetotuser=JSON.parse("[" + lasactveuser + "]");
+
+
+$(function () {
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+      datasets: [
+        
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(10, 14, 122, 1)',
+          borderColor         : 'rgba(10, 14, 122, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : activetotuser
+        },
+        {
+          label               : 'Target',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$targetActiveUser?>, <?=$targetActiveUser?>, <?=$targetActiveUser?>, <?=$targetActiveUser?>, <?=$targetActiveUser?>, <?=$targetActiveUser?>, <?=$targetActiveUser?>,<?=$targetActiveUser?>,<?=$targetActiveUser?>,<?=$targetActiveUser?>,<?=$targetActiveUser?>,<?=$targetActiveUser?>]
+        },
+        {
+          label               : 'Last year Achievement',
+          backgroundColor     : 'rgba(50, 233, 22, 1)',
+          borderColor         : 'rgba(50, 233, 22, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : lastactivetotuser
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+   
+    var donutData        = {
+      labels: [
+          'Chrome', 
+          'IE',
+          'FireFox', 
+          'Safari', 
+          'Opera', 
+          'Navigator', 
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChartactiveusers').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+  });
+
+
+
+///arpuprepaid
+var arpuprepaid=[$('#montharpuprepaid').val()];
+var prepaidarpuval=JSON.parse("[" + arpuprepaid + "]");
+
+var arpulast=[$('#lastmontharpuprepaid').val()];
+var arpulastvalue=JSON.parse("[" + arpulast + "]");
+
+
+$(function () {
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+      datasets: [
+        
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(10, 14, 122, 1)',
+          borderColor         : 'rgba(10, 14, 122, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : prepaidarpuval
+        },
+        {
+          label               : 'Target',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>, <?=$targetActiveUserprepaid?>,<?=$targetActiveUserprepaid?>,<?=$targetActiveUserprepaid?>,<?=$targetActiveUserprepaid?>,<?=$targetActiveUserprepaid?>,<?=$targetActiveUserprepaid?>]
+        },
+        {
+          label               : 'Last year Achievement',
+          backgroundColor     : 'rgba(50, 233, 22, 1)',
+          borderColor         : 'rgba(50, 233, 22, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : arpulastvalue
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+   
+    var donutData        = {
+      labels: [
+          'Chrome', 
+          'IE',
+          'FireFox', 
+          'Safari', 
+          'Opera', 
+          'Navigator', 
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    
+    
+    var barChartCanvas = $('#barChartarpuprepaid').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+  });
+
+///arpu post paid
+
+ 
+var arpposta=[$('#montharpupostpaid').val()];
+var prepostrpuval=JSON.parse("[" + arpposta + "]");
+
+var lastpostarpu=[$('#lastmontharpupostpaid').val()];
+var lastpostarpuvalue=JSON.parse("[" + lastpostarpu + "]");
+
+
+$(function () {
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+      datasets: [
+        
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(10, 14, 122, 1)',
+          borderColor         : 'rgba(10, 14, 122, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : prepostrpuval
+        },
+        {
+          label               : 'Target',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>, <?=$targetActivearpupostpaid?>,<?=$targetActivearpupostpaid?>,<?=$targetActivearpupostpaid?>,<?=$targetActivearpupostpaid?>,<?=$targetActivearpupostpaid?>,<?=$targetActivearpupostpaid?>]
+        },
+        {
+          label               : 'Last year Achievement',
+          backgroundColor     : 'rgba(50, 233, 22, 1)',
+          borderColor         : 'rgba(50, 233, 22, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : lastpostarpuvalue
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+   
+    var donutData        = {
+      labels: [
+          'Chrome', 
+          'IE',
+          'FireFox', 
+          'Safari', 
+          'Opera', 
+          'Navigator', 
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    
+    
+    var barChartCanvas = $('#barChartarpupostpaid').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+  });
+
+
+///vivo
+var arpposta=[$('#montharpupostpaid').val()];
+var prepostrpuval=JSON.parse("[" + arpposta + "]");
+
+var lastpostarpu=[$('#lastmontharpupostpaid').val()];
+var lastpostarpuvalue=JSON.parse("[" + lastpostarpu + "]");
+
+
+$(function () {
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+      datasets: [
+        
+        {
+          label               : 'Achievement',
+          backgroundColor     : 'rgba(10, 14, 122, 1)',
+          borderColor         : 'rgba(10, 14, 122, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : prepostrpuval
+        },
+        {
+          label               : 'Target',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>, <?=$targetActiveVivophone?>,<?=$targetActiveVivophone?>,<?=$targetActiveVivophone?>,<?=$targetActiveVivophone?>,<?=$targetActiveVivophone?>,<?=$targetActiveVivophone?>]
+        },
+        {
+          label               : 'Last year Achievement',
+          backgroundColor     : 'rgba(50, 233, 22, 1)',
+          borderColor         : 'rgba(50, 233, 22, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : lastpostarpuvalue
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions);
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+   
+    var donutData        = {
+      labels: [
+          'Chrome', 
+          'IE',
+          'FireFox', 
+          'Safari', 
+          'Opera', 
+          'Navigator', 
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    
+    
+    var barChartCanvas = $('#barChartvivo').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+  });
 
 
 function exportTableToExcel(tableID, filename = ''){

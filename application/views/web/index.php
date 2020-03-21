@@ -2,7 +2,7 @@
 <?php
     $this->load->view('web/header.php');
 ?> 
-<body  style="background-color:orange;background-repeat: no-repeat;-webkit-background-size: cover;"> 
+<body  style="background-color:#12d6ea;background-repeat: no-repeat;-webkit-background-size: cover;"> 
     <div id="mainpublicContent">     	
     	<div class="register" >
     		<br/><br/>

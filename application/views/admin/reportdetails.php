@@ -22,7 +22,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php if($Total_Active_User!=""){?><?=explode(".",$Total_Active_User->Total_Active)[0]?> <?php }else{?>0<?php }?></h3>
-                <p>Subscribe B-Mobile Active Users</p>
+                <p>Sub. B-Mobile Active Users</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -73,27 +73,31 @@
         </div>
       </div>
     </section>
-    <section>
-      <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="card card-success">
-            <div class="card-header">
-                <h3 class="card-title">Bar Chart for the Year: <span id="appendyear"></span></h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="height:270px"></canvas>
-                </div>
-              </div>
-            </div>
+    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <?php $this->load->view('admin/targetAndAchievement/revenueAchievement.php'); ?> 
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <?php $this->load->view('admin/targetAndAchievement/salesvivophone.php'); ?> 
+            
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+           <?php $this->load->view('admin/targetAndAchievement/activeUserAchievement.php'); ?> 
+          </div>
+           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <?php $this->load->view('admin/targetAndAchievement/postpaidAchievemnt.php'); ?> 
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <?php $this->load->view('admin/targetAndAchievement/prepaid.php'); ?> 
+          </div>
+         
+        </div>
+      </div>
     </section>
 
     

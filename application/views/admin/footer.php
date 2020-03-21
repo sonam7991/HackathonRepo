@@ -155,6 +155,25 @@
       $("#mainContentdiv").load(url);
       setTimeout($.unblockUI, 1000);
     }
+    
+    function loadpagedashboard(url,value){
+    $.blockUI
+        ({ 
+          css: 
+          { 
+              border: 'none', 
+              padding: '15px', 
+              backgroundColor: '#000', 
+              '-webkit-border-radius': '10px', 
+              '-moz-border-radius': '10px', 
+              opacity: .5, 
+              color: '#fff' 
+          } 
+        });
+        url=url+"/"+value;
+        window.location=url;
+        setTimeout($.unblockUI, 1000);
+    }
     function update(type,formId){
       $.blockUI
         ({ 
@@ -192,14 +211,13 @@
             $('#'+buttonId).show();
         }
     }
-var d = new Date();
-var nr = d.getFullYear();    
-$('#appendyear').html(nr);
-$('#actuveappendyear').html(nr);
-$('#actuveappendyearprepaid').html(nr);
-$('#postyear').html(nr);
-$('#ivoyear').html(nr);
 
+  $('#appendyear').html(<?=$yearselected?>);
+  $('#actuveappendyear').html(<?=$yearselected?>);
+  $('#actuveappendyearprepaid').html(<?=$yearselected?>);
+  $('#postyear').html(<?=$yearselected?>);
+  $('#ivoyear').html(<?=$yearselected?>);
+  $('#selectedyearid').val(<?=$yearselected?>);
 var revenueAchievement=[$('#valudasd').val()];
 var mnts_revenueAchievement=JSON.parse("[" + revenueAchievement + "]");
 

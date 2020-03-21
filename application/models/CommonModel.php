@@ -107,39 +107,45 @@ class CommonModel extends CI_Model{
             result_array();
         return $query;
     }
-    function getmonthlyTarget($type=""){
-        $query =$this->db->query("SELECT ".$type."/12 Revenue  FROM t_target  WHERE Year =EXTRACT(YEAR FROM CURRENT_DATE)")->row()->Revenue;
-        return $query;
+    function getmonthlyTarget($type="",$year=""){
+        $query =$this->db->query("SELECT ".$type."/12 Revenue  FROM t_target  WHERE Year ='".$year."'")->row();
+        if($query!=""){
+            return $query->Revenue;
+        }
+        else{
+            return 0;
+        }
+        
     }   
 
-    function getmonthlyachievement($type=""){
+    function getmonthlyachievement($type="",$year=""){
         if($type=="Revenue"){
-             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`='".$year."'")->result_array();
         }
         if($type=="Active_user"){
-             $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+             $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`='".$year."'")->result_array();
         }
         if($type=="Arpu_pre"){
-             $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+             $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'")->result_array();
         }
         if($type=="Arpu_post"){
-             $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)")->result_array();
+             $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'")->result_array();
         }
        
         return $query;
     }
-    function getlastmonthlyachievement($type=""){
+    function getlastmonthlyachievement($type="",$year=""){
         if($type=="Revenue"){
-             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1")->result_array();
+             $query =$this->db->query("SELECT r.`Grand_Total`,r.`Month` FROM `t_revenue_overall_main` r WHERE r.`Year`='".$year."'-1")->result_array();
         }
         if($type=="Active_user"){
-            $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1")->result_array();
+            $query =$this->db->query("SELECT t.`Total_Active`,t.`Month`  FROM `t_subscriber_bmobile_main` t WHERE t.`Year`='".$year."'-1")->result_array();
         }
         if($type=="Arpu_pre"){
-            $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1 ")->result_array();
+            $query =$this->db->query("SELECT r.`Prepaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'-1 ")->result_array();
         }
         if($type=="Arpu_post"){
-            $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`=EXTRACT(YEAR FROM CURRENT_DATE)-1 ")->result_array();
+            $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'-1 ")->result_array();
         }
         
        
@@ -233,17 +239,17 @@ class CommonModel extends CI_Model{
         return $query;
         
     }****************/
-   function gettotalDetails($type=""){
+   function gettotalDetails($type="",$year=""){
         if($type=="Total_Active_User"){
-            $query =$this->db->query(" SELECT b.`Total_Active` FROM `t_subscriber_bmobile_main` b ")->row();
+            $query =$this->db->query(" SELECT b.`Total_Active` FROM `t_subscriber_bmobile_main` b  WHERE b.`Year`='".$year."' ")->row();
        
         }
         if($type=="fixedLine"){
-            $query =$this->db->query("SELECT m.`Subscriber` FROM `t_subscriber_fixed_line_main` m ")->row();
+            $query =$this->db->query("SELECT m.`Subscriber` FROM `t_subscriber_fixed_line_main` m   WHERE m.`Year`='".$year."'")->row();
        
         }
         if($type=="isp"){
-            $query =$this->db->query("SELECT i.`Broad_Band_count`,i.`Lease_Line_Count` FROM `t_subscriber_isp_main` i ")->row();       
+            $query =$this->db->query("SELECT i.`Broad_Band_count`,i.`Lease_Line_Count` FROM `t_subscriber_isp_main` i   WHERE i.`Year`='".$year."'")->row();       
         }
         
      return $query;

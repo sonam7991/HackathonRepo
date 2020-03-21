@@ -14,13 +14,9 @@ class AdminController extends CI_Controller {
         $this->load->view('admin/Traget/'.$page,$page_data);
 
     }
-    function loadRevenue_temp($page=""){
-        $page_data['revenuelist']= $this->db->get('t_revenue_financial_excel_before')->result_array();
-        $this->load->view('admin/data/'.$page,$page_data);
-
+    function outline($page=""){
+        $this->load->view('admin/outline/'.$page);
     }
-
-
     function editTargetDetails($param2=""){
         die('sdsds: '. $this->input->post('updateTagetId'));
         $data['Year']=$this->input->post('year');

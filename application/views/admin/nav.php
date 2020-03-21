@@ -224,9 +224,49 @@
               </li>
             </ul>
           </li>
-
-
-
+          <div class="dropdown-divider"></div>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link" >
+              <i class="nav-icon fa fa-phone-square"></i>
+              <p>Mobile Subscriber
+                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">3</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/mobileSubsGraph/')" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Postpaid Vs Prepaid Active Users</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/totalactived/')" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Active Users Vs Total Disconnected</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/userscount/')" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Subscriber B-Mobile New Customers</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="nav-item">
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/fixedlinegraph/FixedlineGraph/')" class="nav-link">
+              <i class="fa fa-phone-alt"></i>
+              <p>Fixed Line</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/outline/outline')" class="nav-link">
+              <i class="fa fa-phone-alt"></i>
+              <p>Users Guide Line</p>
+            </a>
+          </li>
         </ul>
       </nav>
 </aside>

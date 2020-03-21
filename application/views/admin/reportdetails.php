@@ -1,14 +1,26 @@
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Dashboard</h1>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+      <div class="col-sm-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active">Details for year: </li>
         </ol>
+      </div>
+      <div class="col-sm-5">
+         <select class="form-control" id="selectedyearid" onchange="loadpagedashboard('<?php echo base_url();?>index.php?baseController/dashboard',this.value)">
+          <option value="2020">2020</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          </select>
       </div>
     </div>
   </div>
@@ -120,4 +132,5 @@ function generateReport(year){
         $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/Subscriber_bmobile/reportdetails/subscriber_b/'+year);
           setTimeout($.unblockUI, 1000); 
   }
+
 </script>

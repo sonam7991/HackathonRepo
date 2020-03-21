@@ -78,8 +78,8 @@ class BaseController extends CI_Controller {
             $page_data['lastachiepostarpu'] =$this->CommonModel->getlastmonthlyachievement('Arpu_post',$year);
 
             $page_data['targetActiveVivophone'] =$this->CommonModel->getmonthlyTarget('Vivophone',$year);
-            //$page_data['achievementVivophone'] =$this->CommonModel->getmonthlyachievement('Vivophone');
-            //$page_data['lastachieVivophone'] =$this->CommonModel->getlastmonthlyachievement('Vivophone');
+            $page_data['achievementVivophone'] =$this->CommonModel->getmonthlyachievement('Vivophone',$year);
+            $page_data['lastachieVivophone'] =$this->CommonModel->getlastmonthlyachievement('Vivophone',$year);
             $page_data['yearselected'] =$year;
             $this->load->view('admin/dashboard', $page_data);
         }

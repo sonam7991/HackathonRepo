@@ -8,11 +8,13 @@
         $lastactusr=0;$actuser=0;
         $lastarpucount=0;$arpucount=0;
         $lastpostarpucount=0;$postarpucount=0;
+        $lastvivocount=0;$vivocount=0;
         foreach($Months as $i=> $mon): 
           $currentmon=0;$lastmonthach=0;
           $currentactiveusr=0;$lastcurrentactiveusr=0;
           $arpupre=0;$lastarpupre=0;
           $arpupost=0;$lastarpupost=0;
+          $currvivo=0;$lascurvivo=0;
           foreach($achievementrev as $j=> $rep): 
             if($i+1==$rep['Month']){
               $currentmon=$rep['Grand_Total'];
@@ -57,6 +59,16 @@
             }
           endforeach;
           
+          foreach($achievementVivophone as $j=> $viv): 
+            if($i+1==$viv['Month']){
+              $currvivo=$viv['Achievement'];
+            }
+          endforeach;
+          foreach($lastachieVivophone as $j=> $vivil): 
+            if($i+1==$vivil['Month']){
+              $lascurvivo=$vivil['Achievement'];
+            }
+          endforeach;
 
           if($i>0){
             $month=$month.','.$currentmon;
@@ -70,6 +82,9 @@
 
             $postarpucount=$postarpucount.','.$arpupost;
             $lastpostarpucount=$lastpostarpucount.','.$lastarpupost;
+
+            $vivocount=$vivocount.','.$currvivo;
+            $lastvivocount=$lastvivocount.','.$lascurvivo;
           }
           else{
             $month=$currentmon;
@@ -83,6 +98,9 @@
 
             $postarpucount=$arpupost;
             $lastpostarpucount=$lastarpupost;
+
+            $vivocount=$currvivo;
+            $lastvivocount=$lascurvivo;
           } 
         endforeach; ?>
       <input type="hidden" name="" id="valudasd" value="<?=$month?>">
@@ -96,6 +114,9 @@
 
       <input type="hidden" name="" id="montharpupostpaid" value="<?=$postarpucount?>">
       <input type="hidden" name="" id="lastmontharpupostpaid" value="<?=$lastpostarpucount?>">
+
+      <input type="hidden" name="" id="monthvivocount" value="<?=$vivocount?>">
+      <input type="hidden" name="" id="lastmonthvivocount" value="<?=$lastvivocount?>">
 </footer>
 
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
@@ -778,11 +799,12 @@ $(function () {
 
 
 ///vivo
-var arpposta=[$('#montharpupostpaid').val()];
-var prepostrpuval=JSON.parse("[" + arpposta + "]");
 
-var lastpostarpu=[$('#lastmontharpupostpaid').val()];
-var lastpostarpuvalue=JSON.parse("[" + lastpostarpu + "]");
+var vivo=[$('#monthvivocount').val()];
+var previvo=JSON.parse("[" + vivo + "]");
+
+var lastvivo=[$('#lastmonthvivocount').val()];
+var lastvivocount=JSON.parse("[" + lastvivo + "]");
 
 
 $(function () {
@@ -799,7 +821,7 @@ $(function () {
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : prepostrpuval
+          data                : previvo
         },
         {
           label               : 'Target',
@@ -821,7 +843,7 @@ $(function () {
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : lastpostarpuvalue
+          data                : lastvivocount
         },
       ]
     }

@@ -1175,6 +1175,35 @@ function insertisp($type=""){
         $this->load->view('admin/acknowledgement', $page_data); 
     }
 
+    function listVivo($param=""){
+        $page_data['message']="Valid";
+        if($param=="add"){
+            if($this->input->post('year')!=""){
+                $chekrec=$this->CommonModel->checkData($this->input->post('year'),$this->input->post('month'));
+                if($chekrec==""){
+                    $result = array(
+                        'Year' => $this->input->post('year'),
+                        'Month' => $this->input->post('month'),
+                        'Achievement' =>  $this->input->post('achievement'),
+                        'Update_by' =>  $this->session->userdata('Full_Name'),
+                        'Updated_On' => date("Y-m-d"),                 
+                    );
+                    if($this->input->post('actiontype')=="add"){
+                        $this->CommonModel->do_insert('t_vivo_achievement',$result);
+                    }
+                    else{
+                        $this->db->where('Id',  $this->input->post('updateId'));
+                        $this->db->update('t_vivo_achievement`', $result);
+                    }
+                }
+                else{
+                    $page_data['message']="Your record for year: ".$this->input->post('year')." and month: ".$this->input->post('month')." is already recorded" ;
+                }
+            }
+        }   
+        $page_data['vivoList']= $this->db->get('t_vivo_achievement')->result_array();
+        $this->load->view('admin/Traget/vivoAchievement',$page_data);
+    }
     
 }
 

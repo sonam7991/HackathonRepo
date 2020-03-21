@@ -29,6 +29,10 @@ class CommonModel extends CI_Model{
         $query="DELETE FROM ".$taable." WHERE `Year`='".$year."' AND `Month`='".$month."'";
         $this->db->query($query);
     }
+    function checkData($year="",$month=""){
+        $query =$this->db->query("SELECT * FROM `t_vivo_achievement` WHERE `Year`=".$year." AND `Month`=".$month." ")->row();
+        return $query;
+    }
 
     //generated file number
     function getReportDetails($id="",$type="",$months="",$year=""){
@@ -131,6 +135,9 @@ class CommonModel extends CI_Model{
         if($type=="Arpu_post"){
              $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'")->result_array();
         }
+        if($type=="Vivophone"){
+            $query =$this->db->query("SELECT r.`Achievement`,r.`Month` FROM `t_vivo_achievement` r WHERE r.`Year`='".$year."'")->result_array();
+        }
        
         return $query;
     }
@@ -147,8 +154,9 @@ class CommonModel extends CI_Model{
         if($type=="Arpu_post"){
             $query =$this->db->query("SELECT r.`Postpaid`,r.`Month` FROM `t_revenue_arpu_main` r WHERE r.`Year`='".$year."'-1 ")->result_array();
         }
-        
-       
+        if($type=="Vivophone"){
+             $query =$this->db->query("SELECT r.`Achievement`,r.`Month` FROM `t_vivo_achievement` r WHERE r.`Year`='".$year."'-1")->result_array();
+        }
         return $query;
         
     }

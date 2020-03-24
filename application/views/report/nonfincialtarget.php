@@ -146,17 +146,21 @@
     }
     var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData
-   //barChartData.datasets[1].fillColor   = '#00a65a'
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+      
     barChartData.datasets[1].strokeColor = '#00a65a'
     var barChartOptions                  = {   
-     
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<1; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
       responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
     }
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
-  })
+  });
 
 </script>

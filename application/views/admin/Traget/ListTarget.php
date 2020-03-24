@@ -90,25 +90,7 @@
                   <label>Average Revenue Per User(Prepaid)</label>
                     <input type="number" name="arpupre" id="arpupre" class="form-control">
                 </div>
-<<<<<<< HEAD
-              </div>
-			          <div class="form-group row">
-                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="activeu" id="activeu" class="form-control">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" name="sales" id="sales" class="form-control">
-                        </div>
-                </div>
-                <div class="form-group">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <input type="hidden" name="deleteId" id="deleteId">
-                          <button class="btn btn-success" type="button" onclick="addtargetetails()"> <i class="fa fa-check"></i>Update</button>
-                        </div>
-                    </div>
-                  </form>
-			        </div>
-=======
+              
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                   <label>Average Revenue Per User(Postpaid)</label>
                   <input type="number" name="arpupost" id="arpupost" class="form-control">
@@ -130,7 +112,6 @@
                   <button class="btn btn-success" type="button" onclick="updatetargetetails()"> <i class="fa fa-check"></i>Update</button>
                 </div>
               </div>
->>>>>>> 9953b96e55009ced22a776e9645a9a4ea060216e
             </div>
           </div>     
         </form>
@@ -153,7 +134,6 @@
         'autoWidth'   : true
       });
     });
-<<<<<<< HEAD
   function addtargetetails(){
       $.blockUI
         ({ 
@@ -174,24 +154,17 @@
       $('#deleteSlider').modal('hide');
       setTimeout($.unblockUI, 600); 
     }
-function showrole(id,year,revenue,arpupost,arpupre,au,vivo){
-=======
   
   function showeditdetails(id,year,revenue,arpupost,arpupre,au,vivo){
->>>>>>> 9953b96e55009ced22a776e9645a9a4ea060216e
     $('#Year').val(year);
     $('#ftarget').val(revenue);
     $('#arpupost').val(arpupost);
     $('#arpupre').val(arpupre);
     $('#activeu').val(au);
     $('#sales').val(vivo);
-<<<<<<< HEAD
-    $('#deleteId').val(id);
     $('#deleteSlider').modal('show');
-=======
     $('#updateTagetId').val(id);
     $('#updateTargetmodel').modal('show');
->>>>>>> 9953b96e55009ced22a776e9645a9a4ea060216e
   }
 
   function updatetargetetails(){
@@ -216,7 +189,6 @@ function showrole(id,year,revenue,arpupost,arpupre,au,vivo){
 }
  
 function deletetarget(id){
-<<<<<<< HEAD
       $.blockUI
           ({ 
             css: 
@@ -234,26 +206,5 @@ function deletetarget(id){
          $("#mainContentdiv").load(url);
          setTimeout($.unblockUI, 1000);
     }
-=======
-  $.blockUI
-    ({ 
-      css: 
-      { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-      } 
-    });
-  var url='<?php echo base_url();?>index.php?adminController/deletetarget/'+id+'/ListTarget';
-  $("#mainContentdiv").load(url);
-  setTimeout($.unblockUI, 1000);
-}
-
-
->>>>>>> 9953b96e55009ced22a776e9645a9a4ea060216e
 </script>
   	

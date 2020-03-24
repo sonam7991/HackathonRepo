@@ -58,6 +58,7 @@
                         <option value="11">November</option>   
                         <option value="12">December</option>   
                       </select>
+                      
                   </div>
                 </div>
                 <br />
@@ -125,7 +126,6 @@
 <script type="text/javascript">
 
   $('#report_year').val('<?php echo $year;?>');
-  $('#selectMonth').val('<?php echo $Months;?>');
   if('<?php echo $year;?>'!=""){
     $('#donwbtn').show();
   }
@@ -175,7 +175,6 @@
           //data                : mnts
         },
         {
-          label               : 'asdfa sdfm,sad',
           fillColor           : 'rgba(60,141,188,0.9)',
           pointColor          : '#3b8bba',
           pointStrokeColor    : 'rgba(60,141,188,1)',
@@ -186,13 +185,17 @@
     }
     var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData
-   //barChartData.datasets[1].fillColor   = '#00a65a'
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+      
     barChartData.datasets[1].strokeColor = '#00a65a'
     var barChartOptions                  = {   
-     
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<1; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
       responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
     }
 
     barChartOptions.datasetFill = false

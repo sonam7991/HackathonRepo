@@ -15,26 +15,32 @@ class BaseController extends CI_Controller {
     function loginuser(){
         if($this->input->post('EmailId')!="" &&  $this->input->post('password')!=""){
             $query = $this->db->get_where('t_user_details', array(
-            'User_Id' => $this->input->post('EmailId'), 'Password' => $this->input->post('password')));
+            'User_Id' => $this->input->post('EmailId')));
             if ($query->num_rows() > 0){
                 $row = $query->row_array(); 
-               // die($row['User_Status']);
-                if($row['User_Status']=="N"){
+                if(password_verify($this->input->post('password'), $row['Password'])){
+                    if($row['User_Status']=="N"){
                      $page_data['message']='Your user is deactivated. Please contact system administrator.';
-                     $this->load->view('web/acknowledgement', $page_data); 
+                         $this->load->view('web/acknowledgement', $page_data); 
+                    }
+                    else{
+                        
+                        $this->session->set_userdata('User_table_id', $row['Id']);
+                        $this->session->set_userdata('Role_Id', $row['Role_Id']);
+                        $this->session->set_userdata('Full_Name', $row['Full_Name']);
+                        $this->session->set_userdata('User_Id', $row['User_Id']);
+                        $this->session->set_userdata('Contact_No', $row['Contact_Number']);
+                        redirect(base_url() . 'index.php?baseController/dashboard', 'refresh');
+                    }  
                 }
                 else{
-                    
-                    $this->session->set_userdata('User_table_id', $row['Id']);
-                    $this->session->set_userdata('Role_Id', $row['Role_Id']);
-                    $this->session->set_userdata('Full_Name', $row['Full_Name']);
-                    $this->session->set_userdata('User_Id', $row['User_Id']);
-                    $this->session->set_userdata('Contact_No', $row['Contact_Number']);
-                    redirect(base_url() . 'index.php?baseController/dashboard', 'refresh');
-                }                
+                    $page_data['message']='Invalid email and password';
+                    $this->load->view('web/acknowledgement', $page_data); 
+                }
+                              
             } 
             else{
-                $page_data['message']='Invalid email and password';
+                $page_data['message']='Invalid email ';
                 $this->load->view('web/acknowledgement', $page_data); 
             }
         } 

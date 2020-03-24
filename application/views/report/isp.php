@@ -27,12 +27,9 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                 <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                      <label>Select Year</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <p class="text-center">
-                      <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_year" onclick="removereer('report_year_err')" id="report_year" class="form-control" >
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -44,8 +41,26 @@
                       </select>
                     </p>
                   </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Select Month</label>
+                    <select name="report_type" id="selectMonth" class="form-control" onchange="generateReportisp(this.value)">
+                        <option value=""> Select</option>
+                        <option value="1"> January</option>
+                        <option value="2">Febuary</option>   
+                        <option value="3">March</option>   
+                        <option value="4">April</option>                 
+                        <option value="5">May</option>   
+                        <option value="6">June</option>   
+                        <option value="7">July</option>   
+                        <option value="8">August</option>   
+                        <option value="9">September</option>   
+                        <option value="10">October</option>   
+                        <option value="11">November</option>   
+                        <option value="12">December</option>   
+                      </select>
+                      
+                  </div>
                 </div>
-                
                 <section class="content">
                   <div class="row">
                     <div class="col-md-12">
@@ -87,7 +102,7 @@
 
                           <?php  $month=""; if($Details_Report!=""){ ?>
                             <?php foreach($Details_Report as $i=> $rep): 
-                            $month=$rep['Broad_Band_count'].','.$rep['Contact_Center_Count'].','.$rep['Data_Center_Count'].','.$rep['ERP_Service_Count'].','.$rep['Fleet_Management_Count'].$rep['Lease_Line_Count'].$rep['LTE_Broad_Band_count'];?>
+                            $month=$rep['Broad_Band_count'].','.$rep['Contact_Center_Count'].','.$rep['Data_Center_Count'].','.$rep['ERP_Service_Count'].','.$rep['Fleet_Management_Count'].','.$rep['Lease_Line_Count'].','.$rep['LTE_Broad_Band_count'];?>
                              <td> <?php echo $rep['Broad_Band_count'];?> </td>
                             <td> <?php echo $rep['Contact_Center_Count'];?> </td>
                             <td> <?php echo $rep['Data_Center_Count'];?> </td>
@@ -109,7 +124,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>          
           </div>
         </div>
       </div>
@@ -121,7 +136,8 @@
   if('<?php echo $year;?>'!=""){
     $('#donwbtn').show();
   }
-  function generateReport(id){
+  function generateReportisp(id){
+    if(validateMonth()){
       $.blockUI
       ({ 
         css: 
@@ -135,8 +151,21 @@
             color: '#fff' 
         } 
       });
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/isp/'+id);
-      setTimeout($.unblockUI, 1000); 
+      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/isp/isp/'+id+'/'+$('#report_year').val());
+        setTimeout($.unblockUI, 1000); 
+  }
+}
+  function removereer(errid){
+    $('#selectMonth').val("");
+    $('#'+errid).html('');  
+  }
+  function validateMonth(){
+    var rety=true;
+    if($("#report_year").val()==""){
+      $('#report_year_err').html('Please select year');
+      rety=false;
+    }
+    return rety;
   }
 
   $(function () {

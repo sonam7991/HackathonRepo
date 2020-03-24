@@ -39,7 +39,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <label>Password:</label>
-              <input type="text" name="Password" value="<?=$userDetils->Password?>" id="Password" class="form-control">
+              <input type="text" name="Password" value="" id="Password" class="form-control">
             </div>
           </div>
           <br />

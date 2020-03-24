@@ -168,8 +168,7 @@
               </li>
             </ul>
            </li>
-           <!--------------------------------New Features------------------------------------->
-           <!--------------------------------Mail Function------------------------------------
+           <!--------------------------------Mail Function---------------------------------------------
            <li class="nav-item has-treeview">
             <a  class="nav-link" href="#">
               <i class="nav-icon far fa-envelope"></i>
@@ -198,7 +197,7 @@
               </li>
             </ul>
           </li>----------------------------------->
-          <!-----------------------------------Market Target Analysis------------------->
+          <!-----------------------------------Market Target Analysis---------
          <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link" >
@@ -221,13 +220,13 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li>--------------------->
           <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link" >
               <i class="nav-icon fa fa-phone-square"></i>
               <p>Mobile Subscriber
-                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">3</span>
+                <i class="fas fa-angle-left right"></i><span class="badge badge-info right">2</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -244,12 +243,12 @@
                   <p>Total Active Users Vs Total Disconnected</p>
                 </a>
               </li>
-              <li class="nav-item">
+             <!-------- <li class="nav-item">
                 <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/comparegraph/userscount/')" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Subscriber B-Mobile New Customers</p>
                 </a>
-              </li>
+              </li>------------>
             </ul>
           </li>
           <div class="dropdown-divider"></div>
@@ -259,10 +258,11 @@
               <p>Fixed Line</p>
             </a>
           </li>
+          <div class="dropdown-divider"></div>
           <li class="nav-item">
-            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/outline/outline')" class="nav-link">
-              <i class="fa fa-phone-alt"></i>
-              <p>Users Guide Line</p>
+            <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadOutline/outline')" class="nav-link">
+              <i class="fa fa-edit"></i>
+              <p>Users Giude Lines</p>
             </a>
           </li>
         </ul>

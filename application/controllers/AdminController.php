@@ -8,15 +8,17 @@ class AdminController extends CI_Controller {
         $this->excel = new PHPExcel(); 
     }
 	public function index(){
+
 	}
     function loadTarget($page=""){
         $page_data['targetlist']= $this->db->get('t_target')->result_array();
         $this->load->view('admin/Traget/'.$page,$page_data);
+        
+    }
+    function loadOutline(){
+         $this->load->view('admin/outline');
+    }
 
-    }
-    function outline($page=""){
-        $this->load->view('admin/outline/'.$page);
-    }
     function editTargetDetails($param2=""){
         die('sdsds: '. $this->input->post('updateTagetId'));
         $data['Year']=$this->input->post('year');
@@ -72,7 +74,9 @@ class AdminController extends CI_Controller {
         $data['Contact_Number']=$this->input->post('Contact_Numer');
         $data['User_Id']=$this->input->post('User_Id');
         $data['Role_Id']=$this->input->post('Role_Id');
-        $data['Password']=$this->input->post('Password');
+
+        //$data['Password']=$this->input->post('Password');
+        $data['Password']=password_hash($this->input->post('Password'), PASSWORD_BCRYPT);
         $this->CommonModel->do_insert('t_user_details', $data); 
         if($this->db->affected_rows()>0){
             $page_data['message']="User details for ".$this->input->post('Full_Name')." has beed added with user name:<b>".$this->input->post('User_Id')."</b> and password:<b>".$this->input->post('Password')."</b>. Thank you for using our system";
@@ -92,7 +96,8 @@ class AdminController extends CI_Controller {
         $data['Full_Name']=$this->input->post('Full_Name');
         $data['Contact_Number']=$this->input->post('Contact_Number');
         $data['User_Id']=$this->input->post('User_Id');
-        $data['Password']=$this->input->post('Password');
+        $data['Password']=password_hash($this->input->post('Password'), PASSWORD_BCRYPT);
+       // $data['Password']=$this->input->post('Password');
         $this->db->where('Id',  $this->input->post('userId'));
         $this->db->update('t_user_details`', $data);
         $page_data['message']="Details are updated. Thank you for using the system";
@@ -370,6 +375,7 @@ class AdminController extends CI_Controller {
         $page_data['subtypeval'] =$Id;
         $page_data['subtype'] ="";
         $page_data['Months'] ="";
+
         //subsb-mobile
         $page_data['Months'] =$this->CommonModel->getmonths();
         if($type=="detailReport"){
@@ -385,8 +391,9 @@ class AdminController extends CI_Controller {
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         } 
         if($type=="mobile_data_user"){
-            $page_data['year'] =$Id;
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'datauser');
+            $page_data['Months'] =$Id;
+            $page_data['year'] =$month;
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'datauser',$month);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
         if($type=="vas"){
@@ -397,8 +404,9 @@ class AdminController extends CI_Controller {
         } 
          
          if($type=="isp"){
-            $page_data['year'] =$Id;
-            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'isp');
+            $page_data['Months'] =$Id;
+            $page_data['year'] =$month;
+            $page_data['Details_Report'] =$this->CommonModel->getReportDetails($Id,'isp',$month);
             //$this->load->view('report/reportDetaisreportDetais',$page_data);
         }
         
@@ -699,6 +707,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $E_load= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $E_load= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $E_load= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $E_load= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $E_load= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $E_load= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $E_load= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $E_load= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $E_load= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $E_load= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $E_load= $data['P']; 
+                    }
+                    
                     
                 }
                 if($i==16){
@@ -708,7 +747,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $In_And_Vas= $data['F']; 
                     }
-                   
+                    if($this->input->post('month')==3){
+                        $In_And_Vas= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $In_And_Vas= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $In_And_Vas= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $In_And_Vas= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $In_And_Vas= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $In_And_Vas= $data['L']; 
+                    }
+                   if($this->input->post('month')==9){
+                        $In_And_Vas= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $In_And_Vas= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $In_And_Vas= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $In_And_Vas= $data['P']; 
+                    }
                 }
                 if($i==17 || $i==19 || $i==23){
                     if($this->input->post('month')==1){
@@ -717,6 +785,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Online_App+= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Online_App+= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Online_App+= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Online_App+= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Online_App+= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Online_App+= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Online_App+= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Online_App+= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Online_App+= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Online_App+= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Online_App+= $data['P']; 
+                    }
+                    
                 }
                 if($i==18){
                     if($this->input->post('month')==1){
@@ -724,6 +823,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Inter_Connect= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Inter_Connect= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Inter_Connect= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Inter_Connect= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Inter_Connect= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Inter_Connect= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Inter_Connect= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Inter_Connect= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Inter_Connect= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Inter_Connect= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Inter_Connect= $data['P']; 
                     }
                 }
                 if($i==20){
@@ -733,6 +862,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $International_Roming= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $International_Roming= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $International_Roming= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $International_Roming= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $International_Roming= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $International_Roming= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $International_Roming= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $International_Roming= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $International_Roming= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $International_Roming= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $International_Roming= $data['P']; 
+                    }
                 }
                 if($i==21){
                     if($this->input->post('month')==1){
@@ -740,6 +899,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $In_And_Vas_International= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $In_And_Vas_International= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $In_And_Vas_International= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $In_And_Vas_International= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $In_And_Vas_International= $data['J']; 
+                    }
+                     if($this->input->post('month')==7){
+                        $In_And_Vas_International= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $In_And_Vas_International= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $In_And_Vas_International= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $In_And_Vas_International= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $In_And_Vas_International= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $In_And_Vas_International= $data['P']; 
                     }
                 }
                 if($i==13){
@@ -749,6 +938,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Postpaid= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Postpaid= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Postpaid= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Postpaid= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Postpaid= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Postpaid= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Postpaid= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Postpaid= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Postpaid= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Postpaid= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Postpaid= $data['P']; 
+                    }
+
                 }
                 if($i==24){
                     if($this->input->post('month')==1){
@@ -756,6 +976,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Prepaid= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Prepaid= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Prepaid= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Prepaid= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Prepaid= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Prepaid= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Prepaid= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Prepaid= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Prepaid= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Prepaid= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Prepaid= $data['P']; 
                     }
                 }
                 if($i==10){
@@ -765,6 +1015,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Telephone_Service= $data['F']; 
                     }
+                    if($this->input->post('month')==1){
+                        $Telephone_Service= $data['G'];  
+                    }
+                    if($this->input->post('month')==3){
+                        $Telephone_Service= $data['H']; 
+                    }
+                    if($this->input->post('month')==4){
+                        $Telephone_Service= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Telephone_Service= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Telephone_Service= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Telephone_Service= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Telephone_Service= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Telephone_Service= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Telephone_Service= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Telephone_Service= $data['P']; 
+                    }
                 }
                 if($i==11){
                     if($this->input->post('month')==1){
@@ -772,6 +1052,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Int_ISD= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Int_ISD= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Int_ISD= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Int_ISD= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Int_ISD= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Int_ISD= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Int_ISD= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Int_ISD= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Int_ISD= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Int_ISD= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Int_ISD= $data['P']; 
                     }
                 }
                 if($i==52){
@@ -781,6 +1091,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Producta= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Producta= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Producta= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Producta= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Producta= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Producta= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Producta= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Producta= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Producta= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Producta= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Producta= $data['P']; 
+                    }
                 }
                 if($i==55){
                     if($this->input->post('month')==1){
@@ -788,6 +1128,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Productb= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Productb= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Productb= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Productb= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Productb= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Productb= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Productb= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Productb= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Productb= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Productb= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Productb= $data['P']; 
                     }
                 }
                 if($i==93){
@@ -797,6 +1167,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Other_Income= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Other_Income= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Other_Income= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Other_Income= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Other_Income= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Other_Income= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Other_Income= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Other_Income= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Other_Income= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Other_Income= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Other_Income= $data['P']; 
+                    }
                 }
                 if($i==25){
                     if($this->input->post('month')==1){
@@ -804,6 +1204,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $a= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $a= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $a= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $a= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $a= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $a= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $a= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $a= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $a= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $a= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $a= $data['P']; 
                     }
                 }
                 if($i==26){
@@ -813,6 +1243,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $b= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $b= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $b= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $b= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $b= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $b= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $b= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $b= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $b= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $b= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $b= $data['P']; 
+                    }
+
                 }
                 if($i==34){
                     if($this->input->post('month')==1){
@@ -821,6 +1282,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $c= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $c= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $c= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $c= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $c= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $c= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $c= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $c= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $c= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $c= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $c= $data['P']; 
+                    }
+
                 }
                 if($i==36){
                     if($this->input->post('month')==1){
@@ -829,6 +1321,38 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $d= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $d= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $d= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $d= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $d= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $d= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $d= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $d= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $d= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $d= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $d= $data['P']; 
+                    }
+
+
                 }
                 if($i==27){
                     if($this->input->post('month')==1){
@@ -836,6 +1360,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Leased_line= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Leased_line= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Leased_line= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Leased_line= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Leased_line= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Leased_line= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Leased_line= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Leased_line= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Leased_line= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Leased_line= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Leased_line= $data['P']; 
                     }
                 }
                 if($i==28){
@@ -845,6 +1399,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Domain_Name= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Domain_Name= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Domain_Name= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Domain_Name= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Domain_Name= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Domain_Name= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Domain_Name= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Domain_Name= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Domain_Name= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Domain_Name= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Domain_Name= $data['P']; 
+                    }
                 }
                 if($i==31){
                     if($this->input->post('month')==1){
@@ -852,6 +1436,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $IPLC= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $IPLC= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $IPLC= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $IPLC= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $IPLC= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $IPLC= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $IPLC= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $IPLC= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $IPLC= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $IPLC= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $IPLC= $data['P']; 
                     }
                 }
                 if($i==32){
@@ -861,6 +1475,37 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Domain_Name_int= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Domain_Name_int= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Domain_Name_int= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Domain_Name_int= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Domain_Name_int= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Domain_Name_int= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Domain_Name_int= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Domain_Name_int= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Domain_Name_int= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Domain_Name_int= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Domain_Name_int= $data['P']; 
+                    }
+
                 }
                 if($i==33){
                     if($this->input->post('month')==1){
@@ -868,6 +1513,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Leased_Line_int= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Leased_Line_int= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Leased_Line_int= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Leased_Line_int= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Leased_Line_int= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Leased_Line_int= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Leased_Line_int= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Leased_Line_int= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Leased_Line_int= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Leased_Line_int= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Leased_Line_int= $data['P']; 
                     }
                 }
                 if($i==37){
@@ -877,6 +1552,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Contact_Center= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Contact_Center= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Contact_Center= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Contact_Center= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Contact_Center= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Contact_Center= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Contact_Center= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Contact_Center= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Contact_Center= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Contact_Center= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Contact_Center= $data['P']; 
+                    }
                 }
                 if($i==39){
                     if($this->input->post('month')==1){
@@ -884,6 +1589,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $Data_Center= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $Data_Center= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Data_Center= $data['H']; 
+                    }
+                     if($this->input->post('month')==5){
+                        $Data_Center= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Data_Center= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Data_Center= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Data_Center= $data['L']; 
+                    }
+                     if($this->input->post('month')==9){
+                        $Data_Center= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Data_Center= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Data_Center= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Data_Center= $data['P']; 
                     }
                 }
                 if($i==41){
@@ -893,6 +1628,36 @@ function insertrevenueexcelData($type=""){
                     if($this->input->post('month')==2){
                         $Thuraya_Service= $data['F']; 
                     }
+                    if($this->input->post('month')==3){
+                        $Thuraya_Service= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $Thuraya_Service= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $Thuraya_Service= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $Thuraya_Service= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $Thuraya_Service= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $Thuraya_Service= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $Thuraya_Service= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $Thuraya_Service= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $Thuraya_Service= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $Thuraya_Service= $data['P']; 
+                    }
                 }
                 if($i==40){
                     if($this->input->post('month')==1){
@@ -900,6 +1665,36 @@ function insertrevenueexcelData($type=""){
                     }
                     if($this->input->post('month')==2){
                         $EPR_Service= $data['F']; 
+                    }
+                    if($this->input->post('month')==3){
+                        $EPR_Service= $data['G'];  
+                    }
+                    if($this->input->post('month')==4){
+                        $EPR_Service= $data['H']; 
+                    }
+                    if($this->input->post('month')==5){
+                        $EPR_Service= $data['I'];  
+                    }
+                    if($this->input->post('month')==6){
+                        $EPR_Service= $data['J']; 
+                    }
+                    if($this->input->post('month')==7){
+                        $EPR_Service= $data['K'];  
+                    }
+                    if($this->input->post('month')==8){
+                        $EPR_Service= $data['L']; 
+                    }
+                    if($this->input->post('month')==9){
+                        $EPR_Service= $data['M'];  
+                    }
+                    if($this->input->post('month')==10){
+                        $EPR_Service= $data['N']; 
+                    }
+                    if($this->input->post('month')==11){
+                        $EPR_Service= $data['O'];  
+                    }
+                    if($this->input->post('month')==12){
+                        $EPR_Service= $data['P']; 
                     }
                 }
                 
@@ -936,20 +1731,20 @@ function insertrevenueexcelData($type=""){
                    $crrmonth= 'Sep'; $currentdata= $data['M'];  
                 }
                 if($this->input->post('month')==10){
-                   $crrmonth= 'Oct'; $currentdata= $data['O']; 
+                   $crrmonth= 'Oct'; $currentdata= $data['N']; 
                 }
                 $crrmonth="";$currentdata="";
                 if($this->input->post('month')==11){
-                   $crrmonth= 'Nov'; $currentdata= $data['P'];  
+                   $crrmonth= 'Nov'; $currentdata= $data['O'];  
                 }
                 if($this->input->post('month')==12){
-                   $crrmonth= 'Dec'; $currentdata= $data['Q']; 
+                   $crrmonth= 'Dec'; $currentdata= $data['P']; 
                 }
             $result = array(
                     'Year' => $this->input->post('Year'),
                     'Month' => $this->input->post('month'),
                     'Service_Revenue_Id' => $data['D'],
-                    $crrmonth => $currentdata,
+                     $crrmonth => $currentdata, 
                     'User_Id' => $this->session->userdata('User_table_id'),
                     'Added_date' => date("Y-m-d"),                    
                 );

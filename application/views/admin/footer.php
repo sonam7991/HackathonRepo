@@ -119,7 +119,8 @@
       <input type="hidden" name="" id="monthvivocount" value="<?=$vivocount?>">
       <input type="hidden" name="" id="lastmonthvivocount" value="<?=$lastvivocount?>">
 </footer>
-
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?php echo base_url();?>assest/admin/version3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url();?>assest/admin/version3/plugins/chart.js/Chart.min.js"></script>

@@ -27,12 +27,9 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                 <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xl-12">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                      <label>Select Year</label>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12">
-                    <p class="text-center">
-                      <select name="report_type" id="report_type" class="form-control" onchange="generateReport(this.value)">
+                      <select name="report_year" onclick="removereer('report_year_err')" id="report_year" class="form-control" >
                         <option value=""> Select</option>
                         <option value="2019"> 2019</option>
                         <option value="2020">2020</option>
@@ -42,7 +39,26 @@
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>                
                       </select>
-                    </p>
+                      </p>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Select Month</label>
+                    <select name="report_type" id="selectMonth" class="form-control" onchange="generateReport(this.value)">
+                        <option value=""> Select</option>
+                        <option value="1"> January</option>
+                        <option value="2">Febuary</option>   
+                        <option value="3">March</option>   
+                        <option value="4">April</option>                 
+                        <option value="5">May</option>   
+                        <option value="6">June</option>   
+                        <option value="7">July</option>   
+                        <option value="8">August</option>   
+                        <option value="9">September</option>   
+                        <option value="10">October</option>   
+                        <option value="11">November</option>   
+                        <option value="12">December</option>   
+                      </select>
+                      
                   </div>
                 </div>
                 
@@ -114,7 +130,8 @@
       $('#donwbtn').show();
     }
   function generateReport(id){
-     /*$.blockUI
+    if(validateMonth()){
+     $.blockUI
         ({ 
           css: 
           { 
@@ -126,10 +143,22 @@
               opacity: .5, 
               color: '#fff' 
           } 
-        });*/
-      $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/mobile_data_user/mobile_data_user/'+id);
-       /*window.open('<?php echo base_url();?>index.php?adminController/loadreportPage/subsb-mobile/detailReport/'+id, '_blank');*/
-      //setTimeout($.unblockUI, 1000); 
+        });
+         $("#mainContentdiv").load('<?php echo base_url();?>index.php?adminController/loadreportPage/mobile_data_user/mobile_data_user/'+id+'/'+$('#report_year').val());
+        setTimeout($.unblockUI, 1000); 
+  }
+}
+function removereer(errid){
+    $('#selectMonth').val("");
+    $('#'+errid).html('');  
+  }
+  function validateMonth(){
+    var rety=true;
+    if($("#report_year").val()==""){
+      $('#report_year_err').html('Please select year');
+      rety=false;
+    }
+    return rety;
   }
 
   $(function () {

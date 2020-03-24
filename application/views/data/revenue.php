@@ -73,7 +73,7 @@
     </div>
   </div>
 </section>
-<!------------------------------------------IMPORT VIEW----------------------------------------->
+<!------------------------------------------IMPORT VIEW----------------
 <section class="content">
   <div class="container-fluid">
     <div class="card card-default">
@@ -110,7 +110,7 @@
             </tr>
         </thead>
         <tbody>
-            <!------------Table Data---------------->
+            
         </tbody>
     </table>
 </div>
@@ -119,7 +119,7 @@
         </div>
       </div>
     </div>
-</section>
+</section>----------------->
 
 <script type="text/javascript">
   

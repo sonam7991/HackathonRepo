@@ -66,13 +66,13 @@ class CommonModel extends CI_Model{
              $query =$this->db->query("SELECT m.`Month`,".$id." header FROM `t_subscriber_fixed_line_main` m WHERE m.`Year`=".$year)->result_array();
         }
         if($type=="datauser"){
-             $query =$this->db->query("SELECT d.`2_G_User`,d.`3_G_User`,d.`4_G_User` FROM `t_subscriber_mobile_data_user_main` d WHERE d.`Year`=".$id)->result_array();
+             $query =$this->db->query("SELECT d.`2_G_User`,d.`3_G_User`,d.`4_G_User` FROM `t_subscriber_mobile_data_user_main` d WHERE d.`Year`=".$months." AND d.Month=".$id)->result_array();
         }
         if($type=="vas"){
              $query =$this->db->query("SELECT d.`B_Wallet_New`,d.`B_Wallet_Total`,d.`B_Wallet_Towa` FROM `t_subscriber_vas_main` d WHERE d.`Year`=".$months." AND d.Month=".$id)->result_array();
         }
         if($type=="isp"){
-             $query =$this->db->query("SELECT d.`Broad_Band_count`,d.`Contact_Center_Count`,d.`Data_Center_Count`,d.`ERP_Service_Count`,d.`Fleet_Management_Count`,d.`Lease_Line_Count`,d.`LTE_Broad_Band_count` FROM `t_subscriber_isp_main` d WHERE d.`Year`=".$id)->result_array();
+             $query =$this->db->query("SELECT d.`Broad_Band_count`,d.`Contact_Center_Count`,d.`Data_Center_Count`,d.`ERP_Service_Count`,d.`Fleet_Management_Count`,d.`Lease_Line_Count`,d.`LTE_Broad_Band_count` FROM `t_subscriber_isp_main` d WHERE d.`Year`=".$months." AND d.Month=".$id)->result_array();
         }
         if($type=="revenue-financial"){
             if($id=="mobile"){
@@ -160,7 +160,7 @@ class CommonModel extends CI_Model{
         return $query;
         
     }
-    function getSubscriber_bmobileDetails(){
+    function getSubscriber_bmobileDetails($year=""){
         $query=$this->db->query("SELECT f.`Month`, f.`Prepaid_Active`, f.`Prepaid_Passive`,f.`Prepaid_Total`,f.`Post_Active`, f.`Post_Passive`, f.`Post_Total`,f.`Total_Active`,
             f.`Total_Registered`,f.`Disconnected`,f.`Churn_Rate`,f.`HLR`, f.`HLR_Attachment` FROM `t_subscriber_bmobile_main` f WHERE f.`Year` = '".$year."'")->result_array();
         return $query;
